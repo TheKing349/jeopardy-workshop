@@ -1,0 +1,17 @@
+{
+  "name": "simple-server-node",
+  "version": "2.0.0",
+  "description": "A simple Expressjs Web server on balena",
+  "main": "server.js",
+  "private": true,
+  "scripts": {
+    "test": "echo \"Error: no test specified\"",
+    "start": "node src/server.js"
+  },
+  "dependencies": {
+    "express": "~4.17.1",
+    "express-fileupload": "^1.4.0",
+    "express-session": "^1.17.3",
+    "fast-csv": "^4.3.6"
+  }
+}

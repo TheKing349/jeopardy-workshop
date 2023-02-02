@@ -1,0 +1,18 @@
+name: jeopardy-workshop
+type: sw.application
+joinable: false
+description: >-
+  A simple NodeJS Server to create and play custom Jeopardy! Boards from a template.
+post-provisioning: >-
+  ## Usage instructions
+
+  Allow a few minutes for your device to download the app. Once it's completed, 
+  the welcome page should be accessible on the public device URL.
+
+data:
+  supportedDeviceTypes:
+    - generic-x86-64-ext
+    - generic-aarch64
+    - fincm3
+    - beaglebone-black
+    - jetson-tx2

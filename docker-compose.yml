@@ -1,0 +1,8 @@
+version: "2"
+
+services:
+  jeopardy-workshop:
+    build: .
+    ports:
+      - "80:80"
+      - "443:443"

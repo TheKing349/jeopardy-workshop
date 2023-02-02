@@ -1,0 +1,1129 @@
+<!DOCTYPE html>
+<head>
+    <link id="stylesheet" rel="stylesheet" type="text/css" href="/static/css/style.css">
+    <title id="title">Create Your Board</title>
+</head>
+<body style="text-align: center;">
+    <h1 id="game-board-header" class="board-header">SINGLE GAME BOARD</h1>
+    <br>
+    <a class="deduct-points-checkbox">
+        <img src="/static/images/info.png" width="30" height="30" class="info-image" title="When a team gets a question wrong, determines whether team gets deducted the value. When CHECKED, team gets deducted">
+        Deduct Points <input id="deduct-points-checkbox" type="checkbox" checked>
+    </a>
+    
+    <a class="double-checkbox" onclick="checkIsNone('double');">
+        <img src="/static/images/info.png" width="30" height="30" class="info-image" title="Determines if Double/Final Jeopardy happens">
+        Double <input id="double-checkbox" type="checkbox" checked>
+    </a>
+    <a class="final-checkbox" onclick="checkIsNone('final');">
+        Final <input id="final-checkbox" type="checkbox" checked>
+    </a>
+    <br>
+    <button id="switch-double" type="button" onclick="switchDouble();">Switch to Double</button>
+    <button id="switch-final" type="button" onclick="switchFinal();">Switch to Final</button>
+    <br><br><a style="font-size: 120%;">Each checkbox below the the value/question indicates if it is a Daily Double</a>
+    <br>
+    <table id="single-edit-table" class="edit table responsive">
+        <tr>
+            <th id="sC0" onclick="editText('sC0');">
+                <a id="sC0A" contenteditable="false">CATEGORY1</a>
+            </th>
+            <th id="sC1" onclick="editText('sC1');">
+                <a id="sC1A" contenteditable="false">CATEGORY2</a>
+            </th>
+            <th id="sC2" onclick="editText('sC2');">
+                <a id="sC2A" contenteditable="false">CATEGORY3</a>
+            </th>
+            <th id="sC3" onclick="editText('sC3');">
+                <a id="sC3A" contenteditable="false">CATEGORY4</a>
+            </th>
+            <th id="sC4" onclick="editText('sC4');">
+                <a id="sC4A" contenteditable="false">CATEGORY5</a>
+            </th>
+            <th id="sC5" onclick="editText('sC5');">
+                <a id="sC5A" contenteditable="false">CATEGORY6</a>
+            </th>
+        </tr>
+        <div id="single-values">
+            <tr id="sVTr0">
+                <td id="sV0" onclick="editRowValue('sV0');">$<a id="sV0A">200</a>
+                    <br>
+                    <input type="checkbox" id="sCBV0" class="dailyDoubleCheckbox">
+                </td>
+                <td id="sV1" onclick="editRowValue('sV1');">$<a id="sV1A">200</a>
+                    <br><input type="checkbox" id="sCBV1" class="dailyDoubleCheckbox">
+                </td>
+                <td id="sV2" onclick="editRowValue('sV2');">$<a id="sV2A">200</a>
+                    <br><input type="checkbox" id="sCBV2" class="dailyDoubleCheckbox">
+                </td>
+                <td id="sV3" onclick="editRowValue('sV3');">$<a id="sV3A">200</a>
+                    <br><input type="checkbox" id="sCBV3" class="dailyDoubleCheckbox">
+                </td>
+                <td id="sV4" onclick="editRowValue('sV4');">$<a id="sV4A">200</a>
+                    <br><input type="checkbox" id="sCBV4" class="dailyDoubleCheckbox">
+                </td>
+                <td id="sV5" onclick="editRowValue('sV5');">$<a id="sV5A">200</a>
+                    <br><input type="checkbox" id="sCBV5" class="dailyDoubleCheckbox">
+                </td>
+            </tr>
+            <tr id="sVTr1">
+                <td id="sV6" onclick="editRowValue('sV6');">$<a id="sV6A">400</a>
+                    <br><input type="checkbox" id="sCBV6" class="dailyDoubleCheckbox">
+                </td>
+                <td id="sV7" onclick="editRowValue('sV7');">$<a id="sV7A">400</a>
+                    <br><input type="checkbox" id="sCBV7" class="dailyDoubleCheckbox">
+                </td>
+                <td id="sV8" onclick="editRowValue('sV8');">$<a id="sV8A">400</a>
+                    <br><input type="checkbox" id="sCBV8" class="dailyDoubleCheckbox">
+                </td>
+                <td id="sV9" onclick="editRowValue('sV9');">$<a id="sV9A">400</a>
+                    <br><input type="checkbox" id="sCBV9" class="dailyDoubleCheckbox">
+                </td>
+                <td id="sV10" onclick="editRowValue('sV10');">$<a id="sV10A">400</a>
+                    <br><input type="checkbox" id="sCBV10" class="dailyDoubleCheckbox">
+                </td>
+                <td id="sV11" onclick="editRowValue('sV11');">$<a id="sV11A">400</a>
+                    <br><input type="checkbox" id="sCBV11" class="dailyDoubleCheckbox">
+                </td>
+            </tr>
+            <tr id="sVTr2">
+                <td id="sV12" onclick="editRowValue('sV12');">$<a id="sV12A">600</a>
+                    <br><input type="checkbox" id="sCBV12" class="dailyDoubleCheckbox">
+                </td>
+                <td id="sV13" onclick="editRowValue('sV13');">$<a id="sV13A">600</a>
+                    <br><input type="checkbox" id="sCBV13" class="dailyDoubleCheckbox">
+                </td>
+                <td id="sV14" onclick="editRowValue('sV14');">$<a id="sV14A">600</a>
+                    <br><input type="checkbox" id="sCBV14" class="dailyDoubleCheckbox">
+                </td>
+                <td id="sV15" onclick="editRowValue('sV15');">$<a id="sV15A">600</a>
+                    <br><input type="checkbox" id="sCBV15" class="dailyDoubleCheckbox">
+                </td>
+                <td id="sV16" onclick="editRowValue('sV16');">$<a id="sV16A">600</a>
+                    <br><input type="checkbox" id="sCBV16" class="dailyDoubleCheckbox">
+                </td>
+                <td id="sV17" onclick="editRowValue('sV17');">$<a id="sV17A">600</a>
+                    <br><input type="checkbox" id="sCBV17" class="dailyDoubleCheckbox">
+                </td>
+            </tr>
+            <tr id="sVTr3">
+                <td id="sV18" onclick="editRowValue('sV18');">$<a id="sV18A">800</a>
+                    <br><input type="checkbox" id="sCBV18" class="dailyDoubleCheckbox">
+                </td>
+                <td id="sV19" onclick="editRowValue('sV19');">$<a id="sV19A">800</a>
+                    <br><input type="checkbox" id="sCBV19" class="dailyDoubleCheckbox">
+                </td>
+                <td id="sV20" onclick="editRowValue('sV20');">$<a id="sV20A">800</a>
+                    <br><input type="checkbox" id="sCBV20" class="dailyDoubleCheckbox">
+                </td>
+                <td id="sV21" onclick="editRowValue('sV21');">$<a id="sV21A">800</a>
+                    <br><input type="checkbox" id="sCBV21" class="dailyDoubleCheckbox">
+                </td>
+                <td id="sV22" onclick="editRowValue('sV22');">$<a id="sV22A">800</a>
+                    <br><input type="checkbox" id="sCBV22" class="dailyDoubleCheckbox">
+                </td>
+                <td id="sV23" onclick="editRowValue('sV23');">$<a id="sV23A">800</a>
+                    <br><input type="checkbox" id="sCBV23" class="dailyDoubleCheckbox">
+                </td>
+            </tr>
+            <tr id="sVTr4">
+                <td id="sV24" onclick="editRowValue('sV24');">$<a id="sV24A">1000</a>
+                    <br><input type="checkbox" id="sCBV24" class="dailyDoubleCheckbox">
+                </td>
+                <td id="sV25" onclick="editRowValue('sV25');">$<a id="sV25A">1000</a>
+                    <br><input type="checkbox" id="sCBV25" class="dailyDoubleCheckbox">
+                </td>
+                <td id="sV26" onclick="editRowValue('sV26');">$<a id="sV26A">1000</a>
+                    <br><input type="checkbox" id="sCBV26" class="dailyDoubleCheckbox">
+                </td>
+                <td id="sV27" onclick="editRowValue('sV27');">$<a id="sV27A">1000</a>
+                    <br><input type="checkbox" id="sCBV27" class="dailyDoubleCheckbox">
+                </td>
+                <td id="sV28" onclick="editRowValue('sV28');">$<a id="sV28A">1000</a>
+                    <br><input type="checkbox" id="sCBV28" class="dailyDoubleCheckbox">
+                </td>
+                <td id="sV29" onclick="editRowValue('sV29');">$<a id="sV29A">1000</a>
+                    <br><input type="checkbox" id="sCBV29" class="dailyDoubleCheckbox">
+                </td>
+            </tr>
+        </div>
+
+        <div id="single-questions" hidden>
+            <tr id="sQTr0" hidden>
+                <td id="sQ0" onclick="editText('sQ0');">
+                    <a id="sQ0A" contenteditable="false">CLUE1</a>
+                    <br><input type="checkbox" id="sCBQ0" class="dailyDoubleCheckbox">
+                </td>
+                <td id="sQ1" onclick="editText('sQ1');">
+                    <a id="sQ1A" contenteditable="false">CLUE2</a>
+                    <br><input type="checkbox" id="sCBQ1" class="dailyDoubleCheckbox">
+                </td>
+                <td id="sQ2" onclick="editText('sQ2');">
+                    <a id="sQ2A" contenteditable="false">CLUE3</a>
+                    <br><input type="checkbox" id="sCBQ2" class="dailyDoubleCheckbox">
+                </td>
+                <td id="sQ3" onclick="editText('sQ3');">
+                    <a id="sQ3A" contenteditable="false">CLUE4</a>
+                    <br><input type="checkbox" id="sCBQ3" class="dailyDoubleCheckbox">
+                </td>
+                <td id="sQ4" onclick="editText('sQ4');">
+                    <a id="sQ4A" contenteditable="false">CLUE5</a>
+                    <br><input type="checkbox" id="sCBQ4" class="dailyDoubleCheckbox">
+                </td>
+                <td id="sQ5" onclick="editText('sQ5');">
+                    <a id="sQ5A" contenteditable="false">CLUE6</a>
+                    <br><input type="checkbox" id="sCBQ5" class="dailyDoubleCheckbox">
+                </td>
+            </tr>
+            <tr id="sQTr1" hidden>
+                <td id="sQ6" onclick="editText('sQ6');">
+                    <a id="sQ6A" contenteditable="false">CLUE7</a>
+                    <br><input type="checkbox" id="sCBQ6" class="dailyDoubleCheckbox">
+                </td>
+                <td id="sQ7" onclick="editText('sQ7');">
+                    <a id="sQ7A" contenteditable="false">CLUE8</a>
+                    <br><input type="checkbox" id="sCBQ7" class="dailyDoubleCheckbox">
+                </td>
+                <td id="sQ8" onclick="editText('sQ8');">
+                    <a id="sQ8A" contenteditable="false">CLUE9</a>
+                    <br><input type="checkbox" id="sCBQ8" class="dailyDoubleCheckbox">
+                </td>
+                <td id="sQ9" onclick="editText('sQ9');">
+                    <a id="sQ9A" contenteditable="false">CLUE10</a>
+                    <br><input type="checkbox" id="sCBQ9" class="dailyDoubleCheckbox">
+                </td>
+                <td id="sQ10" onclick="editText('sQ10');">
+                    <a id="sQ10A" contenteditable="false">CLUE11</a>
+                    <br><input type="checkbox" id="sCBQ10" class="dailyDoubleCheckbox">
+                </td>
+                <td id="sQ11" onclick="editText('sQ11');">
+                    <a id="sQ11A" contenteditable="false">CLUE12</a>
+                    <br><input type="checkbox" id="sCBQ11" class="dailyDoubleCheckbox">
+                </td>
+            </tr>
+            <tr id="sQTr2" hidden>
+                <td id="sQ12" onclick="editText('sQ12');">
+                    <a id="sQ12A" contenteditable="false">CLUE13</a>
+                    <br><input type="checkbox" id="sCBQ12" class="dailyDoubleCheckbox">
+                </td>
+                <td id="sQ13" onclick="editText('sQ13');">
+                    <a id="sQ13A" contenteditable="false">CLUE14</a>
+                    <br><input type="checkbox" id="sCBQ13" class="dailyDoubleCheckbox">
+                </td>
+                <td id="sQ14" onclick="editText('sQ14');">
+                    <a id="sQ14A" contenteditable="false">CLUE15</a>
+                    <br><input type="checkbox" id="sCBQ14" class="dailyDoubleCheckbox">
+                </td>
+                <td id="sQ15" onclick="editText('sQ15');">
+                    <a id="sQ15A" contenteditable="false">CLUE16</a>
+                    <br><input type="checkbox" id="sCBQ15" class="dailyDoubleCheckbox">
+                </td>
+                <td id="sQ16" onclick="editText('sQ16');">
+                    <a id="sQ16A" contenteditable="false">CLUE17</a>
+                    <br><input type="checkbox" id="sCBQ16" class="dailyDoubleCheckbox">
+                </td>
+                <td id="sQ17" onclick="editText('sQ17');">
+                    <a id="sQ17A" contenteditable="false">CLUE18</a>
+                    <br><input type="checkbox" id="sCBQ17" class="dailyDoubleCheckbox">
+                </td>
+            </tr>
+            <tr id="sQTr3" hidden>
+                <td id="sQ18" onclick="editText('sQ18');">
+                    <a id="sQ18A" contenteditable="false">CLUE19</a>
+                    <br><input type="checkbox" id="sCBQ18" class="dailyDoubleCheckbox">
+                </td>
+                <td id="sQ19" onclick="editText('sQ19');">
+                    <a id="sQ19A" contenteditable="false">CLUE20</a>
+                    <br><input type="checkbox" id="sCBQ19" class="dailyDoubleCheckbox">
+                </td>
+                <td id="sQ20" onclick="editText('sQ20');">
+                    <a id="sQ20A" contenteditable="false">CLUE21</a>
+                    <br><input type="checkbox" id="sCBQ20" class="dailyDoubleCheckbox">
+                </td>
+                <td id="sQ21" onclick="editText('sQ21');">
+                    <a id="sQ21A" contenteditable="false">CLUE22</a>
+                    <br><input type="checkbox" id="sCBQ21" class="dailyDoubleCheckbox">
+                </td>
+                <td id="sQ22" onclick="editText('sQ22');">
+                    <a id="sQ22A" contenteditable="false">CLUE23</a>
+                    <br><input type="checkbox" id="sCBQ22" class="dailyDoubleCheckbox">
+                </td>
+                <td id="sQ23" onclick="editText('sQ23');">
+                    <a id="sQ23A" contenteditable="false">CLUE24</a>
+                    <br><input type="checkbox" id="sCBQ23" class="dailyDoubleCheckbox">
+                </td>
+            </tr>
+            <tr id="sQTr4" hidden>
+                <td id="sQ24" onclick="editText('sQ24');">
+                    <a id="sQ24A" contenteditable="false">CLUE25</a>
+                    <br><input type="checkbox" id="sCBQ24" class="dailyDoubleCheckbox">
+                </td>
+                <td id="sQ25" onclick="editText('sQ25');">
+                    <a id="sQ25A" contenteditable="false">CLUE26</a>
+                    <br><input type="checkbox" id="sCBQ25" class="dailyDoubleCheckbox">
+                </td>
+                <td id="sQ26" onclick="editText('sQ26');">
+                    <a id="sQ26A" contenteditable="false">CLUE27</a>
+                    <br><input type="checkbox" id="sCBQ26" class="dailyDoubleCheckbox">
+                </td>
+                <td id="sQ27" onclick="editText('sQ27');">
+                    <a id="sQ27A" contenteditable="false">CLUE28</a>
+                    <br><input type="checkbox" id="sCBQ27" class="dailyDoubleCheckbox">
+                </td>
+                <td id="sQ28" onclick="editText('sQ28');">
+                    <a id="sQ28A" contenteditable="false">CLUE29</a>
+                    <br><input type="checkbox" id="sCBQ28" class="dailyDoubleCheckbox">
+                </td>
+                <td id="sQ29" onclick="editText('sQ29');">
+                    <a id="sQ29A" contenteditable="false">CLUE30</a>
+                    <br><input type="checkbox" id="sCBQ29" class="dailyDoubleCheckbox">
+                </td>
+            </tr>
+        </div>
+    </table>
+
+    <table id="double-edit-table" class="edit table responsive" hidden>
+        <tr>
+            <th id="dC0" onclick="editText('dC0');">
+                <a id="dC0A" contenteditable="false">CATEGORY1</a>
+            </th>
+            <th id="dC1" onclick="editText('dC1');">
+                <a id="dC1A" contenteditable="false">CATEGORY2</a>
+            </th>
+            <th id="dC2" onclick="editText('dC2');">
+                <a id="dC2A" contenteditable="false">CATEGORY3</a>
+            </th>
+            <th id="dC3" onclick="editText('dC3');">
+                <a id="dC3A" contenteditable="false">CATEGORY4</a>
+            </th>
+            <th id="dC4" onclick="editText('dC4');">
+                <a id="dC4A" contenteditable="false">CATEGORY5</a>
+            </th>
+            <th id="dC5" onclick="editText('dC5');">
+                <a id="dC5A" contenteditable="false">CATEGORY6</a>
+            </th>
+        </tr>
+        <div id="double-values">
+            <tr id="dVTr0">
+                <td id="dV0" onclick="editRowValue('dV0');">$<a id="dV0A">400</a>
+                    <br><input type="checkbox" id="dCBV0" class="dailyDoubleCheckbox">
+                </td>
+                <td id="dV1" onclick="editRowValue('dV1');">$<a id="dV1A">400</a>
+                    <br><input type="checkbox" id="dCBV1" class="dailyDoubleCheckbox">
+                </td>
+                <td id="dV2" onclick="editRowValue('dV2');">$<a id="dV2A">400</a>
+                    <br><input type="checkbox" id="dCBV2" class="dailyDoubleCheckbox">
+                </td>
+                <td id="dV3" onclick="editRowValue('dV3');">$<a id="dV3A">400</a>
+                    <br><input type="checkbox" id="dCBV3" class="dailyDoubleCheckbox">
+                </td>
+                <td id="dV4" onclick="editRowValue('dV4');">$<a id="dV4A">400</a>
+                    <br><input type="checkbox" id="dCBV4" class="dailyDoubleCheckbox">
+                </td>
+                <td id="dV5" onclick="editRowValue('dV5');">$<a id="dV5A">400</a>
+                    <br><input type="checkbox" id="dCBV5" class="dailyDoubleCheckbox">
+                </td>
+            </tr>
+            <tr id="dVTr1">
+                <td id="dV6" onclick="editRowValue('dV6');">$<a id="dV6A">800</a>
+                    <br><input type="checkbox" id="dCBV6" class="dailyDoubleCheckbox">
+                </td>
+                <td id="dV7" onclick="editRowValue('dV7');">$<a id="dV7A">800</a>
+                    <br><input type="checkbox" id="dCBV7" class="dailyDoubleCheckbox">
+                </td>
+                <td id="dV8" onclick="editRowValue('dV8');">$<a id="dV8A">800</a>
+                    <br><input type="checkbox" id="dCBV8" class="dailyDoubleCheckbox">
+                </td>
+                <td id="dV9" onclick="editRowValue('dV9');">$<a id="dV9A">800</a>
+                    <br><input type="checkbox" id="dCBV9" class="dailyDoubleCheckbox">
+                </td>
+                <td id="dV10" onclick="editRowValue('dV10');">$<a id="dV10A">800</a>
+                    <br><input type="checkbox" id="dCBV10" class="dailyDoubleCheckbox">
+                </td>
+                <td id="dV11" onclick="editRowValue('dV11');">$<a id="dV11A">800</a>
+                    <br><input type="checkbox" id="dCBV11">
+                </td>
+            </tr>
+            <tr id="dVTr2">
+                <td id="dV12" onclick="editRowValue('dV12');">$<a id="dV12A">1200</a>
+                    <br><input type="checkbox" id="dCBV12" class="dailyDoubleCheckbox">
+                </td>
+                <td id="dV13" onclick="editRowValue('dV13');">$<a id="dV13A">1200</a>
+                    <br><input type="checkbox" id="dCBV13" class="dailyDoubleCheckbox">
+                </td>
+                <td id="dV14" onclick="editRowValue('dV14');">$<a id="dV14A">1200</a>
+                    <br><input type="checkbox" id="dCBV14" class="dailyDoubleCheckbox">
+                </td>
+                <td id="dV15" onclick="editRowValue('dV15');">$<a id="dV15A">1200</a>
+                    <br><input type="checkbox" id="dCBV15" class="dailyDoubleCheckbox">
+                </td>
+                <td id="dV16" onclick="editRowValue('dV16');">$<a id="dV16A">1200</a>
+                    <br><input type="checkbox" id="dCBV16" class="dailyDoubleCheckbox">
+                </td>
+                <td id="dV17" onclick="editRowValue('dV17');">$<a id="dV17A">1200</a>
+                    <br><input type="checkbox" id="dCBV17" class="dailyDoubleCheckbox">
+                </td>
+            </tr>
+            <tr id="dVTr3">
+                <td id="dV18" onclick="editRowValue('dV18');">$<a id="dV18A">1600</a>
+                    <br><input type="checkbox" id="dCBV18" class="dailyDoubleCheckbox">
+                </td>
+                <td id="dV19" onclick="editRowValue('dV19');">$<a id="dV19A">1600</a>
+                    <br><input type="checkbox" id="dCBV19" class="dailyDoubleCheckbox">
+                </td>
+                <td id="dV20" onclick="editRowValue('dV20');">$<a id="dV20A">1600</a>
+                    <br><input type="checkbox" id="dCBV20" class="dailyDoubleCheckbox">
+                </td>
+                <td id="dV21" onclick="editRowValue('dV21');">$<a id="dV21A">1600</a>
+                    <br><input type="checkbox" id="dCBV21" class="dailyDoubleCheckbox">
+                </td>
+                <td id="dV22" onclick="editRowValue('dV22');">$<a id="dV22A">1600</a>
+                    <br><input type="checkbox" id="dCBV22" class="dailyDoubleCheckbox">
+                </td>
+                <td id="dV23" onclick="editRowValue('dV23');">$<a id="dV23A">1600</a>
+                    <br><input type="checkbox" id="dCBV23" class="dailyDoubleCheckbox">
+                </td>
+            </tr>
+            <tr id="dVTr4">
+                <td id="dV24" onclick="editRowValue('dV24');">$<a id="dV24A">2000</a>
+                    <br><input type="checkbox" id="dCBV24" class="dailyDoubleCheckbox">
+                </td>
+                <td id="dV25" onclick="editRowValue('dV25');">$<a id="dV25A">2000</a>
+                    <br><input type="checkbox" id="dCBV25" class="dailyDoubleCheckbox">
+                </td>
+                <td id="dV26" onclick="editRowValue('dV26');">$<a id="dV26A">2000</a>
+                    <br><input type="checkbox" id="dCBV26" class="dailyDoubleCheckbox">
+                </td>
+                <td id="dV27" onclick="editRowValue('dV27');">$<a id="dV27A">2000</a>
+                    <br><input type="checkbox" id="dCBV27" class="dailyDoubleCheckbox">
+                </td>
+                <td id="dV28" onclick="editRowValue('dV28');">$<a id="dV28A">2000</a>
+                    <br><input type="checkbox" id="dCBV28" class="dailyDoubleCheckbox">
+                </td>
+                <td id="dV29" onclick="editRowValue('dV29');">$<a id="dV29A">2000</a>
+                    <br><input type="checkbox" id="dCBV29" class="dailyDoubleCheckbox">
+                </td>
+            </tr>
+        </div>
+        <div id="double-questions" hidden>
+            <tr id="dQTr0" hidden>
+                <td id="dQ0" onclick="editText('dQ0');">
+                    <a id="dQ0A" contenteditable="false">CLUE1</a>
+                    <br><input type="checkbox" id="dCBQ0">
+                </td>
+                <td id="dQ1" onclick="editText('dQ1');">
+                    <a id="dQ1A" contenteditable="false">CLUE2</a>
+                    <br><input type="checkbox" id="dCBQ1">
+                </td>
+                <td id="dQ2" onclick="editText('dQ2');">
+                    <a id="dQ2A" contenteditable="false">CLUE3</a>
+                    <br><input type="checkbox" id="dCBQ2">
+                </td>
+                <td id="dQ3" onclick="editText('dQ3');">
+                    <a id="dQ3A" contenteditable="false">CLUE4</a>
+                    <br><input type="checkbox" id="dCBQ3">
+                </td>
+                <td id="dQ4" onclick="editText('dQ4');">
+                    <a id="dQ4A" contenteditable="false">CLUE5</a>
+                    <br><input type="checkbox" id="dCBQ4">
+                </td>
+                <td id="dQ5" onclick="editText('dQ5');">
+                    <a id="dQ5A" contenteditable="false">CLUE6</a>
+                    <br><input type="checkbox" id="dCBQ5">
+                </td>
+            </tr>
+            <tr id="dQTr1" hidden>
+                <td id="dQ6" onclick="editText('dQ6');">
+                    <a id="dQ6A" contenteditable="false">CLUE7</a>
+                    <br><input type="checkbox" id="dCBQ6">
+                </td>
+                <td id="dQ7" onclick="editText('dQ7');">
+                    <a id="dQ7A" contenteditable="false">CLUE8</a>
+                    <br><input type="checkbox" id="dCBQ7">
+                </td>
+                <td id="dQ8" onclick="editText('dQ8');">
+                    <a id="dQ8A" contenteditable="false">CLUE9</a>
+                    <br><input type="checkbox" id="dCBQ8">
+                </td>
+                <td id="dQ9" onclick="editText('dQ9');">
+                    <a id="dQ9A" contenteditable="false">CLUE10</a>
+                    <br><input type="checkbox" id="dCBQ9">
+                </td>
+                <td id="dQ10" onclick="editText('dQ10');">
+                    <a id="dQ10A" contenteditable="false">CLUE11</a>
+                    <br><input type="checkbox" id="dCBQ10">
+                </td>
+                <td id="dQ11" onclick="editText('dQ11');">
+                    <a id="dQ11A" contenteditable="false">CLUE12</a>
+                    <br><input type="checkbox" id="dCBQ11">
+                </td>
+            </tr>
+            <tr id="dQTr2" hidden>
+                <td id="dQ12" onclick="editText('dQ12');">
+                    <a id="dQ12A" contenteditable="false">CLUE13</a>
+                    <br><input type="checkbox" id="dCBQ12">
+                </td>
+                <td id="dQ13" onclick="editText('dQ13');">
+                    <a id="dQ13A" contenteditable="false">CLUE14</a>
+                    <br><input type="checkbox" id="dCBQ13">
+                </td>
+                <td id="dQ14" onclick="editText('dQ14');">
+                    <a id="dQ14A" contenteditable="false">CLUE15</a>
+                    <br><input type="checkbox" id="dCBQ14">
+                </td>
+                <td id="dQ15" onclick="editText('dQ15');">
+                    <a id="dQ15A" contenteditable="false">CLUE16</a>
+                    <br><input type="checkbox" id="dCBQ15">
+                </td>
+                <td id="dQ16" onclick="editText('dQ16');">
+                    <a id="dQ16A" contenteditable="false">CLUE17</a>
+                    <br><input type="checkbox" id="dCBQ16">
+                </td>
+                <td id="dQ17" onclick="editText('dQ17');">
+                    <a id="dQ17A" contenteditable="false">CLUE18</a>
+                    <br><input type="checkbox" id="dCBQ17">
+                </td>
+            </tr>
+            <tr id="dQTr3" hidden>
+                <td id="dQ18" onclick="editText('dQ18');">
+                    <a id="dQ18A" contenteditable="false">CLUE19</a>
+                    <br><input type="checkbox" id="dCBQ18">
+                </td>
+                <td id="dQ19" onclick="editText('dQ19');">
+                    <a id="dQ19A" contenteditable="false">CLUE20</a>
+                    <br><input type="checkbox" id="dCBQ19">
+                </td>
+                <td id="dQ20" onclick="editText('dQ20');">
+                    <a id="dQ20A" contenteditable="false">CLUE21</a>
+                    <br><input type="checkbox" id="dCBQ20">
+                </td>
+                <td id="dQ21" onclick="editText('dQ21');">
+                    <a id="dQ21A" contenteditable="false">CLUE22</a>
+                    <br><input type="checkbox" id="dCBQ21">
+                </td>
+                <td id="dQ22" onclick="editText('dQ22');">
+                    <a id="dQ22A" contenteditable="false">CLUE23</a>
+                    <br><input type="checkbox" id="dCBQ22">
+                </td>
+                <td id="dQ23" onclick="editText('dQ23');">
+                    <a id="dQ23A" contenteditable="false">CLUE24</a>
+                    <br><input type="checkbox" id="dCBQ23">
+                </td>
+            </tr>
+            <tr id="dQTr4" hidden>
+                <td id="dQ24" onclick="editText('dQ24');">
+                    <a id="dQ24A" contenteditable="false">CLUE25</a>
+                    <br><input type="checkbox" id="dCBQ24">
+                </td>
+                <td id="dQ25" onclick="editText('dQ25');">
+                    <a id="dQ25A" contenteditable="false">CLUE26</a>
+                    <br><input type="checkbox" id="dCBQ25">
+                </td>
+                <td id="dQ26" onclick="editText('dQ26');">
+                    <a id="dQ26A" contenteditable="false">CLUE27</a>
+                    <br><input type="checkbox" id="dCBQ26">
+                </td>
+                <td id="dQ27" onclick="editText('dQ27');">
+                    <a id="dQ27A" contenteditable="false">CLUE28</a>
+                    <br><input type="checkbox" id="dCBQ27">
+                </td>
+                <td id="dQ28" onclick="editText('dQ28');">
+                    <a id="dQ28A" contenteditable="false">CLUE29</a>
+                    <br><input type="checkbox" id="dCBQ28">
+                </td>
+                <td id="dQ29" onclick="editText('dQ29');">
+                    <a id="dQ29A" contenteditable="false">CLUE30</a>
+                    <br><input type="checkbox" id="dCBQ29">
+                </td>
+            </tr>
+        </div>
+    </table>
+
+    <table id="final-edit-table" class="edit table responsive" hidden>
+        <tr>
+            <td id="fC" onclick="editText('fC');">
+                <a id="fCA" contenteditable="false">FINAL CATEGORY</a>
+            </td>
+        </tr>
+        <tr>
+            <th id="fQ" onclick="editText('fQ');">
+                <a id="fQA" contenteditable="false">FINAL CLUE</a>
+            </th>
+        </tr>
+        <tr>
+            <td id="fA" onclick="editText('fA');">
+                <a id="fAA" contenteditable="false">FINAL ANSWER</a>
+            </td>
+        </tr>
+    </table>
+
+   <button id="edit-questions" type="button" onclick="switchQuestionValue();">Edit Questions</button>
+   <button id="show-answer-board" type="button" onclick="switchAnswerBoard();">Show Answer Board</button>
+    <h1 id="answer-board-header" class="board-header" hidden>SINGLE ANSWER BOARD</h1>
+
+    <table id="single-answer-table" class="edit table responsive" hidden>
+        <tr>
+            <th id="sAC0" onclick="editText('sAC0');">
+                <a id="sAC0A" contenteditable="false">CATEGORY1</a>
+            </th>
+            <th id="sAC1" onclick="editText('sAC1');">
+                <a id="sAC1A" contenteditable="false">CATEGORY2</a>
+            </th>
+            <th id="sAC2" onclick="editText('sAC2');">
+                <a id="sAC2A" contenteditable="false">CATEGORY3</a>
+            </th>
+            <th id="sAC3" onclick="editText('sAC3');">
+                <a id="sAC3A" contenteditable="false">CATEGORY4</a>
+            </th>
+            <th id="sAC4" onclick="editText('sAC4');">
+                <a id="sAC4A" contenteditable="false">CATEGORY5</a>
+            </th>
+            <th id="sAC5" onclick="editText('sAC5');">
+                <a id="sAC5A" contenteditable="false">CATEGORY6</a>
+            </th>
+        </tr>
+        <tr>
+            <td id="sA0" onclick="editText('sA0');">
+                <a id="sA0A" contenteditable="false">ANSWER1</a>
+            </td>
+            <td id="sA1" onclick="editText('sA1');">
+                <a id="sA1A" contenteditable="false">ANSWER2</a>
+            </td>
+            <td id="sA2" onclick="editText('sA2');">
+                <a id="sA2A" contenteditable="false">ANSWER3</a>
+            </td>
+            <td id="sA3" onclick="editText('sA3');">
+                <a id="sA3A" contenteditable="false">ANSWER4</a>
+            </td>
+            <td id="sA4" onclick="editText('sA4');">
+                <a id="sA4A" contenteditable="false">ANSWER5</a>
+            </td>
+            <td id="sA5" onclick="editText('sA5');">
+                <a id="sA5A" contenteditable="false">ANSWER6</a>
+            </td>
+        </tr>
+        <tr>
+            <td id="sA6" onclick="editText('sA6');">
+                <a id="sA6A" contenteditable="false">ANSWER7</a>
+            </td>
+            <td id="sA7" onclick="editText('sA7');">
+                <a id="sA7A" contenteditable="false">ANSWER8</a>
+            </td>
+            <td id="sA8" onclick="editText('sA8');">
+                <a id="sA8A" contenteditable="false">ANSWER9</a>
+            </td>
+            <td id="sA9" onclick="editText('sA9');">
+                <a id="sA9A" contenteditable="false">ANSWER10</a>
+            </td>
+            <td id="sA10" onclick="editText('sA10');">
+                <a id="sA10A" contenteditable="false">ANSWER11</a>
+            </td>
+            <td id="sA11" onclick="editText('sA11');">
+                <a id="sA11A" contenteditable="false">ANSWER12</a>
+            </td>
+        </tr>
+        <tr>
+            <td id="sA12" onclick="editText('sA12');">
+                <a id="sA12A" contenteditable="false">ANSWER13</a>
+            </td>
+            <td id="sA13" onclick="editText('sA13');">
+                <a id="sA13A" contenteditable="false">ANSWER14</a>
+            </td>
+            <td id="sA14" onclick="editText('sA14');">
+                <a id="sA14A" contenteditable="false">ANSWER15</a>
+            </td>
+            <td id="sA15" onclick="editText('sA15');">
+                <a id="sA15A" contenteditable="false">ANSWER16</a>
+            </td>
+            <td id="sA16" onclick="editText('sA16');">
+                <a id="sA16A" contenteditable="false">ANSWER17</a>
+            </td>
+            <td id="sA17" onclick="editText('sA17');">
+                <a id="sA17A" contenteditable="false">ANSWER18</a>
+            </td>
+        </tr>
+        <tr>
+            <td id="sA18" onclick="editText('sA18');">
+                <a id="sA18A" contenteditable="false">ANSWER19</a>
+            </td>
+            <td id="sA19" onclick="editText('sA19');">
+                <a id="sA19A" contenteditable="false">ANSWER20</a>
+            </td>
+            <td id="sA20" onclick="editText('sA20');">
+                <a id="sA20A" contenteditable="false">ANSWER21</a>
+            </td>
+            <td id="sA21" onclick="editText('sA21');">
+                <a id="sA21A" contenteditable="false">ANSWER22</a>
+            </td>
+            <td id="sA22" onclick="editText('sA22');">
+                <a id="sA22A" contenteditable="false">ANSWER23</a>
+            </td>
+            <td id="sA23" onclick="editText('sA23');">
+                <a id="sA23A" contenteditable="false">ANSWER24</a>
+            </td>
+        </tr>
+        <tr>
+            <td id="sA24" onclick="editText('sA24');">
+                <a id="sA24A" contenteditable="false">ANSWER25</a>
+            </td>
+            <td id="sA25" onclick="editText('sA25');">
+                <a id="sA25A" contenteditable="false">ANSWER26</a>
+            </td>
+            <td id="sA26" onclick="editText('sA26');">
+                <a id="sA26A" contenteditable="false">ANSWER27</a>
+            </td>
+            <td id="sA27" onclick="editText('sA27');">
+                <a id="sA27A" contenteditable="false">ANSWER28</a>
+            </td>
+            <td id="sA28" onclick="editText('sA28');">
+                <a id="sA28A" contenteditable="false">ANSWER29</a>
+            </td>
+            <td id="sA29" onclick="editText('sA29');">
+                <a id="sA29A" contenteditable="false">ANSWER30</a>
+            </td>
+        </tr>
+    </table>
+
+    <table id="double-answer-table" class="edit table responsive" hidden>
+        <tr>
+            <th id="dAC0" onclick="editText('dAC0');">
+                <a id="dAC0A" contenteditable="false">CATEGORY1</a>
+            </th>
+            <th id="dAC1" onclick="editText('dAC1');">
+                <a id="dAC1A" contenteditable="false">CATEGORY2</a>
+            </th>
+            <th id="dAC2" onclick="editText('dAC2');">
+                <a id="dAC2A" contenteditable="false">CATEGORY3</a>
+            </th>
+            <th id="dAC3" onclick="editText('dAC3');">
+                <a id="dAC3A" contenteditable="false">CATEGORY4</a>
+            </th>
+            <th id="dAC4" onclick="editText('dAC4');">
+                <a id="dAC4A" contenteditable="false">CATEGORY5</a>
+            </th>
+            <th id="dAC5" onclick="editText('dAC5');">
+                <a id="dAC5A" contenteditable="false">CATEGORY6</a>
+            </th>
+        </tr>
+        <tr>
+            <td id="dA0" onclick="editText('dA0');">
+                <a id="dA0A" contenteditable="false">ANSWER1</a>
+            </td>
+            <td id="dA1" onclick="editText('dA1');">
+                <a id="dA1A" contenteditable="false">ANSWER2</a>
+            </td>
+            <td id="dA2" onclick="editText('dA2');">
+                <a id="dA2A" contenteditable="false">ANSWER3</a>
+            </td>
+            <td id="dA3" onclick="editText('dA3');">
+                <a id="dA3A" contenteditable="false">ANSWER4</a>
+            </td>
+            <td id="dA4" onclick="editText('dA4');">
+                <a id="dA4A" contenteditable="false">ANSWER5</a>
+            </td>
+            <td id="dA5" onclick="editText('dA5');">
+                <a id="dA5A" contenteditable="false">ANSWER6</a>
+            </td>
+        </tr>
+        <tr>
+            <td id="dA6" onclick="editText('dA6');">
+                <a id="dA6A" contenteditable="false">ANSWER7</a>
+            </td>
+            <td id="dA7" onclick="editText('dA7');">
+                <a id="dA7A" contenteditable="false">ANSWER8</a>
+            </td>
+            <td id="dA8" onclick="editText('dA8');">
+                <a id="dA8A" contenteditable="false">ANSWER9</a>
+            </td>
+            <td id="dA9" onclick="editText('dA9');">
+                <a id="dA9A" contenteditable="false">ANSWER10</a>
+            </td>
+            <td id="dA10" onclick="editText('dA10');">
+                <a id="dA10A" contenteditable="false">ANSWER11</a>
+            </td>
+            <td id="dA11" onclick="editText('dA11');">
+                <a id="dA11A" contenteditable="false">ANSWER12</a>
+            </td>
+        </tr>
+        <tr>
+            <td id="dA12" onclick="editText('dA12');">
+                <a id="dA12A" contenteditable="false">ANSWER13</a>
+            </td>
+            <td id="dA13" onclick="editText('dA13');">
+                <a id="dA13A" contenteditable="false">ANSWER14</a>
+            </td>
+            <td id="dA14" onclick="editText('dA14');">
+                <a id="dA14A" contenteditable="false">ANSWER15</a>
+            </td>
+            <td id="dA15" onclick="editText('dA15');">
+                <a id="dA15A" contenteditable="false">ANSWER16</a>
+            </td>
+            <td id="dA16" onclick="editText('dA16');">
+                <a id="dA16A" contenteditable="false">ANSWER17</a>
+            </td>
+            <td id="dA17" onclick="editText('dA17');">
+                <a id="dA17A" contenteditable="false">ANSWER18</a>
+            </td>
+        </tr>
+        <tr>
+            <td id="dA18" onclick="editText('dA18');">
+                <a id="dA18A" contenteditable="false">ANSWER19</a>
+            </td>
+            <td id="dA19" onclick="editText('dA19');">
+                <a id="dA19A" contenteditable="false">ANSWER20</a>
+            </td>
+            <td id="dA20" onclick="editText('dA20');">
+                <a id="dA20A" contenteditable="false">ANSWER21</a>
+            </td>
+            <td id="dA21" onclick="editText('dA21');">
+                <a id="dA21A" contenteditable="false">ANSWER22</a>
+            </td>
+            <td id="dA22" onclick="editText('dA22');">
+                <a id="dA22A" contenteditable="false">ANSWER23</a>
+            </td>
+            <td id="dA23" onclick="editText('dA23');">
+                <a id="dA23A" contenteditable="false">ANSWER24</a>
+            </td>
+        </tr>
+        <tr>
+            <td id="dA24" onclick="editText('dA24');">
+                <a id="dA24A" contenteditable="false">ANSWER25</a>
+            </td>
+            <td id="dA25" onclick="editText('dA25');">
+                <a id="dA25A" contenteditable="false">ANSWER26</a>
+            </td>
+            <td id="dA26" onclick="editText('dA26');">
+                <a id="dA26A" contenteditable="false">ANSWER27</a>
+            </td>
+            <td id="dA27" onclick="editText('dA27');">
+                <a id="dA27A" contenteditable="false">ANSWER28</a>
+            </td>
+            <td id="dA28" onclick="editText('dA28');">
+                <a id="dA28A" contenteditable="false">ANSWER29</a>
+            </td>
+            <td id="dA29" onclick="editText('dA29');">
+                <a id="dA29A" contenteditable="false">ANSWER30</a>
+            </td>
+        </tr>
+    </table>
+    
+    <form action="/custom/save" method="POST" onsubmit="saveCSV();">
+        <input type="text" value="" id="deduct-points" name="deduct_points" hidden>
+
+        <input type="text" value="" id="single-categories-csv" name="single_categories_csv" hidden>
+        <input type="text" value="" id="single-values-csv" name="single_values_csv" hidden>
+        <input type="text" value="" id="single-clues-csv" name="single_clues_csv" hidden>
+        <input type="text" value="" id="single-answers-csv" name="single_answers_csv" hidden>
+
+        <input type="text" value="" id="double-categories-csv" name="double_categories_csv" hidden>
+        <input type="text" value="" id="double-values-csv" name="double_values_csv" hidden>
+        <input type="text" value="" id="double-clues-csv" name="double_clues_csv" hidden>
+        <input type="text" value="" id="double-answers-csv" name="double_answers_csv" hidden>
+
+        <input type="text" value="" id="final-category-csv" name="final_category_csv" hidden>
+        <input type="text" value="" id="final-clue-csv" name="final_clue_csv" hidden>
+        <input type="text" value="" id="final-answer-csv" name="final_answer_csv" hidden>
+
+        <button type="submit" id="save-button">Save as .CSV</button>
+    </form>
+    <form action="/id" method="GET" class="form">
+        <button type="submit" id="back-button">Back</button>
+    </form>
+</body>
+
+<script type="text/javascript">
+    var answerBoard = document.getElementById("single-answer-table");
+    var values = document.getElementById('single-values');
+    var questions = document.getElementById('single-questions');
+    
+    var idModifier = "s";
+
+    var done = false;
+
+    function saveCSV() {
+        if (!done) {
+            done = true;
+            if (document.getElementById('deduct-points-checkbox').checked) {
+                document.getElementById('deduct-points').value = "TRUE";
+            }
+            
+            else {
+                document.getElementById('deduct-points').value = "FALSE";
+            }
+            for (var i = 0; i < 6; i++) {
+                if (i != 5) {
+                    document.getElementById('single-categories-csv').value += document.getElementById('sC'+i+"A").innerText + "&";
+                }
+                else {
+                    document.getElementById('single-categories-csv').value += document.getElementById('sC'+i+"A").innerText;
+                }
+
+                if (i != 5) {
+                    document.getElementById('double-categories-csv').value += document.getElementById('dC'+i+"A").innerText + "&";
+                }
+                else {
+                    document.getElementById('double-categories-csv').value += document.getElementById('dC'+i+"A").innerText;
+                }
+            }
+
+            document.getElementById('final-category-csv').value = document.getElementById('fCA').innerText;
+            document.getElementById('final-clue-csv').value = document.getElementById('fQA').innerText;
+            document.getElementById('final-answer-csv').value = document.getElementById('fAA').innerText;
+
+            for (var i = 0; i < 30; i++) {
+                var dailyDoubleModifier = "";
+                if (document.getElementById('sCBV'+i).checked) {
+                    dailyDoubleModifier = "DD: ";
+                }
+            
+                if (document.getElementById('dCBV'+i).checked) {
+                    dailyDoubleModifier = "DD: ";
+                }
+
+                if (i != 29) {
+                    document.getElementById('single-values-csv').value += dailyDoubleModifier + "$" + document.getElementById('sV'+i+"A").innerText + "&";
+                    document.getElementById('single-clues-csv').value += document.getElementById('sQ'+i+"A").innerText + "&";
+                    document.getElementById('single-answers-csv').value += document.getElementById('sA'+i+"A").innerText + "&";
+
+                }
+                else {
+                    document.getElementById('single-values-csv').value += dailyDoubleModifier + "$" + document.getElementById('sV'+i+"A").innerText;
+                    document.getElementById('single-clues-csv').value += document.getElementById('sQ'+i+"A").innerText;
+                    document.getElementById('single-answers-csv').value += document.getElementById('sA'+i+"A").innerText;
+                }
+                
+                if (i != 29) {
+                    document.getElementById('double-values-csv').value += dailyDoubleModifier + "$" + document.getElementById('dV'+i+"A").innerText + "&";
+                    document.getElementById('double-clues-csv').value += document.getElementById('dQ'+i+"A").innerText + "&";
+                    document.getElementById('double-answers-csv').value += document.getElementById('dA'+i+"A").innerText + "&";
+                }
+                else {
+                    document.getElementById('double-values-csv').value += dailyDoubleModifier + "$" + document.getElementById('dV'+i+"A").innerText;
+                    document.getElementById('double-clues-csv').value += document.getElementById('dQ'+i+"A").innerText;
+                    document.getElementById('double-answers-csv').value += document.getElementById('dA'+i+"A").innerText;
+                }
+            }
+        }
+    }
+
+    function editText(id) {
+        id += "A";
+        document.getElementById(id).contentEditable = true;
+        makeContentEditable(id);
+    }
+
+    function editRowValue(id) {
+        id += "A";
+        document.getElementById(id).contentEditable = true;
+        var isSingle = false;
+        document.getElementById(id).addEventListener('keypress', (evt) => {
+            if (event.getModifierState("CapsLock")) {
+                isSingle = true;
+            }
+            if (evt.which === 13) {
+                document.getElementById(id).contentEditable = false;
+                if (!isSingle) {
+                    var value = document.getElementById(id).innerText;
+                    id = parseInt(id.substring(2));
+                    id = Math.floor(id/6);
+                    id *= 6;
+                    for (var i = id; i < id+6; i++) {
+                        document.getElementById(idModifier + "V"+i+"A").innerText = value;
+                    }
+                }
+            }
+        });
+    }
+
+    function checkIsNone(id) {
+        var value = 0;
+        if ((document.getElementById(id+"-checkbox").checked) && ((document.getElementById('dC0A').innerText == "NONE") || (document.getElementById('fCA').innerText == "NONE"))) {
+            if (id == 'double') {
+                for (var i = 0; i < 6; i++) {
+                    document.getElementById('dC'+i+'A').innerText = "CATEGORY"+(i+1);
+                }
+                for (var j = 0; j < 30; j++) {
+                    if (j%6 === 0) {
+                        value+= 400;
+                    }
+                    document.getElementById('dV'+j+'A').innerText = value;
+                    document.getElementById('dQ'+j+'A').innerText = "CLUE"+(j+1);
+                    document.getElementById('dA'+j+'A').innerText = "ANSWER"+(j+1);
+                }
+            }
+            else if (id == 'final') {
+                document.getElementById('fCA').innerText = "FINAL CATEGORY";
+                document.getElementById('fQA').innerText = "FINAL CLUE";
+                document.getElementById('fAA').innerText = "FINAL ANSWER";
+            }
+        }
+        else if ((!document.getElementById(id+"-checkbox").checked && (document.getElementById('dC0A').innerText != "NONE") || (document.getElementById('fCA').innerText != "NONE"))) {
+            if (id == 'double') {
+                for (var i = 0; i < 6; i++) {
+                    document.getElementById('dC'+i+'A').innerText = "NONE";
+                }
+                for (var j = 0; j < 30; j++) {
+                    document.getElementById('dV'+j+'A').innerText = "NONE";
+                    document.getElementById('dQ'+j+'A').innerText = "NONE";
+                    document.getElementById('dA'+j+'A').innerText = "NONE";
+                }
+            }
+            else if (id == 'final') {
+                document.getElementById('fCA').innerText = "NONE";
+                document.getElementById('fQA').innerText = "NONE";
+                document.getElementById('fAA').innerText = "NONE";
+            }
+        }
+    }
+
+    function switchQuestionValue() {
+        if (values.hidden) {
+            for (var i = 0; i < 5; i++) {
+                document.getElementById(idModifier + "VTr"+i).hidden = false;
+                document.getElementById(idModifier + "QTr"+i).hidden = true;
+            }
+            for (var j = 0; j < 30; j++) {
+                if (document.getElementById(idModifier + "CBQ"+j).checked) {
+                    document.getElementById(idModifier + "CBV"+j).checked = true;
+                }
+                else {
+                    document.getElementById(idModifier + "CBV"+j).checked = false;
+                }
+            }
+            document.getElementById('edit-questions').innerText = "Edit Questions";
+            values.hidden = false;
+            questions.hidden = true;
+        }
+        else if (questions.hidden) {
+            for (var i = 0; i < 5; i++) {
+                document.getElementById(idModifier + "VTr"+i).hidden = true;
+                document.getElementById(idModifier + "QTr"+i).hidden = false;
+            }
+            for (var j = 0; j < 30; j++) {
+                if (document.getElementById(idModifier + "CBV"+j).checked) {
+                    document.getElementById(idModifier + "CBQ"+j).checked = true;
+                }
+                else {
+                    document.getElementById(idModifier + "CBQ"+j).checked = false;
+                }
+            }
+            document.getElementById('edit-questions').innerText = "Edit Values";
+            values.hidden = true;
+            questions.hidden = false;
+        }
+    }
+
+    function switchAnswerBoard() {
+        var answerBoardButton = document.getElementById("show-answer-board");
+        var answerBoardHeader = document.getElementById("answer-board-header");
+        
+        if (answerBoard.hidden) {
+            answerBoard.hidden = false;
+            answerBoardHeader.hidden = false;
+            answerBoardButton.innerText = "Hide Answer Board";
+        }
+        else {
+            answerBoard.hidden = true;
+            answerBoardHeader.hidden = true;
+            answerBoardButton.innerText = "Show Answer Board";
+        }
+    }
+
+    function switchDouble() {
+        if (document.getElementById('double-edit-table').hidden) {
+            document.getElementById('single-edit-table').hidden = true;
+            document.getElementById('double-edit-table').hidden = false;
+            document.getElementById('final-edit-table').hidden = true;
+
+            if (!document.getElementById('single-answer-table').hidden) {
+                document.getElementById('single-answer-table').hidden = true;
+                document.getElementById('double-answer-table').hidden = false;
+            }
+
+            document.getElementById('switch-final').innerText = "Switch to Final";
+            document.getElementById('switch-double').innerText = "Switch to Single";
+            document.getElementById('game-board-header').innerText = "DOUBLE GAME BOARD";
+            document.getElementById('answer-board-header').innerText = "DOUBLE ANSWER BOARD";
+
+            answerBoard = document.getElementById('double-answer-table');
+            values = document.getElementById('double-values');
+            questions = document.getElementById('double-questions');
+        
+            document.getElementById('show-answer-board').hidden = false;
+            document.getElementById('edit-questions').hidden = false;
+
+            idModifier = "d";
+        }
+        else {
+            document.getElementById('single-edit-table').hidden = false;
+            document.getElementById('double-edit-table').hidden = true;
+
+            if (!document.getElementById('double-answer-table').hidden) {
+                document.getElementById('single-answer-table').hidden = false;
+                document.getElementById('double-answer-table').hidden = true;
+            }
+
+            document.getElementById('switch-double').innerText = "Switch to Double";
+            document.getElementById('game-board-header').innerText = "SINGLE GAME BOARD";
+            document.getElementById('answer-board-header').innerText = "SINGLE ANSWER BOARD";
+
+            answerBoard = document.getElementById('single-answer-table');
+            values = document.getElementById('single-values');
+            questions = document.getElementById('single-questions');
+
+            document.getElementById('show-answer-board').hidden = false;
+            document.getElementById('edit-questions').hidden = false;
+
+            idModifier = "s";
+        }
+    }
+
+function switchFinal() {
+    if (document.getElementById('final-edit-table').hidden) {
+        document.getElementById('single-edit-table').hidden = true;
+        document.getElementById('double-edit-table').hidden = true;
+        document.getElementById('final-edit-table').hidden = false;
+
+        document.getElementById('switch-final').innerText = "Switch to Single";
+        document.getElementById('switch-double').innerText = "Switch to Double";
+        document.getElementById('game-board-header').innerText = "FINAL GAME BOARD";
+
+        document.getElementById('show-answer-board').hidden = true;
+        document.getElementById('edit-questions').hidden = true;
+
+        document.getElementById('single-answer-table').hidden = true;
+        document.getElementById('double-answer-table').hidden = true;
+        document.getElementById('answer-board-header').hidden = true;
+    }
+    else {
+        document.getElementById('single-edit-table').hidden = false;
+        document.getElementById('double-edit-table').hidden = true;
+        document.getElementById('final-edit-table').hidden = true;
+
+        document.getElementById('switch-final').innerText = "Switch to Final";
+        document.getElementById('game-board-header').innerText = "SINGLE GAME BOARD";
+
+        document.getElementById('show-answer-board').hidden = false;
+        document.getElementById('edit-questions').hidden = false;
+    }
+}
+
+    function makeContentEditable(id) {
+        document.getElementById(id).contentEditable = true;
+        document.getElementById(id).addEventListener('keypress', (evt) => {
+            if (evt.which === 13) {
+                document.getElementById(id).contentEditable = false;
+                if (id.includes("AC")) {
+                    for (var i = 0; i < 6; i++) {
+                        document.getElementById(idModifier + "C"+i+"A").innerText = document.getElementById(idModifier + "AC"+i).innerText;
+                    }
+                }
+                else if (id.includes("C")) {
+                    for (var i = 0; i < 6; i++) {
+                        document.getElementById(idModifier + "AC"+i+"A").innerText = document.getElementById(idModifier + "C"+i).innerText;
+                    }
+                }
+            }
+        });
+    }
+</script>

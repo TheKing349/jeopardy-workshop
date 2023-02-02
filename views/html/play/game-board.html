@@ -1,0 +1,329 @@
+<head>
+    <link id="stylesheet" rel="stylesheet" type="text/css" href="/static/css/style.css">
+    <title id="title">Single Jeopardy</title>
+</head>
+<body>
+    <table id="game-table" class="table responsive">
+        <tr>
+            <th id="c0">CATEGORY1</th>
+            <th id="c1">CATEGORY2</th>
+            <th id="c2">CATEGORY3</th>
+            <th id="c3">CATEGORY4</th>
+            <th id="c4">CATEGORY5</th>
+            <th id="c5">CATEGORY6</th>
+        </tr>
+        <tr>
+            <td id="v0" onclick="replaceText('v0', '$200', 'category0', 'clue');">$200</td>
+            <td id="v1" onclick="replaceText('v1', '$200', 'category1', 'clue');">$200</td>
+            <td id="v2" onclick="replaceText('v2', '$200', 'category2', 'clue');">$200</td>
+            <td id="v3" onclick="replaceText('v3', '$200', 'category3', 'clue');">$200</td>
+            <td id="v4" onclick="replaceText('v4', '$200', 'category4', 'clue');">$200</td>
+            <td id="v5" onclick="replaceText('v5', '$200', 'category5', 'clue');">$200</td>
+        </tr>
+        <tr>
+            <td id="v6" onclick="replaceText('v6', '$400', 'category0', 'clue');">$400</td>
+            <td id="v7" onclick="replaceText('v7', '$400', 'category1', 'clue');">$400</td>
+            <td id="v8" onclick="replaceText('v8', '$400', 'category2', 'clue');">$400</td>
+            <td id="v9" onclick="replaceText('v9', '$400', 'category3', 'clue');">$400</td>
+            <td id="v10" onclick="replaceText('v10', '$400', 'category4', 'clue');">$400</td>
+            <td id="v11" onclick="replaceText('v11', '$400', 'category5', 'clue');">$400</td>
+        </tr>
+        <tr>
+            <td id="v12" onclick="replaceText('v12', '$600', 'category0', 'clue');">$600</td>
+            <td id="v13" onclick="replaceText('v13', '$600', 'category1', 'clue');">$600</td>
+            <td id="v14" onclick="replaceText('v14', '$600', 'category2', 'clue');">$600</td>
+            <td id="v15" onclick="replaceText('v15', '$600', 'category3', 'clue');">$600</td>
+            <td id="v16" onclick="replaceText('v16', '$600', 'category4', 'clue');">$600</td>
+            <td id="v17" onclick="replaceText('v17', '$600', 'category5', 'clue');">$600</td>
+        </tr>
+        <tr>
+            <td id="v18" onclick="replaceText('v18', '$800', 'category0', 'clue');">$800</td>
+            <td id="v19" onclick="replaceText('v19', '$800', 'category1', 'clue');">$800</td>
+            <td id="v20" onclick="replaceText('v20', '$800', 'category2', 'clue');">$800</td>
+            <td id="v21" onclick="replaceText('v21', '$800', 'category3', 'clue');">$800</td>
+            <td id="v22" onclick="replaceText('v22', '$800', 'category4', 'clue');">$800</td>
+            <td id="v23" onclick="replaceText('v23', '$800', 'category5', 'clue');">$800</td>
+        </tr>
+        <tr>
+            <td id="v24" onclick="replaceText('v24', '$1000', 'category0', 'clue');">$1000</td>
+            <td id="v25" onclick="replaceText('v25', '$1000', 'category1', 'clue');">$1000</td>
+            <td id="v26" onclick="replaceText('v26', '$1000', 'category2', 'clue');">$1000</td>
+            <td id="v27" onclick="replaceText('v27', '$1000', 'category3', 'clue');">$1000</td>
+            <td id="v28" onclick="replaceText('v28', '$1000', 'category4', 'clue');">$1000</td>
+            <td id="v29" onclick="replaceText('v29', '$1000', 'category5', 'clue');">$1000</td>
+        </tr>
+    </table>
+    <p id="current-category" class="current-category">CATEGORY</p>
+    <h1 class="current-value" id="current-question-value">VALUE</h1>
+    <table id="current-question-table" class="table current-question">
+        <tr>
+            <td id="current-question">QUESTION</td>
+        </tr>
+    </table>
+    <div id="teams" class="teams">
+        <a id="team-one-score" class="team-one-score">Team One: $0</a>
+        <a id="team-two-score" class="team-two-score">Team Two: $0</a><br>
+
+        <button id="team-one-right" class="team-one-right" type="button" onclick="checkScore('one', '+');" >Right </button>
+        <button id="team-one-wrong" class="team-one-wrong" type="button" onclick="checkScore('one', '-');" >Wrong </button>
+        <button id="skip-button"    class="skip-button"    type="button" onclick="skipQuestion();"         >Skip  </button>
+        <button id="team-two-wrong" class="team-two-wrong" type="button" onclick="checkScore('two', '-');" >Wrong </button>
+        <button id="team-two-right" class="team-two-right" type="button" onclick="checkScore('two', '+');" >Right </button>
+    </div><br><br><br>
+    <div id="daily-double" class="daily-double">
+        <input id="team-one-daily-double-input" class="team-one-daily-double-input" type="text"></input>
+        <a id="max-value" class="max-value">Max Value to Wager: VALUE</a>
+        <input id="team-two-daily-double-input" class="team-two-daily-double-input" type="text"></input><br><br><br><br><br>
+        <button type="button" id="daily-double-button" class="daily-double-button" onclick="dailyDoubleSubmit();">Submit</button><br><br><br><br><br><br>
+    </div>
+    <div class="double-round" id="double-round">
+        <form id="double-jeopardy-form" action="./game-board/double" method="GET" onsubmit="resetBoard();">
+            <input type="text" id="team_one_score" name="team_one_score" value="0" hidden>
+            <input type="text" id="team_two_score" name="team_two_score" value="0" hidden>
+            <input type="text" id="team_one_wrong_questions" name="team_one_wrong_questions" value="" hidden>
+            <input type="text" id="team_two_wrong_questions" name="team_two_wrong_questions" value="" hidden>
+            <input type="text" id="winner" name="winner" value="none" hidden>
+            <button type="submit" id="double-button" hidden>Go To Double Jeopardy</button>
+        </form>
+    </div>
+    <div class="answer-board-button">
+        <button id="answer-board-button" type="button" onclick="openAnswerBoard();">Answer Board</button>
+    </div>
+    <a id="answer-board-url" hidden>/custom/answer-board/</a>
+    <a id="is-double" hidden>true</a>
+    <a id="is-final" hidden>true</a>
+    <a id="is-deduction" hidden>true</a>
+</body>
+
+<script type="text/javascript">
+    var dailyDoubleValue = 0;
+    var vId;
+    var vClue;
+    var teamOneScore = 0;
+    var teamTwoScore = 0;
+    var maxWager = document.getElementById('v29').innerText;
+    var finished = false;
+    resetBoard();
+    var all = window.location.search.split("&");
+    if (all != "") {
+        var teamOneScore = all[0].replace("?team_one_score=", "");
+        var teamTwoScore = all[1].replace("team_two_score=", "");
+    }
+    var pathName = window.location.pathname;
+    var isDouble;
+    var isFinal;
+    var isDeduction;
+    if (document.getElementById('is-deduction').innerText == "true") {
+        isDeduction = true;
+    }
+    else {
+        isDeduction = false;
+    }
+    if (document.getElementById('is-double').innerText == "true") {
+        isDouble = true;
+    }
+    else {
+        isDouble = false;
+    }
+    if (document.getElementById('is-final').innerText == "true") {
+        isFinal = true;
+    }
+    else {
+        isFinal = false;
+    }
+    if ((isDouble) && (isFinal)) {
+        if (pathName == "/custom/game-board/double") {
+            document.getElementById("double-button").innerText = "Go To Final Jeopardy";
+            document.getElementById("double-jeopardy-form").action = "/custom/game-board/final";
+        }
+    }
+    else if ((isDouble) && (!isFinal)) {
+        if (pathName == "/custom/game-board/double") {
+            document.getElementById("double-button").innerText = "Go To Results Screen";
+            document.getElementById("double-jeopardy-form").action = "/custom/game-board/results";
+            finished = true;
+        }
+    }
+    else if ((!isDouble) && (isFinal)) {
+        document.getElementById("double-button").innerText = "Go To Final Jeopardy";
+        document.getElementById("double-jeopardy-form").action = "/custom/game-board/final";
+    }
+    else {
+        document.getElementById("double-button").innerText = "Go To Results Screen";
+        document.getElementById("double-jeopardy-form").action = "/custom/game-board/results";
+        finished = true;
+    }
+    
+    document.getElementById("team-one-score").innerText = "Team One: $" + teamOneScore;
+    document.getElementById("team-two-score").innerText = "Team Two: $" + teamTwoScore;
+
+    var answerBoard;
+    function openAnswerBoard () {
+        answerBoard = window.open(document.getElementById("answer-board-url").innerText, "answerBoard");
+    }
+
+    function replaceText(id, value, category, clue) {
+        document.getElementById("current-question-value").innerText = value;
+        var currentValue = document.getElementById('current-question-value').innerText;
+        document.getElementById('current-category').innerText = category;
+        document.getElementById("game-table").hidden = true;
+        if (!currentValue.includes("D")) {
+            document.getElementById("current-question-value").classList.remove("daily-double-value");
+            document.getElementById("current-question").innerText = clue;
+            document.getElementById("current-question-table").hidden = false;
+            document.getElementById("current-question-value").hidden = false;
+            document.getElementById("team-one-right").style.display = "initial";
+            document.getElementById("team-one-wrong").style.display = "initial";
+            document.getElementById("team-two-right").style.display = "initial";
+            document.getElementById("team-two-wrong").style.display = "initial";
+            document.getElementById("skip-button").style.display = "initial";
+            document.getElementById("current-category").hidden = false;
+        }
+        else {
+            document.getElementById("current-question-value").classList.add("daily-double-value");
+            document.getElementById('max-value').innerText = "Max Value to Wager: " + maxWager;
+            document.getElementById("team-one-daily-double-input").value = "";
+            document.getElementById("team-two-daily-double-input").value = "";
+            document.getElementById('daily-double').style.display = "initial";
+        }
+        vId = id;
+        vClue = clue;
+    }
+
+    function checkScore (team, addSubtract) {
+        var currentValue = document.getElementById('current-question-value').innerText;
+        var score;
+        if (currentValue.substring(0, 1) != "D") {
+            score = addSubtract + currentValue.substring(1, currentValue.length);;
+        }
+        else if (currentValue.substring(0, 1) == "D") {
+            score = addSubtract + currentValue.substring(5, currentValue.length);;
+        }
+        changeScore(vId, team, score);
+    }
+    
+    function changeScore (id, team, score) {
+        if (team=="one") {
+            if (score.includes("+")) {
+                teamOneScore = parseInt(teamOneScore) + parseInt(score);
+            }
+            else if (score.includes("-")) {
+                document.getElementById('team_one_wrong_questions').value += document.getElementById("current-question").innerText + "&";
+                if (isDeduction) {
+                    teamOneScore = parseInt(teamOneScore) + parseInt(score);
+                }                
+            }
+            else {
+                alert("ERROR WITH SCORE, WAS NEITHER + OR -");
+            }
+            document.getElementById(vId).innerText = "-------";
+            resetBoard();
+            document.getElementById('team-one-score').innerText = "Team One: $" + teamOneScore;
+            document.getElementById(vId).classList.add("disabled");
+            answerBoard.postMessage(vId, "*");
+        }
+        else if (team=="two") {
+            if (score.includes("+")) {
+                teamTwoScore = parseInt(teamTwoScore) + parseInt(score);
+            }
+            else if (score.includes("-")) {
+                document.getElementById('team_two_wrong_questions').value += document.getElementById("current-question").innerText + "&";
+                if (isDeduction) {
+                    teamTwoScore = parseInt(teamTwoScore) + parseInt(score);
+                }
+            }
+            else {
+                alert("ERROR WITH SCORE, WAS NEITHER + OR -");
+            }
+            document.getElementById(vId).innerText = "-------";
+            resetBoard();
+            document.getElementById('team-two-score').innerText = "Team Two: $" + teamTwoScore;
+            document.getElementById(vId).classList.add("disabled");
+            answerBoard.postMessage(vId, "*");
+        }
+        else {
+            alert("ERROR WITH TEAMS, WAS NEITHER One OR Two");
+            return;
+        }
+    }
+    
+    function dailyDoubleSubmit() {
+        var oneDailyDoubleValue = document.getElementById("team-one-daily-double-input").value;
+        var twoDailyDoubleValue = document.getElementById("team-two-daily-double-input").value;
+        if ((oneDailyDoubleValue.length != 0) && (twoDailyDoubleValue.length != 0)) {
+            alert("Both teams can't wager");
+        }
+        else if (oneDailyDoubleValue.length != 0) {
+            dailyDouble(parseInt(oneDailyDoubleValue));
+        }
+        else if (twoDailyDoubleValue.length != 0) {
+            dailyDouble(parseInt(twoDailyDoubleValue));
+        }
+    }
+
+    function dailyDouble (dailyDoubleValue) {
+        if (dailyDoubleValue <= maxWager.substring(1, maxWager.length)) {
+            document.getElementById("current-category").hidden = false;
+            document.getElementById("team-one-right").style.display = "initial";
+            document.getElementById("team-one-wrong").style.display = "initial";
+            document.getElementById("team-two-right").style.display = "initial";
+            document.getElementById("team-two-wrong").style.display = "initial";
+            document.getElementById("skip-button").style.display = "initial";
+            document.getElementById('current-question-value').innerText = "$" + dailyDoubleValue;
+            document.getElementById("current-question").innerText = vClue;
+            document.getElementById("current-question-table").hidden = false;
+            document.getElementById("current-question-value").hidden = false;
+            document.getElementById('daily-double').style.display = "none";
+        }
+        else {
+            alert("Your amount ($" + dailyDoubleValue + ") was greater than the max value (" + maxWager + ").");
+        }
+    }
+
+    function skipQuestion() {
+        document.getElementById(vId).innerText = "-------";
+        document.getElementById(vId).classList.add("disabled");
+        resetBoard();
+    }
+
+    function resetBoard() {
+        var canMoveOn = true;
+        for (var i = 0; i < 30; i++) {
+            if (document.getElementById("v"+i).innerText != "-------") {
+                canMoveOn = false;
+                break;
+            }
+        }
+        document.getElementById("game-table").hidden = false;
+        document.getElementById("current-question-table").hidden = true;
+        document.getElementById("current-question-value").hidden = true;
+        document.getElementById("current-category").hidden = true;
+        document.getElementById("team-one-right").style.display = "none";
+        document.getElementById("team-one-wrong").style.display = "none";
+        document.getElementById("team-two-right").style.display = "none";
+        document.getElementById("team-two-wrong").style.display = "none";
+        document.getElementById("skip-button").style.display = "none";
+        document.getElementById('daily-double').style.display = "none";
+        if (canMoveOn) {
+            document.getElementById('double-round').hidden = false;
+            document.getElementById('double-button').hidden = false;
+            document.getElementById("team_one_score").value = teamOneScore;
+            document.getElementById("team_two_score").value = teamTwoScore;
+
+            if (finished) {
+                if (document.getElementById("team-one-score").innerText.substring(11) > document.getElementById("team-two-score").innerText.substring(11)) {
+                    document.getElementById("winner").value = "team-one";
+                }
+                else if (document.getElementById("team-one-score").innerText.substring(11) > document.getElementById("team-two-score").innerText.substring(11)) {
+                    document.getElementById("winner").value = "team-two";
+                }
+                else {
+                    documetng.getElementById("winner").value = "none";
+                }
+            }
+            else {
+                document.getElementById("winner").value = "none";
+            }
+        }
+    }
+</script>

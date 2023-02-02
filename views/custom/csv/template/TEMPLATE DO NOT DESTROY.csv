@@ -1,0 +1,30 @@
+Single-Clue-0,CLUE0,,Single-Answer-0,ANSWER0,,Double-Clue-0,CLUE0,,Double-Answer-0,ANSWER0,,Single-Category-0,CATEGORY0,,S0: 200,,S1: 200,,S2: 200,,S3: 200,,S4: 200,,S5: 200
+Single-Clue-1,CLUE1,,Single-Answer-1,ANSWER1,,Double-Clue-1,CLUE1,,Double-Answer-1,ANSWER1,,Single-Category-1,CATEGORY1,,S6: 400,,S7: 400,,S8: 400,,S9: 400,,S10: 400,,S11: 400
+Single-Clue-2,CLUE2,,Single-Answer-2,ANSWER2,,Double-Clue-2,CLUE2,,Double-Answer-2,ANSWER2,,Single-Category-2,CATEGORY2,,S12: 600,,S13: 600,,S14: 600,,S15: 600,,S16: 600,,S17: 600
+Single-Clue-3,CLUE3,,Single-Answer-3,ANSWER3,,Double-Clue-3,CLUE3,,Double-Answer-3,ANSWER3,,Single-Category-3,CATEGORY3,,S18: 800,,S19: 800,,S20: 800,,S21: 800,,S22: 800,,S23: 800
+Single-Clue-4,CLUE4,,Single-Answer-4,ANSWER4,,Double-Clue-4,CLUE4,,Double-Answer-4,ANSWER4,,Single-Category-4,CATEGORY4,,S24: 1000,,S25: 1000,,S26: 1000,,S27: 1000,,S28: 1000,,S29: 1000
+Single-Clue-5,CLUE5,,Single-Answer-5,ANSWER5,,Double-Clue-5,CLUE5,,Double-Answer-5,ANSWER5,,Single-Category-5,CATEGORY5,,,,,,,,,,,,
+Single-Clue-6,CLUE6,,Single-Answer-6,ANSWER6,,Double-Clue-6,CLUE6,,Double-Answer-6,ANSWER6,,,,,,,,,,,,,,,
+Single-Clue-7,CLUE7,,Single-Answer-7,ANSWER7,,Double-Clue-7,CLUE7,,Double-Answer-7,ANSWER7,,Double-Category-0,CATEGORY0,,D0: 400,,D1: 400,,D2: 400,,D3: 400,,D4: 400,,D5: 400
+Single-Clue-8,CLUE8,,Single-Answer-8,ANSWER8,,Double-Clue-8,CLUE8,,Double-Answer-8,ANSWER8,,Double-Category-1,CATEGORY1,,D6: 800,,D7: 800,,D8: 800,,D9: 800,,D10: 800,,D11: 800
+Single-Clue-9,CLUE9,,Single-Answer-9,ANSWER9,,Double-Clue-9,CLUE9,,Double-Answer-9,ANSWER9,,Double-Category-2,CATEGORY2,,D12: 1200,,D13: 1200,,D14: 1200,,D15: 1200,,D16: 1200,,D17: 1200
+Single-Clue-10,CLUE10,,Single-Answer-10,ANSWER10,,Double-Clue-10,CLUE10,,Double-Answer-10,ANSWER10,,Double-Category-3,CATEGORY3,,D18: 1600,,D19: 1600,,D20: 1600,,D21: 1600,,D22: 1600,,D23: 1600
+Single-Clue-11,CLUE11,,Single-Answer-11,ANSWER11,,Double-Clue-11,CLUE11,,Double-Answer-11,ANSWER11,,Double-Category-4,CATEGORY4,,D24: 2000,,D25: 2000,,D26: 2000,,D27: 2000,,D28: 2000,,D29: 2000
+Single-Clue-12,CLUE12,,Single-Answer-12,ANSWER12,,Double-Clue-12,CLUE12,,Double-Answer-12,ANSWER12,,Double-Category-5,CATEGORY5,,,,,,,,,,,,
+Single-Clue-13,CLUE13,,Single-Answer-13,ANSWER13,,Double-Clue-13,CLUE13,,Double-Answer-13,ANSWER13,,Deduct-Points,TRUE,,,,,,,,,,,,
+Single-Clue-14,CLUE14,,Single-Answer-14,ANSWER14,,Double-Clue-14,CLUE14,,Double-Answer-14,ANSWER14,,Final-Category,FINAL CATEGORY,,,,,,,,,,,,
+Single-Clue-15,CLUE15,,Single-Answer-15,ANSWER15,,Double-Clue-15,CLUE15,,Double-Answer-15,ANSWER15,,Final-Clue,FINAL CLUE,,,,,,,,,,,,
+Single-Clue-16,CLUE16,,Single-Answer-16,ANSWER16,,Double-Clue-16,CLUE16,,Double-Answer-16,ANSWER16,,Final-Answer,FINAL ANSWER,,,,,,,,,,,,
+Single-Clue-17,CLUE17,,Single-Answer-17,ANSWER17,,Double-Clue-17,CLUE17,,Double-Answer-17,ANSWER17,,,,,,,,,,,,,,,
+Single-Clue-18,CLUE18,,Single-Answer-18,ANSWER18,,Double-Clue-18,CLUE18,,Double-Answer-18,ANSWER18,,,,,,,,,,,,,,,
+Single-Clue-19,CLUE19,,Single-Answer-19,ANSWER19,,Double-Clue-19,CLUE19,,Double-Answer-19,ANSWER19,,,,,,,,,,,,,,,
+Single-Clue-20,CLUE20,,Single-Answer-20,ANSWER20,,Double-Clue-20,CLUE20,,Double-Answer-20,ANSWER20,,,,,,,,,,,,,,,
+Single-Clue-21,CLUE21,,Single-Answer-21,ANSWER21,,Double-Clue-21,CLUE21,,Double-Answer-21,ANSWER21,,,,,,,,,,,,,,,
+Single-Clue-22,CLUE22,,Single-Answer-22,ANSWER22,,Double-Clue-22,CLUE22,,Double-Answer-22,ANSWER22,,,,,,,,,,,,,,,
+Single-Clue-23,CLUE23,,Single-Answer-23,ANSWER23,,Double-Clue-23,CLUE23,,Double-Answer-23,ANSWER23,,,,,,,,,,,,,,,
+Single-Clue-24,CLUE24,,Single-Answer-24,ANSWER24,,Double-Clue-24,CLUE24,,Double-Answer-24,ANSWER24,,,,,,,,,,,,,,,
+Single-Clue-25,CLUE25,,Single-Answer-25,ANSWER25,,Double-Clue-25,CLUE25,,Double-Answer-25,ANSWER25,,,,,,,,,,,,,,,
+Single-Clue-26,CLUE26,,Single-Answer-26,ANSWER26,,Double-Clue-26,CLUE26,,Double-Answer-26,ANSWER26,,,,,,,,,,,,,,,
+Single-Clue-27,CLUE27,,Single-Answer-27,ANSWER27,,Double-Clue-27,CLUE27,,Double-Answer-27,ANSWER27,,,,,,,,,,,,,,,
+Single-Clue-28,CLUE28,,Single-Answer-28,ANSWER28,,Double-Clue-28,CLUE28,,Double-Answer-28,ANSWER28,,,,,,,,,,,,,,,
+Single-Clue-29,CLUE29,,Single-Answer-29,ANSWER29,,Double-Clue-29,CLUE29,,Double-Answer-29,ANSWER29,,,,,,,,,,,,,,,

@@ -1,0 +1,49 @@
+<head>
+    <link id="stylesheet" rel="stylesheet" type="text/css" href="/static/css/style.css">
+    <title>Results</title>
+</head>
+<html onclick="next();">
+    <body style="text-align: center;">
+        <div id="expanded-info" hidden>
+            <table id="teams-table" class="table results responsive">
+                <tr id="teams">
+                    <th id="team-won">Team WON</th>
+                    <th id="team-lost">Team LOST</th>
+                </tr>
+                <tr id="values">
+                    <td id="team-won-value">$VALUE</td>
+                    <td id="team-lost-value">$VALUE</td>
+                </tr>
+                </table>
+                <div style="margin-top: 2.5%;">
+                    <a id="wrong-questions">Wrong Questions</a>
+                </div>
+                <table id="wrong-questions-table" class="results responsive">
+                <tr>
+                    <td id="team-won-questions">
+                    </td>
+                    <td id="team-lost-questions">
+                    </td>
+                </tr>
+            </table>
+        </div>
+        <div id="splash-screen">
+            <table class="splash table responsive">
+                <tr>
+                    <td id="has-winner"><p>Team WON</p> is the winner by <p>$SCORE-DIFF</p> and a total score of <p>$SCORE!</p><a>Click to Continue</a></td>
+                    <td id="no-winner" hidden>It's a <p>Tie</p>! Both scores are the same at $SCORE! <a>Click to Continue</a></td>
+                </tr>
+            </table>
+        </div>
+        <form action="/id" method="GET">
+            <button type="submit" id="back-button" hidden>Back</button>
+        </form>
+    </body>
+</html>
+<script text="type/javascript">
+    function next() {
+        document.getElementById("expanded-info").hidden = false;
+        document.getElementById("splash-screen").hidden = true;
+        document.getElementById("back-button").hidden = false;
+    }
+</script>

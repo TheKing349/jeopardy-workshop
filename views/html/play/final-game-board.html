@@ -1,0 +1,189 @@
+<head>
+    <link id="stylesheet" rel="stylesheet" type="text/css" href="/static/css/style.css">
+    <title>Final Jeopardy</title>
+</head>
+<body>
+    <p id="final-category" class="final-category">CATEGORY</p>
+    <h1 class="final-value" id="team-one-final-value">TEAM ONE WAGER</h1>
+    <h1 class="final-value-two" id="team-two-final-value">TEAM TWO WAGER</h1>
+    <table id="final-question-table" class="table final-question" hidden>
+        <tr>
+            <td id="final-question">QUESTION</td>
+        </tr>
+    </table>
+    <div id="teams">
+        <a id="team-one-score">Team One: $0</a>
+        <a id="team-two-score">Team Two: $0</a><br>
+        <button id="team-one-right" type="button" onclick="checkScore('one', '+');" >Right </button>
+        <button id="team-one-wrong" type="button" onclick="checkScore('one', '-');" >Wrong </button>
+        <button id="skip-button"    type="button" onclick="skipQuestion();"         >Skip  </button>
+        <button id="team-two-wrong" type="button" onclick="checkScore('two', '-');" >Wrong </button>
+        <button id="team-two-right" type="button" onclick="checkScore('two', '+');" >Right </button>
+    </div>
+    <div id="final-jeopardy">
+        <input id="team-one-final-input" class="team-one-final-input" type="text"></input>
+        <input id="team-two-final-input" class="team-two-final-input" type="text"></input>
+        <div>
+            <button type="button" id="final-button" onclick="finalJeopardySubmit();">Submit</button>
+        </div>
+    </div><br><br><br>
+    <div class="double-round" id="results-screen" onsubmit="changeWinner();">
+        <form id="results-form" action="/custom/game-board/results" method="GET">
+            <input type="text" id="team_one_score" name="team_one_score" value="0" hidden>
+            <input type="text" id="team_two_score" name="team_two_score" value="0" hidden>
+            <input type="text" id="team_one_wrong_questions" name="team_one_wrong_questions" value="" hidden>
+            <input type="text" id="team_two_wrong_questions" name="team_two_wrong_questions" value="" hidden>
+            <input type="text" id="winner" name="winner" value="none" hidden>
+            <button type="submit" id="results-button" hidden>Go To Results Screen</button>
+        </form>
+    </div>
+    <div class="answer-board-button">
+        <button id="answer-board-button" type="button" onclick="openAnswerBoard();">Answer Board</button>
+    </div>
+</body>
+
+<script type="text/javascript">
+    var all = window.location.search.split("&");
+    var teamOneScore = all[0].replaceAll("?team_one_score=", "");
+    var teamTwoScore = all[1].replaceAll("team_two_score=", "");
+    document.getElementById("team-one-score").innerText = "Team One: $" + teamOneScore;
+    document.getElementById("team-two-score").innerText = "Team Two: $" + teamTwoScore;
+    document.getElementById("team-one-final-value").style.display = "none";
+    document.getElementById("team-two-final-value").style.display = "none";
+    document.getElementById("team-one-right").style.display = "none";
+    document.getElementById("team-one-wrong").style.display = "none";
+    document.getElementById("skip-button").style.display = "none";
+    document.getElementById("team-two-right").style.display = "none";
+    document.getElementById("team-two-wrong").style.display = "none";
+
+    var answerBoard;
+    function openAnswerBoard () {
+        answerBoard = window.open("/custom/answer-board/final", "answerBoard");
+    }
+
+    function changeWinner() {
+        if (teamOneScore > teamTwoScore) {
+            document.getElementById('winner').value = "team-one"
+        }
+        else if (teamOneScore < teamTwoScore) {
+            document.getElementById('winner').value = "team-two"
+        }
+        else {
+            document.getElementById('winner').value = "none"
+        }
+    }
+    
+    function checkScore (team, addSubtract) {
+        var teamOneValue = document.getElementById('team-one-final-input').value;
+        var teamTwoValue = document.getElementById("team-two-final-input").value;
+        var score;
+        if (team == "one") {
+            score = addSubtract + teamOneValue.substring(1);
+        }
+        else if (team == "two") {
+            score = addSubtract + teamTwoValue.substring(1);
+        }
+        changeScore(team, addSubtract);
+    }
+    
+    function changeScore (team, addSubtract) {
+        document.getElementById('results-button').hidden = false;
+        var teamOneWager = addSubtract + document.getElementById("team-one-final-input").value;
+        var teamTwoWager = addSubtract + document.getElementById("team-two-final-input").value;
+        if (team=="one") {
+            if (teamOneWager.includes("+")) {
+                teamOneScore = parseInt(teamOneScore) + parseInt(teamOneWager);
+            }
+            else if (teamOneWager.includes("-")) {
+                document.getElementById('team_one_wrong_questions').value += document.getElementById("final-question").innerText;
+                teamOneScore = parseInt(teamOneScore) + parseInt(teamOneWager);
+            }
+            else {
+                alert("ERROR WITH SCORE, WAS NEITHER + OR -");
+            }
+            document.getElementById("team_one_score").value = teamOneScore;
+            document.getElementById('team-one-score').innerText = "Team One: $" + teamOneScore;
+        }
+        else if (team=="two") {
+            if (teamTwoWager.includes("+")) {
+                teamTwoScore = parseInt(teamTwoScore) + parseInt(teamTwoWager);
+            }
+            else if (teamTwoWager.includes("-")) {
+                document.getElementById('team_two_wrong_questions').value += document.getElementById("final-question").innerText;
+                teamTwoScore = parseInt(teamTwoScore) + parseInt(teamTwoWager);
+            }
+            else {
+                alert("ERROR WITH SCORE, WAS NEITHER + OR -");
+            }
+            document.getElementById("team_two_score").value = teamTwoScore;
+            document.getElementById('team-two-score').innerText = "Team Two: $" + teamTwoScore;
+        }
+        else {
+            alert("ERROR WITH TEAMS, WAS NEITHER One OR Two");
+            return;
+        }
+    }
+
+    function revealQuestion(oneFinalValue, twoFinalValue) {
+      document.getElementById("team-one-final-input").hidden = false;
+      document.getElementById("team-two-final-input").hidden = false;
+      document.getElementById("final-question").hidden = false;
+      document.getElementById("final-question-table").hidden = false;
+      document.getElementById("team-one-final-input").hidden = true;
+      document.getElementById("team-two-final-input").hidden = true;
+      document.getElementById("final-button").hidden = true;
+      document.getElementById("team-one-right").style.display = "initial";
+      document.getElementById("team-one-wrong").style.display = "initial";
+      document.getElementById("skip-button").style.display = "initial";
+      document.getElementById("team-two-right").style.display = "initial";
+      document.getElementById("team-two-wrong").style.display = "initial";
+      document.getElementById("team-one-final-value").innerText = "Wager: $" + oneFinalValue;
+      document.getElementById("team-two-final-value").innerText = "Wager: $" + twoFinalValue;
+      document.getElementById("team-one-final-value").style.display = "inline-block";
+      document.getElementById("team-two-final-value").style.display = "inline-block";
+    }
+    
+    function finalJeopardySubmit() {
+        var oneFinalValue = document.getElementById("team-one-final-input").value;
+        var twoFinalValue = document.getElementById("team-two-final-input").value;
+        if ((oneFinalValue.length != 0) && (twoFinalValue.length != 0)) {
+            if ((oneFinalValue <= teamOneScore) && (twoFinalValue <= teamTwoScore) && (!teamOneScore.includes('-')) && (!teamTwoScore.includes('-'))) {
+                revealQuestion(oneFinalValue, twoFinalValue);
+            }
+            else if ((oneFinalValue > teamOneScore) && (!teamOneScore.includes('-'))) {
+                alert("Team ONE wager cannot be more than $" + teamOneScore);
+            }
+            else if ((twoFinalValue > teamTwoScore) && (!teamTwoScore.includes('-'))) {
+                alert("Team TWO wager cannot be more than $" + teamTwoScore);
+            }
+            else if ((oneFinalValue > teamOneScore) && (teamOneScore.includes('-'))) {
+                if ((oneFinalValue - Math.abs(teamOneScore)) == 0) {
+                    revealQuestion(oneFinalValue, twoFinalValue);
+                }
+                else if ((oneFinalValue - Math.abs(teamOneScore)) > 0) {
+                    alert("Team ONE wager cannot be more than $" + Math.abs(teamOneScore));
+                }
+                else {
+                    revealQuestion(oneFinalValue, twoFinalValue);
+                }
+            }
+            else if ((twoFinalValue > teamTwoScore) && (teamTwoScore.includes('-'))) {
+                if ((twoFinalValue - Math.abs(teamTwoScore)) == 0) {
+                    revealQuestion();
+                }
+                else if ((twoFinalValue - Math.abs(teamTwoScore)) > 0) {
+                    alert("Team TWO wager cannot be more than $" + Math.abs(teamTwoScore));
+                }
+                else {
+                    revealQuestion();
+                }
+            }
+        }
+        else if (oneFinalValue.length != 0) {
+            alert("Put a wager for Team TWO");
+        }
+        else if (twoFinalValue.length != 0) {
+            alert("Put a wager for Team ONE");
+        }
+    }
+</script>

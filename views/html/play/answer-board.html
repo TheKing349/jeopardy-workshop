@@ -1,0 +1,84 @@
+<head>
+    <link id="stylesheet" rel="stylesheet" type="text/css" href="/static/css/style.css">
+    <title id="title">Single Answers</title>
+</head>
+<body>
+    <table id="answerTable" class="table responsive">
+        <tr>
+            <th id="c0">CATEGORY1</th>
+            <th id="c1">CATEGORY2</th>
+            <th id="c2">CATEGORY3</th>
+            <th id="c3">CATEGORY4</th>
+            <th id="c4">CATEGORY5</th>
+            <th id="c5">CATEGORY6</th>
+        </tr>
+        <tr>
+            <td id="a0">ANSWER</td>
+            <td id="a1">ANSWER</td>
+            <td id="a2">ANSWER</td>
+            <td id="a3">ANSWER</td>
+            <td id="a4">ANSWER</td>
+            <td id="a5">ANSWER</td>
+        </tr>
+        <tr>
+            <td id="a6">ANSWER</td>
+            <td id="a7">ANSWER</td>
+            <td id="a8">ANSWER</td>
+            <td id="a9">ANSWER</td>
+            <td id="a10">ANSWER</td>
+            <td id="a11">ANSWER</td>
+        </tr>
+        <tr>
+            <td id="a12">ANSWER</td>
+            <td id="a13">ANSWER</td>
+            <td id="a14">ANSWER</td>
+            <td id="a15">ANSWER</td>
+            <td id="a16">ANSWER</td>
+            <td id="a17">ANSWER</td>
+        </tr>
+        <tr>
+            <td id="a18">ANSWER</td>
+            <td id="a19">ANSWER</td>
+            <td id="a20">ANSWER</td>
+            <td id="a21">ANSWER</td>
+            <td id="a22">ANSWER</td>
+            <td id="a23">ANSWER</td>
+        </tr>
+        <tr>
+            <td id="a24">ANSWER</td>
+            <td id="a25">ANSWER</td>
+            <td id="a26">ANSWER</td>
+            <td id="a27">ANSWER</td>
+            <td id="a28">ANSWER</td>
+            <td id="a29">ANSWER</td>
+        </tr>
+    </table>
+</body>
+
+<script type="text/javascript">
+    window.addEventListener("message", function (event) {
+        var aId = "a" + event.data.substring(1);
+        document.getElementById(aId).innerText = "-------";
+    }, false);
+    var exceedsLength = 12;
+    for (var i = 0; i < 30; i++) {
+        var currentAnswer = document.getElementById("a"+i).innerText;
+        if ((currentAnswer.length > exceedsLength) && (!currentAnswer.includes(" "))) {
+            document.getElementById("a"+i).innerText = addDash(currentAnswer);
+        }
+    }
+
+    function addDash (word) {
+        var substring = "";
+        var answer = "";
+        for (var i = 0; i < word.length; i++) {
+            substring += word[i];
+            if (substring.length == exceedsLength) {
+                answer += substring + "-";
+                substring = "";
+            }
+        }
+        answer += substring;
+        return answer;
+    }
+</script>

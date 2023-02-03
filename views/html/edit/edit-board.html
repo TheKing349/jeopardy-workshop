@@ -5,15 +5,10 @@
 </head>
 <body style="text-align: center;">
     <h1 id="game-board-header" class="board-header">SINGLE GAME BOARD</h1>
-    <br>
-    <a class="deduct-points-checkbox">
-        <img src="/static/images/info.png" width="30" height="30" class="info-image" title="When a team gets a question wrong, determines whether team gets deducted the value. When CHECKED, team gets deducted">
-        Deduct Points <input id="deduct-points-checkbox" type="checkbox" checked>
+    <a class="deduct-points-checkbox">Deduct Points <input id="deduct-points-checkbox" type="checkbox" checked>
     </a>
     
-    <a class="double-checkbox" onclick="checkIsNone('double');">
-        <img src="/static/images/info.png" width="30" height="30" class="info-image" title="Determines if Double/Final Jeopardy happens">
-        Double <input id="double-checkbox" type="checkbox" checked>
+    <a class="double-checkbox" onclick="checkIsNone('double');">Double <input id="double-checkbox" type="checkbox" checked>
     </a>
     <a class="final-checkbox" onclick="checkIsNone('final');">
         Final <input id="final-checkbox" type="checkbox" checked>
@@ -21,8 +16,7 @@
     <br>
     <button id="switch-double" type="button" onclick="switchDouble();">Switch to Double</button>
     <button id="switch-final" type="button" onclick="switchFinal();">Switch to Final</button>
-    <br><br><a style="font-size: 120%;">Each checkbox below the the value/question indicates if it is a Daily Double</a>
-    <br>
+    <p style="font-size: 150%; margin-top: 18px;">Go to the <a href="/custom/create-board/instructions">Instructions page</a> to learn about how the <a style="text-decoration: underline">Create Board</a> is set up, as well as some differences in how the game works.</p>
     <table id="single-edit-table" class="edit table responsive">
         <tr>
             <th id="sC0" onclick="editText('sC0');">
@@ -47,8 +41,7 @@
         <div id="single-values">
             <tr id="sVTr0">
                 <td id="sV0" onclick="editRowValue('sV0');">$<a id="sV0A">200</a>
-                    <br>
-                    <input type="checkbox" id="sCBV0" class="dailyDoubleCheckbox">
+                    <br><input type="checkbox" id="sCBV0" class="dailyDoubleCheckbox">
                 </td>
                 <td id="sV1" onclick="editRowValue('sV1');">$<a id="sV1A">200</a>
                     <br><input type="checkbox" id="sCBV1" class="dailyDoubleCheckbox">
@@ -826,7 +819,7 @@
 
         <button type="submit" id="save-button">Save as .CSV</button>
     </form>
-    <form action="/id" method="GET" class="form">
+    <form action="/" method="GET" class="form">
         <button type="submit" id="back-button">Back</button>
     </form>
 </body>

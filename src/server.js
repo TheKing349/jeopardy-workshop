@@ -39,7 +39,6 @@ app.use(session({
 app.use(bodyParser.urlencoded({ extended: true })); 
 app.use('/static', express.static('views'));
 app.use(fileUpload());
-const port = 80;
 
 http.createServer(app).listen(80);
 https.createServer(httpsOptions, app).listen(443);
@@ -59,13 +58,23 @@ app.get('/', (req, res) => {
   req.session.csvFile = "NONE";
   req.session.csvFileName = "NONE";
 
+  req.session.testCookie = true;
+
   res.sendFile(path.join(publicPath, "/html/index.html"));
+});
+
+app.get('/email', (req, res) => {
+  res.sendFile(path.join(publicPath, "/html/email.html"));
 });
 
 app.post('/custom/select', (req, res) => {
   if ((!req.files) || (Object.keys(req.files).length === 0)) {
     return res.sendFile(path.join(publicPath, "/html/play/error-game.html"));
   }
+  if (req.session.testCookie != true) {
+    return res.sendFile(path.join(publicPath, "/html/blocked-cookie.html"));
+  }
+  
   req.session.csvFile = req.files.csv_file.data;
   req.session.csvFileName = req.files.csv_file.name;
 
@@ -183,7 +192,7 @@ fs.writeFile(path.join(publicPath, "/custom/csv/" + req.session.csvFileName), re
       });
 
       const $ = cheerio.load(fs.readFileSync(path.join(publicPath, '/html/index.html')));
-      $('#create-board-div').replaceWith('<div id="create-board-div" class="index-div"><form action="/custom/create-board" method="GET"><input class="create-board-input" type="submit" value="Create a Board"></form><form action="/custom/game-board" method="GET"><input class="select-buttons" type="submit" value="Play ' + req.session.csvFileName + '"><br><br></form><form action="/custom/edit-board" method="GET"><input class="select-buttons" type="submit" value="Edit ' + req.session.csvFileName + '"></form></div>');
+      $('#create-board-div').replaceWith('<div id="create-board-div" class="index-div"><form action="/custom/create-board" method="GET"><input class="create-board-input" type="submit" value="Create a Board"></form><form action="/custom/game-board" method="GET"><input class="select-buttons" type="submit" value="Play ' + req.session.csvFileName + '"><br><br></form><form action="/custom/edit-board" method="GET"><input class="select-buttons" id="edit-button" type="submit" value="Edit ' + req.session.csvFileName + '"></form></div>');
       res.send($.html());
     });
   });
@@ -191,6 +200,10 @@ fs.writeFile(path.join(publicPath, "/custom/csv/" + req.session.csvFileName), re
 
 app.get('/custom/create-board', (req, res) => {
   res.sendFile(path.join(publicPath, "/html/edit/edit-board.html"));
+});
+
+app.get('/custom/create-board/instructions', (req, res) => {
+  res.sendFile(path.join(publicPath, "/html/edit/instructions.html"));
 });
 
 app.get('/custom/edit-board', (req, res) => {
@@ -362,6 +375,9 @@ app.get('/custom/game-board', function(req, res) {
   if (req.session.csvFile == "NONE") {
     return res.sendFile(path.join(publicPath, "/html/play/error-game.html"));
   }
+  if (req.session.testCookie != true) {
+    return res.sendFile(path.join(publicPath, "/html/blocked-cookie.html"));
+  }
 
   const $ = cheerio.load(fs.readFileSync(path.join(publicPath, '/html/play/game-board.html')));
   $('#is-deduction').replaceWith('<a id="is-deduction" hidden>'+req.session.isDeduction+'</a>');
@@ -395,6 +411,10 @@ app.get('/custom/game-board/double', (req, res) => {
   if (req.session.csvFile == "NONE") {
     return res.sendFile(path.join(publicPath, "/html/play/error-game.html"));
   }
+  if (req.session.testCookie != true) {
+    return res.sendFile(path.join(publicPath, "/html/blocked-cookie.html"));
+  }
+
   req.session.tmpTeamOneWrong = req.query.team_one_wrong_questions.split('&');
   req.session.tmpTeamTwoWrong = req.query.team_two_wrong_questions.split('&');
   for (var i = 0; i < req.session.tmpTeamOneWrong.length; i++) {
@@ -442,6 +462,9 @@ app.get('/custom/game-board/final', (req, res) => {
   if (req.session.csvFile == "NONE") {
     return res.sendFile(path.join(publicPath, "/html/play/error-game.html"));
   }
+  if (req.session.testCookie != true) {
+    return res.sendFile(path.join(publicPath, "/html/blocked-cookie.html"));
+  }
 
   req.session.tmpTeamOneWrong = req.query.team_one_wrong_questions.split('&');
   req.session.tmpTeamTwoWrong = req.query.team_two_wrong_questions.split('&');
@@ -472,8 +495,8 @@ app.get('/custom/game-board/results', (req, res) => {
   req.session.teamOneReplace;
   req.session.teamTwoReplace;
 
-  req.session.tmpTeamOneWrong = req.query.team_one_wrong_questions.split('&');
-  req.session.tmpTeamTwoWrong = req.query.team_two_wrong_questions.split('&');
+  req.session.tmpTeamOneWrong += req.query.team_one_wrong_questions.split('&');
+  req.session.tmpTeamTwoWrong += req.query.team_two_wrong_questions.split('&');
 
   const $ = cheerio.load(fs.readFileSync(path.join(publicPath, '/html/play/results.html')));
 

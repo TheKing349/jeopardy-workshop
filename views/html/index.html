@@ -9,14 +9,17 @@
     
         <div class="index-div">
             <h1>About</h1>
-            <p>Jeopardy Workshop is a website to easily create, edit, and play a custom Jeopardy-like board. Two teams face off against each other in a Jeopardy!-like trivia game. To get started, go to <a style="text-decoration: underline;">Create Board!</a><br><br>My name is Aiden Kimmerling,
-                and I am currently a sophmore in high school. I program as a hobby, and mainy use the <a href="https://unity.com/">Unity Game Engine</a> to program simple games in C#.</p>
+            <p>Jeopardy Workshop is a website to easily create, edit, and play a custom Jeopardy-like board. Two teams face off 
+                against each other in a Jeopardy!-like trivia game. To get started, go to <a style="text-decoration: underline;">
+                Create Board!</a><br><br>My name is Aiden Kimmerling, and I am currently a sophmore in high school. I program as 
+                a hobby, and mainly use the <a href="https://unity.com/">Unity Game Engine</a> to program simple games in C#.</p>
         </div>
 
         <div id="create-board-div" class="index-div">
             <form action="/custom/create-board" method="GET">
                 <input class="create-board-input" type="submit" value="Create a Board"> 
             </form>
+            <a style="font-size: 200%; margin-bottom: 30px;">OR</a>
 
             <form id="csv-file-form" action="/custom/select" method="POST" enctype="multipart/form-data">
                 <input type="file" id="csv_file" class="csv-file" name="csv_file" accept=".csv" value="PLAY Jeopardy Board">
@@ -26,12 +29,15 @@
 
         <div class="index-div">
             <h1>Report a Bug</h1>
-            <p>To report a bug, contact me at <a style="text-decoration: underline;">support@jeopardyworkshop.com,</a> or go to the <a href="https://github.com/TheKing349/jeopardy-workshop/issues">Issues tab</a> on my <a href="https://github.com/TheKing349/jeopardy-workshop/">Github page.</a></p>
+            <p>To report a bug, contact me at 
+                <a href="/email">support@jeopardyworkshop.com,</a> or go to the <a href="https://github.com/TheKing349/jeopardy-workshop/issues">Issues tab</a> on my <a href="https://github.com/TheKing349/jeopardy-workshop/">Github page.</a></p>
         </div>
 
         <div class="index-div">
             <h1>How we use your Data</h1>
-            <p>We use cookies to save the .csv data you send us via the "Choose File" input. This is set in place so that other users do not conflict with your game. If you disable or block cookies, the website will not work as intended. An error would occur when you select a jeopardy board. Before we initialize the cookies, we briefly save the .csv file to the server. It is deleted after cookies have been initialized.</p>
+            <p>We use cookies to save the .csv data you send us via the "Choose File" input. This is set in place so that other users do not conflict with 
+                your game. If you disable or block cookies, the website will not work as intended. An error would occur when you select a jeopardy board.
+                <br>Before we initialize the cookies, we briefly save the .csv file to the server. It is deleted after cookies have been initialized.</p>
         </div>
     </body>
 </html>

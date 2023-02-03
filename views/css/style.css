@@ -71,23 +71,47 @@
     background: transparent;
     text-decoration: underline;
     font-weight: bolder;
-    font-size: 200%;
+    font-size: 250%;
     cursor: pointer;
-    margin-bottom: 30px;
   }
   .csv-file {
     font-size: 130%;
+    background: darkblue;
   }
   .csv-file:not(#csv_file) {
     margin-left: 20px;
     padding-left: 10px;
     padding-right: 10px;
+    background: blue;
   }
 
   .select-buttons {
     font-size: 150%;
     padding-left: 10px;
     padding-right: 10px;
+  }
+  .select-buttons:not(#edit-button) {
+    margin-top: 20px;
+  } 
+
+  .email-form {
+    text-align: center;
+    font-size: 200%;
+  }
+  .email-form input {
+    font-size: 1.5vw;
+  }
+  .email-form textarea {
+    border: 2px solid;
+    background: blue;
+    width: 650px;
+    max-width: 650px;
+    height: 350px;
+    max-height: 350px;
+    font-size: 150%;
+  }
+  .email-form button {
+    font-size: 120%;
   }
 
   .double-round {
@@ -322,6 +346,7 @@
   .board-header {
     margin-top: 1%;
     font-size: 400%;
+    background-color: blue;
   }
 
   .double-checkbox {
@@ -465,6 +490,10 @@
   .question {
     background-color: blue;
     color: white;
+  }
+  
+  #single-edit-table {
+    margin-top: 18px;
   }
 
   @media screen and (max-width: 600px) {

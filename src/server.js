@@ -10,15 +10,6 @@ const fs = require("fs");
 const http = require('http');
 const https = require('https');
 
-/*
-  To Do:
-    1.
-      INCLUDE PROPER START HTML AS AN INTRODUCTION
-
-    2. 
-      FINISH/UPLOAD PROJECT ONTO GITHUB
-*/
-
 const publicPath = path.join(process.cwd().replace(/\\src/, ""), "/views");
 
 var httpsOptions = {
@@ -28,7 +19,7 @@ var httpsOptions = {
 }
 
 app.use(session({
-  secret: 'herkxsertyfhuygjk0f897^9@#',
+  secret: randomGenerator(64),
   resave: false,
   saveUninitialized: false,
   cookie: {
@@ -669,4 +660,16 @@ function containsNumbers(str) {
 function addZero(i) {
   if (i < 10) {i = "0" + i}
   return i;
+}
+
+function randomGenerator(length) {
+  let result = '';
+  const characters = 'ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789';
+  const charactersLength = characters.length;
+  let counter = 0;
+  while (counter < length) {
+    result += characters.charAt(Math.floor(Math.random() * charactersLength));
+    counter += 1;
+  }
+  return result;
 }

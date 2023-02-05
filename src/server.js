@@ -60,10 +60,14 @@ app.get('/email', (req, res) => {
 
 app.post('/custom/select', (req, res) => {
   if ((!req.files) || (Object.keys(req.files).length === 0)) {
-    return res.sendFile(path.join(publicPath, "/html/play/error-game.html"));
+    const $ = cheerio.load(fs.readFileSync(path.join(publicPath, '/html/error.html')));
+    $('#title').replaceWith('<title id="title">Invalid CSV</title>');
+    $('#header').replaceWith('<h1 id="header">No file selected</h1>');
+    $('#text').replaceWith('<a id="text">No file was selected or the .CSV was formatted incorrectly. Make sure to press the "Choose File" and select a valid .CSV from the "Create Board" page.</a>')
+    return res.send($.html());
   }
   if (req.session.testCookie != true) {
-    return res.sendFile(path.join(publicPath, "/html/blocked-cookie.html"));
+    return res.sendFile(path.join(publicPath, "/html/error.html"));
   }
   
   req.session.csvFile = req.files.csv_file.data;
@@ -364,10 +368,14 @@ app.post('/custom/error', (req, res) => {
 
 app.get('/custom/game-board', function(req, res) {
   if (req.session.csvFile == "NONE") {
-    return res.sendFile(path.join(publicPath, "/html/play/error-game.html"));
+    const $ = cheerio.load(fs.readFileSync(path.join(publicPath, '/html/error.html')));
+    $('#title').replaceWith('<title id="title">Invalid CSV</title>');
+    $('#header').replaceWith('<h1 id="header">No file selected</h1>');
+    $('#text').replaceWith('<a id="text">No file was selected or the .CSV was formatted incorrectly. Make sure to press the "Choose File" and select a valid .CSV from the "Create Board" page.</a>')
+    return res.send($.html());
   }
   if (req.session.testCookie != true) {
-    return res.sendFile(path.join(publicPath, "/html/blocked-cookie.html"));
+    return res.sendFile(path.join(publicPath, "/html/error.html"));
   }
 
   const $ = cheerio.load(fs.readFileSync(path.join(publicPath, '/html/play/game-board.html')));
@@ -400,10 +408,14 @@ app.get('/custom/game-board', function(req, res) {
 
 app.get('/custom/game-board/double', (req, res) => {
   if (req.session.csvFile == "NONE") {
-    return res.sendFile(path.join(publicPath, "/html/play/error-game.html"));
+    const $ = cheerio.load(fs.readFileSync(path.join(publicPath, '/html/error.html')));
+    $('#title').replaceWith('<title id="title">Invalid CSV</title>');
+    $('#header').replaceWith('<h1 id="header">No file selected</h1>');
+    $('#text').replaceWith('<a id="text">No file was selected or the .CSV was formatted incorrectly. Make sure to press the "Choose File" and select a valid .CSV from the "Create Board" page.</a>')
+    return res.send($.html());
   }
   if (req.session.testCookie != true) {
-    return res.sendFile(path.join(publicPath, "/html/blocked-cookie.html"));
+    return res.sendFile(path.join(publicPath, "/html/error.html"));
   }
 
   req.session.tmpTeamOneWrong = req.query.team_one_wrong_questions.split('&');
@@ -451,10 +463,14 @@ app.get('/custom/game-board/double', (req, res) => {
 
 app.get('/custom/game-board/final', (req, res) => {
   if (req.session.csvFile == "NONE") {
-    return res.sendFile(path.join(publicPath, "/html/play/error-game.html"));
+    const $ = cheerio.load(fs.readFileSync(path.join(publicPath, '/html/error.html')));
+    $('#title').replaceWith('<title id="title">Invalid CSV</title>');
+    $('#header').replaceWith('<h1 id="header">No file selected</h1>');
+    $('#text').replaceWith('<a id="text">No file was selected or the .CSV was formatted incorrectly. Make sure to press the "Choose File" and select a valid .CSV from the "Create Board" page.</a>')
+    return res.send($.html());
   }
   if (req.session.testCookie != true) {
-    return res.sendFile(path.join(publicPath, "/html/blocked-cookie.html"));
+    return res.sendFile(path.join(publicPath, "/html/error.html"));
   }
 
   req.session.tmpTeamOneWrong = req.query.team_one_wrong_questions.split('&');
@@ -610,7 +626,11 @@ app.get('/custom/game-board/results', (req, res) => {
 
 app.get('/custom/answer-board', (req, res) => {  
   if (req.session.csvFile == "NONE") {
-    return res.sendFile(path.join(publicPath, "/html/play/error-answer.html"));
+    const $ = cheerio.load(fs.readFileSync(path.join(publicPath, '/html/index.html')));
+    $('#title').replaceWith('<title id="title">No file selected</title>');
+    $('#header').replaceWith('<h1 id="header">No file selected</h1>');
+    $('#text').replaceWith('<a id="text">No CSV file selected. Please make sure to select a file by going to "Choose File" then pressing "Choose Jeopardy Board"</a>')
+    return res.send($.html());
   }
   const $ = cheerio.load(fs.readFileSync(path.join(publicPath, '/html/play/answer-board.html')));
   for (var i = 0; i < 6; i++) {
@@ -625,7 +645,11 @@ app.get('/custom/answer-board', (req, res) => {
 
 app.get('/custom/answer-board/double', (req, res) => {
   if (req.session.csvFile == "NONE") {
-    return res.sendFile(path.join(publicPath, "/html/play/error-answer.html"));
+    const $ = cheerio.load(fs.readFileSync(path.join(publicPath, '/html/index.html')));
+    $('#title').replaceWith('<title id="title">No file selected</title>');
+    $('#header').replaceWith('<h1 id="header">No file selected</h1>');
+    $('#text').replaceWith('<a id="text">No CSV file selected. Please make sure to select a file by going to "Choose File" then pressing "Choose Jeopardy Board"</a>')
+    return res.send($.html());
   }
 
   const $ = cheerio.load(fs.readFileSync(path.join(publicPath, 'custom/play/html/answer-board.html')));
@@ -644,7 +668,11 @@ app.get('/custom/answer-board/double', (req, res) => {
 
 app.get('/custom/answer-board/final', (req, res) => {
   if (req.session.csvFile == "NONE") {
-    return res.sendFile(path.join(publicPath, "/html/play/error-answer.html"));
+    const $ = cheerio.load(fs.readFileSync(path.join(publicPath, '/html/index.html')));
+    $('#title').replaceWith('<title id="title">No file selected</title>');
+    $('#header').replaceWith('<h1 id="header">No file selected</h1>');
+    $('#text').replaceWith('<a id="text">No CSV file selected. Please make sure to select a file by going to "Choose File" then pressing "Choose Jeopardy Board"</a>')
+    return res.send($.html());
   }
   const $ = cheerio.load(fs.readFileSync(path.join(publicPath, '/html/play/final-answer-board.html')));
   req.session.categories[req.session.categories.length - 1] = req.session.categories[req.session.categories.length - 1].replace(/\\/g, "");

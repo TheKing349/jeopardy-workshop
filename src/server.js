@@ -9,6 +9,7 @@ const app = express();
 const fs = require("fs");
 const http = require('http');
 const https = require('https');
+const { redirectToHTTPS } = require('express-http-to-https');
 
 const publicPath = path.join(process.cwd().replace(/\\src/, ""), "/views");
 
@@ -28,12 +29,11 @@ app.use(session({
   }
 }));
 app.use(bodyParser.urlencoded({ extended: true })); 
+app.use(redirectToHTTPS([/localhost/]));
 app.use('/static', express.static('views'));
 app.use(fileUpload());
 
-http.createServer(app).listen(80), app.get('/', (req, res) => {
-  res.redirect("https://jeopardyworkshop.com");
-});
+http.createServer(app).listen(80);
 https.createServer(httpsOptions, app).listen(443);
 
 app.get('/', (req, res) => {

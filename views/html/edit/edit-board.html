@@ -832,6 +832,17 @@
     var idModifier = "s";
 
     var done = false;
+    
+    for (var i = 0; i < 30; i++) {    
+        document.getElementById("sV"+i+"A").addEventListener("keydown", (e) => {
+            var x = event.charCode || event.keyCode;
+            if (isNaN(String.fromCharCode(e.which)) && (x!=8) && (x!=32) && (x!=46) && (x!=96) && (x!=97) && (x!=98) && (x!=99) && (x!=100) && (x!=101) && (x!=102) && (x!=103) && (x!=104) && (x!=105) && (x!=110)) e.preventDefault();
+        });
+        document.getElementById("dV"+i+"A").addEventListener("keydown", (e) => {
+            var x = event.charCode || event.keyCode;
+            if (isNaN(String.fromCharCode(e.which)) && (x!=8) && (x!=32) && (x!=46) && (x!=96) && (x!=97) && (x!=98) && (x!=99) && (x!=100) && (x!=101) && (x!=102) && (x!=103) && (x!=104) && (x!=105) && (x!=110)) e.preventDefault();
+        });
+    }
 
     function saveCSV() {
         if (!done) {

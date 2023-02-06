@@ -31,7 +31,9 @@ app.use(bodyParser.urlencoded({ extended: true }));
 app.use('/static', express.static('views'));
 app.use(fileUpload());
 
-http.createServer(app).listen(80);
+http.createServer(app).listen(80), app.get('/', (req, res) => {
+  res.redirect("https://jeopardyworkshop.com");
+});
 https.createServer(httpsOptions, app).listen(443);
 
 app.get('/', (req, res) => {
@@ -681,15 +683,6 @@ app.get('/custom/answer-board/final', (req, res) => {
   res.send($.html());
 })
 
-function containsNumbers(str) {
-  return /\d/.test(str);
-}
-
-function addZero(i) {
-  if (i < 10) {i = "0" + i}
-  return i;
-}
-
 function randomGenerator(length) {
   let result = '';
   const characters = 'ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789';
@@ -700,4 +693,13 @@ function randomGenerator(length) {
     counter += 1;
   }
   return result;
+}
+
+function containsNumbers(str) {
+  return /\d/.test(str);
+}
+
+function addZero(i) {
+  if (i < 10) {i = "0" + i}
+  return i;
 }

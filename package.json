@@ -10,6 +10,7 @@
   },
   "dependencies": {
     "browser-env": "^3.3.0",
+    "cheerio": "^1.0.0-rc.12",
     "express": "~4.17.1",
     "express-fileupload": "^1.4.0",
     "express-http-to-https": "^1.1.4",

@@ -102,7 +102,8 @@
     var teamOneScore = 0;
     var teamTwoScore = 0;
     var maxWager = document.getElementById('v29').innerText;
-    var finished = false;
+    var finished = true;
+    var finishedQuestions = [];
     resetBoard();
     var all = window.location.search.split("&");
     if (all != "") {
@@ -160,6 +161,12 @@
     var answerBoard;
     function openAnswerBoard () {
         answerBoard = window.open(document.getElementById("answer-board-url").innerText, "answerBoard");
+        answerBoard.addEventListener("load", function () { 
+            for (var i = 0; i < finishedQuestions.length; i++) 
+            {
+                answerBoard.postMessage(finishedQuestions[i], "*"); 
+            } 
+        }, false);
     }
 
     function replaceText(id, value, category, clue) {
@@ -220,6 +227,7 @@
             resetBoard();
             document.getElementById('team-one-score').innerText = "Team One: $" + teamOneScore;
             document.getElementById(vId).classList.add("disabled");
+            finishedQuestions.push(vId);
             answerBoard.postMessage(vId, "*");
         }
         else if (team=="two") {
@@ -239,6 +247,7 @@
             resetBoard();
             document.getElementById('team-two-score').innerText = "Team Two: $" + teamTwoScore;
             document.getElementById(vId).classList.add("disabled");
+            finishedQuestions.push(vId);
             answerBoard.postMessage(vId, "*");
         }
         else {
@@ -290,7 +299,7 @@
         var canMoveOn = true;
         for (var i = 0; i < 30; i++) {
             if (document.getElementById("v"+i).innerText != "-------") {
-                canMoveOn = false;
+                //canMoveOn = false;
                 break;
             }
         }
@@ -318,7 +327,7 @@
                     document.getElementById("winner").value = "team-two";
                 }
                 else {
-                    documetng.getElementById("winner").value = "none";
+                    document.getElementById("winner").value = "none";
                 }
             }
             else {

@@ -21,15 +21,16 @@ var httpsOptions = {
 
 app.use(session({
   secret: randomGenerator(64),
-  resave: false,
+  resave: true,
   saveUninitialized: false,
   cookie: {
     path: '/',
-    secure: false
+    secure: true
   }
 }));
+
 app.use(bodyParser.urlencoded({ extended: true })); 
-app.use(redirectToHTTPS([/localhost/]));
+app.use(redirectToHTTPS());
 app.use('/static', express.static('views'));
 app.use(fileUpload());
 
@@ -37,6 +38,8 @@ http.createServer(app).listen(80);
 https.createServer(httpsOptions, app).listen(443);
 
 app.get('/', (req, res) => {
+  req.session.testCookie = true;
+
   req.session.categories = [];
   req.session.singleClues = [];
   req.session.doubleClues = [];
@@ -50,8 +53,6 @@ app.get('/', (req, res) => {
   req.session.teamTwoWrong = [];
   req.session.csvFile = "NONE";
   req.session.csvFileName = "NONE";
-
-  req.session.testCookie = true;
 
   res.sendFile(path.join(publicPath, "/html/index.html"));
 });
@@ -214,7 +215,6 @@ app.get('/custom/edit-board', (req, res) => {
   else {
     $('#deduct-points-checkbox').replaceWith('<input id="deduct-points-checkbox" type="checkbox">');
   }
-  
 
   if (req.session.categories[6] == "NONE") {
     $('#double-checkbox').replaceWith('<input id="double-checkbox" type="checkbox">');
@@ -421,15 +421,16 @@ app.get('/custom/game-board/double', (req, res) => {
   }
 
   req.session.tmpTeamOneWrong = req.query.team_one_wrong_questions.split('&');
-  req.session.tmpTeamTwoWrong = req.query.team_two_wrong_questions.split('&');
+  req.session.tmpTeamTwoWrong = req.query.team_one_wrong_questions.split('&');
+
   for (var i = 0; i < req.session.tmpTeamOneWrong.length; i++) {
-    if (req.session.tmpTeamOneWrong[i] != '') {
+    if (req.query.team_one_wrong_questions.split('&')[i] != '') {
       req.session.teamOneWrong.push(req.session.tmpTeamOneWrong[i]);
     }
   }
-  for (var i = 0; i < req.session.tmpTeamTwoWrong.length; i++) {
-    if (req.session.tmpTeamTwoWrong[i] != '') {
-      req.session.teamTwoWrong.push(req.session.tmpTeamTwoWrong[i]);
+  for (var j = 0; j < req.session.tmpTeamTwoWrong; j++) {
+    if (req.session.tmpTeamTwoWrong[j] != '') {
+      req.session.teamTwoWrong.push(req.session.tmpTeamTwoWrong[j]);
     }
   }
   const $ = cheerio.load(fs.readFileSync(path.join(publicPath, '/html/play/game-board.html')));
@@ -474,27 +475,27 @@ app.get('/custom/game-board/final', (req, res) => {
   if (req.session.testCookie != true) {
     return res.sendFile(path.join(publicPath, "/html/error.html"));
   }
-
   req.session.tmpTeamOneWrong = req.query.team_one_wrong_questions.split('&');
-  req.session.tmpTeamTwoWrong = req.query.team_two_wrong_questions.split('&');
+  req.session.tmpTeamTwoWrong = req.query.team_one_wrong_questions.split('&');
 
   for (var i = 0; i < req.session.tmpTeamOneWrong.length; i++) {
-    if (req.session.tmpTeamOneWrong[i] != '') {
+    if (req.query.team_one_wrong_questions.split('&')[i] != '') {
       req.session.teamOneWrong.push(req.session.tmpTeamOneWrong[i]);
     }
   }
-  for (var i = 0; i < req.session.tmpTeamTwoWrong.length; i++) {
-    if (req.session.tmpTeamTwoWrong[i] != '') {
-      req.session.teamTwoWrong.push(req.session.tmpTeamTwoWrong[i]);
+  for (var j = 0; j < req.session.tmpTeamTwoWrong; j++) {
+    if (req.session.tmpTeamTwoWrong[j] != '') {
+      req.session.teamTwoWrong.push(req.session.tmpTeamTwoWrong[j]);
     }
   }
+
   const $ = cheerio.load(fs.readFileSync(path.join(publicPath, '/html/play/final-game-board.html')));
   
   req.session.categories[req.session.categories.length - 1] = req.session.categories[req.session.categories.length - 1].replace(/\\/g, "");
   $(".final-category").replaceWith('<p id="final-category" class="final-category">' + req.session.categories[req.session.categories.length-1] + '</p>');
   $("#final-question").replaceWith('<td id="final-question">' + req.session.finalClue + '</td>');
   res.send($.html());
-})
+});
 
 app.get('/custom/game-board/results', (req, res) => {
   req.session.winner;
@@ -504,20 +505,16 @@ app.get('/custom/game-board/results', (req, res) => {
   req.session.teamOneReplace;
   req.session.teamTwoReplace;
 
-  req.session.tmpTeamOneWrong += req.query.team_one_wrong_questions.split('&');
-  req.session.tmpTeamTwoWrong += req.query.team_two_wrong_questions.split('&');
+  req.session.tmpTeamOneWrong = req.query.team_one_wrong_questions;
+  req.session.tmpTeamTwoWrong = req.query.team_two_wrong_questions;
 
   const $ = cheerio.load(fs.readFileSync(path.join(publicPath, '/html/play/results.html')));
 
-  for (var i = 0; i < req.session.tmpTeamOneWrong.length; i++) {
-    if (req.session.tmpTeamOneWrong[i] != '') {
-      req.session.teamOneWrong.push(req.session.tmpTeamOneWrong[i]);
-    }
+  if (req.session.tmpTeamOneWrong != '') {
+    req.session.teamOneWrong.push(req.session.tmpTeamOneWrong);
   }
-  for (var i = 0; i < req.session.tmpTeamTwoWrong.length; i++) {
-    if (req.session.tmpTeamTwoWrong[i] != '') {
-      req.session.teamTwoWrong.push(req.session.tmpTeamTwoWrong[i]);
-    }
+  if (req.session.tmpTeamTwoWrong != '') {
+    req.session.teamTwoWrong.push(req.session.tmpTeamTwoWrong);
   }
   
   if (req.query.winner == "team-two") {
@@ -654,7 +651,7 @@ app.get('/custom/answer-board/double', (req, res) => {
     return res.send($.html());
   }
 
-  const $ = cheerio.load(fs.readFileSync(path.join(publicPath, 'custom/play/html/answer-board.html')));
+  const $ = cheerio.load(fs.readFileSync(path.join(publicPath, '/html/play/answer-board.html')));
 
   $('#title').replaceWith('<title>Double Answers</title>');
 
@@ -666,7 +663,7 @@ app.get('/custom/answer-board/double', (req, res) => {
     $('#a'+j).replaceWith('<td id="a' + j + '">' + req.session.doubleAnswers[j] + '</td>');
   }
   res.send($.html());
-})
+});
 
 app.get('/custom/answer-board/final', (req, res) => {
   if (req.session.csvFile == "NONE") {
@@ -681,7 +678,7 @@ app.get('/custom/answer-board/final', (req, res) => {
   $("#c0").replaceWith('<th id="c0">' + req.session.categories[req.session.categories.length-1] + '</th>');
   $("#v0").replaceWith('<td id="v0">' + req.session.finalAnswer + '</td>');
   res.send($.html());
-})
+});
 
 function randomGenerator(length) {
   let result = '';

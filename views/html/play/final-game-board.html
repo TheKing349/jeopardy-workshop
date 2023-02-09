@@ -61,6 +61,10 @@
         answerBoard = window.open("/custom/answer-board/final", "answerBoard");
     }
 
+    function skipQuestion () {
+        document.getElementById("results-button").hidden = false;
+    }
+
     function changeWinner() {
         if (teamOneScore > teamTwoScore) {
             document.getElementById('winner').value = "team-one"
@@ -95,7 +99,7 @@
                 teamOneScore = parseInt(teamOneScore) + parseInt(teamOneWager);
             }
             else if (teamOneWager.includes("-")) {
-                document.getElementById('team_one_wrong_questions').value += document.getElementById("final-question").innerText;
+                document.getElementById('team_one_wrong_questions').value = document.getElementById("final-question").innerText;
                 teamOneScore = parseInt(teamOneScore) + parseInt(teamOneWager);
             }
             else {
@@ -109,7 +113,7 @@
                 teamTwoScore = parseInt(teamTwoScore) + parseInt(teamTwoWager);
             }
             else if (teamTwoWager.includes("-")) {
-                document.getElementById('team_two_wrong_questions').value += document.getElementById("final-question").innerText;
+                document.getElementById('team_two_wrong_questions').value = document.getElementById("final-question").innerText;
                 teamTwoScore = parseInt(teamTwoScore) + parseInt(teamTwoWager);
             }
             else {
@@ -125,29 +129,29 @@
     }
 
     function revealQuestion(oneFinalValue, twoFinalValue) {
-      document.getElementById("team-one-final-input").hidden = false;
-      document.getElementById("team-two-final-input").hidden = false;
-      document.getElementById("final-question").hidden = false;
-      document.getElementById("final-question-table").hidden = false;
-      document.getElementById("team-one-final-input").hidden = true;
-      document.getElementById("team-two-final-input").hidden = true;
-      document.getElementById("final-button").hidden = true;
-      document.getElementById("team-one-right").style.display = "initial";
-      document.getElementById("team-one-wrong").style.display = "initial";
-      document.getElementById("skip-button").style.display = "initial";
-      document.getElementById("team-two-right").style.display = "initial";
-      document.getElementById("team-two-wrong").style.display = "initial";
-      document.getElementById("team-one-final-value").innerText = "Wager: $" + oneFinalValue;
-      document.getElementById("team-two-final-value").innerText = "Wager: $" + twoFinalValue;
-      document.getElementById("team-one-final-value").style.display = "inline-block";
-      document.getElementById("team-two-final-value").style.display = "inline-block";
+        document.getElementById("team-one-final-input").hidden = false;
+        document.getElementById("team-two-final-input").hidden = false;
+        document.getElementById("final-question").hidden = false;
+        document.getElementById("final-question-table").hidden = false;
+        document.getElementById("team-one-final-input").hidden = true;
+        document.getElementById("team-two-final-input").hidden = true;
+        document.getElementById("final-button").hidden = true;
+        document.getElementById("team-one-right").style.display = "initial";
+        document.getElementById("team-one-wrong").style.display = "initial";
+        document.getElementById("skip-button").style.display = "initial";
+        document.getElementById("team-two-right").style.display = "initial";
+        document.getElementById("team-two-wrong").style.display = "initial";
+        document.getElementById("team-one-final-value").innerText = "Wager: $" + oneFinalValue;
+        document.getElementById("team-two-final-value").innerText = "Wager: $" + twoFinalValue;
+        document.getElementById("team-one-final-value").style.display = "inline-block";
+        document.getElementById("team-two-final-value").style.display = "inline-block";
     }
     
     function finalJeopardySubmit() {
-        var oneFinalValue = document.getElementById("team-one-final-input").value;
-        var twoFinalValue = document.getElementById("team-two-final-input").value;
+        var oneFinalValue = parseInt(document.getElementById("team-one-final-input").value);
+        var twoFinalValue = parseInt(document.getElementById("team-two-final-input").value);
         if ((oneFinalValue.length != 0) && (twoFinalValue.length != 0)) {
-            if ((oneFinalValue <= teamOneScore) && (twoFinalValue <= teamTwoScore) && (!teamOneScore.includes('-')) && (!teamTwoScore.includes('-'))) {
+            if (((oneFinalValue <= teamOneScore) && (twoFinalValue <= teamTwoScore)) && ((!teamOneScore.includes('-')) && (!teamTwoScore.includes('-')))) {
                 revealQuestion(oneFinalValue, twoFinalValue);
             }
             else if ((oneFinalValue > teamOneScore) && (!teamOneScore.includes('-'))) {

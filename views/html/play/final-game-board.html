@@ -40,9 +40,15 @@
     <div class="answer-board-button">
         <button id="answer-board-button" type="button" onclick="openAnswerBoard();">Answer Board</button>
     </div>
+    <a id="show-results-button" hidden>false</a>
 </body>
 
 <script type="text/javascript">
+    var showResultsButton;    
+    if (document.getElementById('show-results-button').innerText == "true") {
+        document.getElementById('results-button').hidden = false;
+    }
+
     var all = window.location.search.split("&");
     var teamOneScore = all[0].replaceAll("?team_one_score=", "");
     var teamTwoScore = all[1].replaceAll("team_two_score=", "");

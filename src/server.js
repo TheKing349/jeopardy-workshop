@@ -48,9 +48,12 @@ app.get('/', (req, res) => {
   req.session.singleAnswers = [];
   req.session.doubleAnswers = [];
   req.session.finalAnswer = "";
-  req.session.isDeduction = "";
   req.session.teamOneWrong = [];
   req.session.teamTwoWrong = [];
+  req.session.isDeduction = "";
+  req.session.showDoubleButton = "";
+  req.session.showFinalButton = "";
+  req.session.showResultsButton = "";
   req.session.csvFile = "NONE";
   req.session.csvFileName = "NONE";
 
@@ -72,23 +75,23 @@ app.post('/custom/select', (req, res) => {
   if (req.session.testCookie != true) {
     return res.sendFile(path.join(publicPath, "/html/error.html"));
   }
-  
-  req.session.csvFile = req.files.csv_file.data;
-  req.session.csvFileName = req.files.csv_file.name;
-
-  req.session.isDeduction = "";
-
   req.session.categories = [];
-  req.session.finalClue = "";
   req.session.singleClues = [];
   req.session.doubleClues = [];
-  req.session.finalAnswer = "";
+  req.session.finalClue = "";
+  req.session.values = [];
   req.session.singleAnswers = [];
   req.session.doubleAnswers = [];
-  req.session.values = [];
-  
+  req.session.finalAnswer = "";
   req.session.teamOneWrong = [];
   req.session.teamTwoWrong = [];
+  req.session.isDeduction = "";
+  req.session.showDoubleButton = "";
+  req.session.showFinalButton = "";
+  req.session.showResultsButton = "";
+
+  req.session.csvFile = req.files.csv_file.data;
+  req.session.csvFileName = req.files.csv_file.name;
 
 fs.writeFile(path.join(publicPath, "/custom/csv/" + req.session.csvFileName), req.session.csvFile, (err) => {
     if (err) throw err;
@@ -150,6 +153,31 @@ fs.writeFile(path.join(publicPath, "/custom/csv/" + req.session.csvFileName), re
           }
           else if (req.session.results[j].substring(req.session.results[j].indexOf(',') + 1) == "FALSE") {
             req.session.isDeduction = false;
+          }
+        }
+
+        if (req.session.results[j].includes("Show-Double-Button")) {
+          if (req.session.results[j].substring(req.session.results[j].indexOf(',') + 1) == "TRUE") {
+            req.session.showDoubleButton = true;
+          }
+          else if (req.session.results[j].substring(req.session.results[j].indexOf(',') + 1) == "FALSE") {
+            req.session.showDoubleButton = false;
+          }
+        }
+        if (req.session.results[j].includes("Show-Final-Button")) {
+          if (req.session.results[j].substring(req.session.results[j].indexOf(',') + 1) == "TRUE") {
+            req.session.showFinalButton = true;
+          }
+          else if (req.session.results[j].substring(req.session.results[j].indexOf(',') + 1) == "FALSE") {
+            req.session.showFinalButton = false;
+          }
+        }
+        if (req.session.results[j].includes("Show-Results-Button")) {
+          if (req.session.results[j].substring(req.session.results[j].indexOf(',') + 1) == "TRUE") {
+            req.session.showResultsButton = true;
+          }
+          else if (req.session.results[j].substring(req.session.results[j].indexOf(',') + 1) == "FALSE") {
+            req.session.showResultsButton = false;
           }
         }
 
@@ -215,12 +243,33 @@ app.get('/custom/edit-board', (req, res) => {
   else {
     $('#deduct-points-checkbox').replaceWith('<input id="deduct-points-checkbox" type="checkbox">');
   }
+  
+  if (req.session.showDoubleButton) {
+    $('#show-double-checkbox').replaceWith('<input id="show-double-checkbox" type="checkbox" checked></a>');
+  }
+  else {
+    $('#show-double-checkbox').replaceWith('<input id="show-double-checkbox" type="checkbox"></a>');
+  }
+  if (req.session.showFinalButton) {
+    $('#show-final-checkbox').replaceWith('<input id="show-final-checkbox" type="checkbox" checked></a>');
+  }
+  else {
+    $('#show-final-checkbox').replaceWith('<input id="show-final-checkbox" type="checkbox"></a>');
+  }
+  if (req.session.showResultsButton) {
+    $('#show-results-checkbox').replaceWith('<input id="show-results-checkbox" type="checkbox" checked></a>');
+  }
+  else {
+    $('#show-results-checkbox').replaceWith('<input id="show-results-checkbox" type="checkbox"></a>');
+  }
 
   if (req.session.categories[6] == "NONE") {
     $('#double-checkbox').replaceWith('<input id="double-checkbox" type="checkbox">');
+    $('#show-double-checkbox').replaceWith('<input id="show-double-checkbox" type="checkbox" disabled></a>');
   }
   if (req.session.categories[12] == "NONE") {
     $('#final-checkbox').replaceWith('<input id="final-checkbox" type="checkbox">');
+    $('#show-final-checkbox').replaceWith('<input id="show-final-checkbox" type="checkbox" disabled></a>');
   }
   //SINGLE
   //Categories
@@ -267,6 +316,9 @@ app.get('/custom/edit-board', (req, res) => {
 
 app.post('/custom/save', (req, res) => {
   req.session.isDeduction = req.body.deduct_points;
+  req.session.showDoubleButton = req.body.show_double_button;
+  req.session.showFinalButton = req.body.show_final_button;
+  req.session.showResultsButton = req.body.show_results_button;
 
   req.session.singleCategories = req.body.single_categories_csv.split('&');
   req.session.singleValues = req.body.single_values_csv.split('&');
@@ -286,14 +338,21 @@ app.post('/custom/save', (req, res) => {
   req.session.categories = [...req.session.singleCategories, ...req.session.doubleCategories];
   req.session.categories[req.session.categories.length] = req.session.finalCategory;
   
-  req.session.date = new Date();
-  req.session.h = addZero((req.session.date.getHours() +24 ) %  12 || 12);
-  req.session.m = addZero(req.session.date.getMinutes());
-  req.session.s = addZero(req.session.date.getSeconds());
-  req.session.time = req.session.h + "-" + req.session.m + "-" + req.session.s;
- 
-  req.session.currentDate = (req.session.date.toDateString() + " at " + req.session.time).replace(/ /g, "-");
+  req.session.userFileName = req.body.user_name_input;
 
+  if (req.session.userFileName == "") {
+    req.session.date = new Date();
+    req.session.h = addZero((req.session.date.getHours() +24 ) %  12 || 12);
+    req.session.m = addZero(req.session.date.getMinutes());
+    req.session.s = addZero(req.session.date.getSeconds());
+    req.session.time = req.session.h + "-" + req.session.m + "-" + req.session.s;
+ 
+    req.session.currentName = (req.session.date.toDateString() + " at " + req.session.time).replace(/ /g, "-");
+  }
+  else {
+    req.session.currentName = req.session.userFileName;
+  }
+  
   req.session.tmpResults = [];
   fs.createReadStream(path.join(publicPath, '/custom/csv/template/TEMPLATE DO NOT DESTROY.csv'))
   .pipe(csv.parse({ headers: false }))
@@ -320,6 +379,9 @@ app.post('/custom/save', (req, res) => {
       .replace("Final-Category,FINAL CATEGORY", "Final-Category,"+ req.session.categories[req.session.categories.length - 1])
 
       .replace("Deduct-Points,TRUE", "Deduct-Points,"+req.session.isDeduction)
+      .replace("Show-Double-Button,FALSE", "Show-Double-Button,"+req.session.showDoubleButton)
+      .replace("Show-Final-Button,FALSE", "Show-Final-Button,"+req.session.showFinalButton)
+      .replace("Show-Results-Button,FALSE", "Show-Results-Button,"+req.session.showResultsButton)
       
       if ((i < 5)) {
         req.session.tmpResults[i] = req.session.tmpResults[i]
@@ -350,13 +412,13 @@ app.post('/custom/save', (req, res) => {
 
     req.session.results = req.session.tmpResults.join("\n");
 
-    fs.writeFile(path.join(publicPath, "/custom/csv/" + req.session.currentDate + ".csv"), req.session.results.toString(), (err) => {
+    fs.writeFile(path.join(publicPath, "/custom/csv/" + req.session.currentName + ".csv"), req.session.results.toString(), (err) => {
       if (err) throw err;
 
-      res.download(path.join(publicPath, "/custom/csv/" + req.session.currentDate + ".csv"), (err) => {
+      res.download(path.join(publicPath, "/custom/csv/" + req.session.currentName + ".csv"), (err) => {
         if (err) throw err;
   
-        fs.unlink(path.join(publicPath, "/custom/csv/" + req.session.currentDate + ".csv"), (err) => {
+        fs.unlink(path.join(publicPath, "/custom/csv/" + req.session.currentName + ".csv"), (err) => {
           if (err) throw err;
         });
       });
@@ -382,6 +444,9 @@ app.get('/custom/game-board', function(req, res) {
 
   const $ = cheerio.load(fs.readFileSync(path.join(publicPath, '/html/play/game-board.html')));
   $('#is-deduction').replaceWith('<a id="is-deduction" hidden>'+req.session.isDeduction+'</a>');
+  $('#show-double-button').replaceWith('<a id="show-double-button" hidden>'+req.session.showDoubleButton+'</a>');
+  $('#show-final-button').replaceWith('<a id="show-final-button" hidden>'+req.session.showFinalButton+'</a>');
+  $('#show-results-button').replaceWith('<a id="show-results-button" hidden>'+req.session.showResultsButton+'</a>');
 
   if (req.session.categories[6] == "NONE") {
     $('#is-double').replaceWith('<a id="is-double" hidden>false</a>');
@@ -434,6 +499,10 @@ app.get('/custom/game-board/double', (req, res) => {
     }
   }
   const $ = cheerio.load(fs.readFileSync(path.join(publicPath, '/html/play/game-board.html')));
+  $('#is-deduction').replaceWith('<a id="is-deduction" hidden>'+req.session.isDeduction+'</a>');
+  $('#show-double-button').replaceWith('<a id="show-double-button" hidden>'+req.session.showDoubleButton+'</a>');
+  $('#show-final-button').replaceWith('<a id="show-final-button" hidden>'+req.session.showFinalButton+'</a>');
+  $('#show-results-button').replaceWith('<a id="show-results-button" hidden>'+req.session.showResultsButton+'</a>');
 
   $('#title').replaceWith('<title>Double Jeopardy</title>');
 
@@ -490,6 +559,7 @@ app.get('/custom/game-board/final', (req, res) => {
   }
 
   const $ = cheerio.load(fs.readFileSync(path.join(publicPath, '/html/play/final-game-board.html')));
+  $('#show-results-button').replaceWith('<a id="show-results-button" hidden>'+req.session.showResultsButton+'</a>');
   
   req.session.categories[req.session.categories.length - 1] = req.session.categories[req.session.categories.length - 1].replace(/\\/g, "");
   $(".final-category").replaceWith('<p id="final-category" class="final-category">' + req.session.categories[req.session.categories.length-1] + '</p>');

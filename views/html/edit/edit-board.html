@@ -5,11 +5,13 @@
 </head>
 <body style="text-align: center;">
     <h1 id="game-board-header" class="board-header">SINGLE GAME BOARD</h1>
-    <a class="deduct-points-checkbox">Deduct Points <input id="deduct-points-checkbox" type="checkbox" checked>
-    </a>
-    
-    <a class="double-checkbox" onclick="checkIsNone('double');">Double <input id="double-checkbox" type="checkbox" checked>
-    </a>
+    <a class="deduct-points-checkbox">Deduct Points <input id="deduct-points-checkbox" type="checkbox" checked></a>
+    <br>
+    <a class="show-checkboxes">Show Double Button <input id="show-double-checkbox" type="checkbox"></a>
+    <a class="show-checkboxes">Show Final Button <input id="show-final-checkbox" type="checkbox"></a>
+    <a class="show-checkboxes">Show Results Button <input id="show-results-checkbox" type="checkbox"></a>
+    <br>
+    <a class="double-checkbox" onclick="checkIsNone('double');">Double <input id="double-checkbox" type="checkbox" checked></a>
     <a class="final-checkbox" onclick="checkIsNone('final');">
         Final <input id="final-checkbox" type="checkbox" checked>
     </a>
@@ -802,6 +804,9 @@
     
     <form action="/custom/save" method="POST" onsubmit="saveCSV();">
         <input type="text" value="" id="deduct-points" name="deduct_points" hidden>
+        <input type="text" value="" id="show-double-button" name="show_double_button" hidden>
+        <input type="text" value="" id="show-final-button" name="show_final_button" hidden>
+        <input type="text" value="" id="show-results-button" name="show_results_button" hidden>
 
         <input type="text" value="" id="single-categories-csv" name="single_categories_csv" hidden>
         <input type="text" value="" id="single-values-csv" name="single_values_csv" hidden>
@@ -817,9 +822,11 @@
         <input type="text" value="" id="final-clue-csv" name="final_clue_csv" hidden>
         <input type="text" value="" id="final-answer-csv" name="final_answer_csv" hidden>
 
+        <input type="text" value="" id="user-name-input" name="user_name_input" placeholder=".CSV File Name(Optional)">
+        <br>
         <button type="submit" id="save-button">Save as .CSV</button>
     </form>
-    <form action="/" method="GET" class="form">
+        <form action="/" method="GET" class="form">
         <button type="submit" id="back-button">Back</button>
     </form>
 </body>
@@ -849,11 +856,30 @@
             done = true;
             if (document.getElementById('deduct-points-checkbox').checked) {
                 document.getElementById('deduct-points').value = "TRUE";
-            }
-            
+            }            
             else {
                 document.getElementById('deduct-points').value = "FALSE";
             }
+
+            if (document.getElementById('show-double-checkbox').checked) {
+                document.getElementById('show-double-button').value = "TRUE";
+            }
+            else {
+                document.getElementById('show-double-button').value = "FALSE";
+            }
+            if (document.getElementById('show-final-checkbox').checked) {
+                document.getElementById('show-final-button').value = "TRUE";
+            }
+            else {
+                document.getElementById('show-final-button').value = "FALSE";
+            }
+            if (document.getElementById('show-results-checkbox').checked) {
+                document.getElementById('show-results-button').value = "TRUE";
+            }
+            else {
+                document.getElementById('show-results-button').value = "FALSE";
+            }
+            
             for (var i = 0; i < 6; i++) {
                 if (i != 5) {
                     document.getElementById('single-categories-csv').value += document.getElementById('sC'+i+"A").innerText + "&";
@@ -943,6 +969,8 @@
         var value = 0;
         if ((document.getElementById(id+"-checkbox").checked) && ((document.getElementById('dC0A').innerText == "NONE") || (document.getElementById('fCA').innerText == "NONE"))) {
             if (id == 'double') {
+                document.getElementById('show-double-checkbox').disabled = false;
+
                 for (var i = 0; i < 6; i++) {
                     document.getElementById('dC'+i+'A').innerText = "CATEGORY"+(i+1);
                 }
@@ -956,6 +984,8 @@
                 }
             }
             else if (id == 'final') {
+                document.getElementById('show-final-checkbox').disabled = false;
+
                 document.getElementById('fCA').innerText = "FINAL CATEGORY";
                 document.getElementById('fQA').innerText = "FINAL CLUE";
                 document.getElementById('fAA').innerText = "FINAL ANSWER";
@@ -963,6 +993,9 @@
         }
         else if ((!document.getElementById(id+"-checkbox").checked && (document.getElementById('dC0A').innerText != "NONE") || (document.getElementById('fCA').innerText != "NONE"))) {
             if (id == 'double') {
+                document.getElementById('show-double-checkbox').checked = false;
+                document.getElementById('show-double-checkbox').disabled = true;
+
                 for (var i = 0; i < 6; i++) {
                     document.getElementById('dC'+i+'A').innerText = "NONE";
                 }
@@ -973,6 +1006,9 @@
                 }
             }
             else if (id == 'final') {
+                document.getElementById('show-final-checkbox').checked = false;
+                document.getElementById('show-final-checkbox').disabled = true;
+
                 document.getElementById('fCA').innerText = "NONE";
                 document.getElementById('fQA').innerText = "NONE";
                 document.getElementById('fAA').innerText = "NONE";

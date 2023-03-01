@@ -93,6 +93,9 @@
     <a id="is-double" hidden>true</a>
     <a id="is-final" hidden>true</a>
     <a id="is-deduction" hidden>true</a>
+    <a id="show-double-button" hidden>false</a>
+    <a id="show-final-button" hidden>false</a>
+    <a id="show-results-button" hidden>false</a>
 </body>
 
 <script type="text/javascript">
@@ -104,7 +107,6 @@
     var maxWager = document.getElementById('v29').innerText;
     var finished = true;
     var finishedQuestions = [];
-    resetBoard();
     var all = window.location.search.split("&");
     if (all != "") {
         var teamOneScore = all[0].replace("?team_one_score=", "");
@@ -114,12 +116,37 @@
     var isDouble;
     var isFinal;
     var isDeduction;
+    var showDoubleButton;
+    var showFinalButton;
+    var showResultsButton;
+
+    var showButtons = false;
     if (document.getElementById('is-deduction').innerText == "true") {
         isDeduction = true;
     }
     else {
         isDeduction = false;
     }
+    if (document.getElementById('show-double-button').innerText == "true") {
+        showDoubleButton = true;
+    }
+
+    else {
+        showDoubleButton = false;
+    }
+    if (document.getElementById('show-final-button').innerText == "true") {
+        showFinalButton = true;
+    }
+    else {
+        showFinalButton = false;
+    }
+    if (document.getElementById('show-results-button').innerText == "true") {
+        showResultsButton = true;
+    }
+    else {
+        showResultsButton = false;
+    }
+
     if (document.getElementById('is-double').innerText == "true") {
         isDouble = true;
     }
@@ -133,27 +160,54 @@
         isFinal = false;
     }
     if ((isDouble) && (isFinal)) {
-        if (pathName == "/custom/game-board/double") {
+        if (pathName == "/custom/game-board") {
+            document.getElementById("double-button").innerText = "Go To Double Jeopardy";
+            document.getElementById("double-jeopardy-form").action = "/custom/game-board/double";
+            if (showDoubleButton) {
+                showButtons = true;
+            }
+        }
+        else if (pathName == "/custom/game-board/double") {
             document.getElementById("double-button").innerText = "Go To Final Jeopardy";
             document.getElementById("double-jeopardy-form").action = "/custom/game-board/final";
+            if (showFinalButton) {
+                showButtons = true;
+            }
         }
     }
     else if ((isDouble) && (!isFinal)) {
-        if (pathName == "/custom/game-board/double") {
+        if (pathName == "/custom/game-board") {
+            document.getElementById("double-button").innerText = "Go To Double Jeopardy";
+            document.getElementById("double-jeopardy-form").action = "/custom/game-board/double";
+            if (showDoubleButton) {
+                showButtons = true;
+            }
+        }
+        else if (pathName == "/custom/game-board/double") {
             document.getElementById("double-button").innerText = "Go To Results Screen";
             document.getElementById("double-jeopardy-form").action = "/custom/game-board/results";
             finished = true;
+            if (showResultsButton) {
+                showButtons = true;
+            }
         }
     }
     else if ((!isDouble) && (isFinal)) {
         document.getElementById("double-button").innerText = "Go To Final Jeopardy";
         document.getElementById("double-jeopardy-form").action = "/custom/game-board/final";
+        if (showFinalButton) {
+            showButtons = true;
+        }
     }
-    else {
+    else if ((!isDouble) && (!isFinal)) {
         document.getElementById("double-button").innerText = "Go To Results Screen";
         document.getElementById("double-jeopardy-form").action = "/custom/game-board/results";
         finished = true;
+            if (showResultsButton) {
+                showButtons = true;
+            }
     }
+    resetBoard();
     
     document.getElementById("team-one-score").innerText = "Team One: $" + teamOneScore;
     document.getElementById("team-two-score").innerText = "Team Two: $" + teamTwoScore;
@@ -297,10 +351,13 @@
 
     function resetBoard() {
         var canMoveOn = true;
-        for (var i = 0; i < 30; i++) {
-            if (document.getElementById("v"+i).innerText != "-------") {
-                canMoveOn = false;
-                break;
+        if (!showButtons)
+        {
+             for (var i = 0; i < 30; i++) {
+                if (document.getElementById("v"+i).innerText != "-------") {
+                    canMoveOn = false;
+                    break;
+                }
             }
         }
         document.getElementById("game-table").hidden = false;

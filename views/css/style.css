@@ -384,11 +384,32 @@
   #deduct-points-checkbox {
     zoom: 3;
   }
+  .show-checkboxes {
+    display: block;
+    font-size: 400%;
+  }
+  #show-double-checkbox {
+    zoom: 3;
+  }
+  #show-final-checkbox {
+    zoom: 3;
+  }
+  #show-results-checkbox {
+    zoom: 3;
+  }
 
   #save-button {
     font-size: 400%;
     margin-top: 1%;
   }
+  #user-name-input {
+    font-size: 300%;
+    margin-top: 1%;
+  }
+  #user-name-input::placeholder {
+    color: rgb(172, 172, 172);
+  }
+
   #edit-questions {
     font-size: 400%;
     margin-top: 1%;

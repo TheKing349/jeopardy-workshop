@@ -349,6 +349,16 @@
     background-color: blue;
   }
 
+  .settings-header {
+    font-size: 400%;
+  }
+  .settings {
+    border: 5px dashed;
+    margin: auto;
+    width: fit-content;
+    padding: 1%;
+  }
+
   .double-checkbox {
     font-size: 400%;
   }

@@ -22,7 +22,16 @@
                 <input class="create-board-input" type="submit" value="Create a Board"> 
             </form>
             <a style="font-size: 200%; margin-bottom: 30px;">OR</a>
+            <a style="font-size: 200%; display: block;" href="https://docs.google.com/spreadsheets/d/1QcFzKwD9e8Zo0XDX68SelxTqUqe_u_bomV3A0zrwiYU/edit?usp=sharing">Google Sheets Template</a>
+            <p style="font-size: 100%;">Edit ONLY what is capitalized and NOT anything that has Dashes on them. For example, 
+                when looking at "Single-Clue-0" and CLUE0", only edit the "CLUE0". To edit Single values, look at the "S0: 200". 
+                Edit the "200" to whatever value needed. To represent a Daily Double, format values like so: "S0: DD: 200". Same 
+                goes for Double Jeopardy values as well. To download, go to File > Download > Comma Separated Values(.csv).</p>
+        </div>
 
+        <div id="select-board-div" class="index-div">
+            <h1>Select a Board</h1>
+            <br>
             <form id="csv-file-form" action="/custom/select" method="POST" enctype="multipart/form-data">
                 <input type="file" id="csv_file" class="csv-file" name="csv_file" accept=".csv" value="PLAY Jeopardy Board">
                 <input type="submit" class="csv-file" value="Choose Jeopardy Board">

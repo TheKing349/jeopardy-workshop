@@ -9,14 +9,12 @@ const app = express();
 const fs = require("fs");
 const http = require('http');
 const https = require('https');
-const { redirectToHTTPS } = require('express-http-to-https');
 
 const publicPath = path.join(process.cwd().replace(/\\src/, ""), "/views");
 
 var httpsOptions = {
-  key: fs.readFileSync('src/keys/private.key'),
-  cert: fs.readFileSync('src/keys/certificate.crt'),
-  ca: fs.readFileSync('src/keys/ca_bundle.crt')
+  key: fs.readFileSync('src/keys/server.key'),
+  cert: fs.readFileSync('src/keys/server.crt')
 }
 
 app.use(session({
@@ -30,7 +28,6 @@ app.use(session({
 }));
 
 app.use(bodyParser.urlencoded({ extended: true })); 
-app.use(redirectToHTTPS());
 app.use('/static', express.static('views'));
 app.use(fileUpload());
 

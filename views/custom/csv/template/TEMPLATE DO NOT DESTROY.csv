@@ -1,30 +1,80 @@
-Single-Clue-0,CLUE0,,Single-Answer-0,ANSWER0,,Double-Clue-0,CLUE0,,Double-Answer-0,ANSWER0,,Single-Category-0,CATEGORY0,,S0: 200,,S1: 200,,S2: 200,,S3: 200,,S4: 200,,S5: 200
-Single-Clue-1,CLUE1,,Single-Answer-1,ANSWER1,,Double-Clue-1,CLUE1,,Double-Answer-1,ANSWER1,,Single-Category-1,CATEGORY1,,S6: 400,,S7: 400,,S8: 400,,S9: 400,,S10: 400,,S11: 400
-Single-Clue-2,CLUE2,,Single-Answer-2,ANSWER2,,Double-Clue-2,CLUE2,,Double-Answer-2,ANSWER2,,Single-Category-2,CATEGORY2,,S12: 600,,S13: 600,,S14: 600,,S15: 600,,S16: 600,,S17: 600
-Single-Clue-3,CLUE3,,Single-Answer-3,ANSWER3,,Double-Clue-3,CLUE3,,Double-Answer-3,ANSWER3,,Single-Category-3,CATEGORY3,,S18: 800,,S19: 800,,S20: 800,,S21: 800,,S22: 800,,S23: 800
-Single-Clue-4,CLUE4,,Single-Answer-4,ANSWER4,,Double-Clue-4,CLUE4,,Double-Answer-4,ANSWER4,,Single-Category-4,CATEGORY4,,S24: 1000,,S25: 1000,,S26: 1000,,S27: 1000,,S28: 1000,,S29: 1000
-Single-Clue-5,CLUE5,,Single-Answer-5,ANSWER5,,Double-Clue-5,CLUE5,,Double-Answer-5,ANSWER5,,Single-Category-5,CATEGORY5,,,,,,,,,,,,
-Single-Clue-6,CLUE6,,Single-Answer-6,ANSWER6,,Double-Clue-6,CLUE6,,Double-Answer-6,ANSWER6,,,,,,,,,,,,,,,
-Single-Clue-7,CLUE7,,Single-Answer-7,ANSWER7,,Double-Clue-7,CLUE7,,Double-Answer-7,ANSWER7,,Double-Category-0,CATEGORY0,,D0: 400,,D1: 400,,D2: 400,,D3: 400,,D4: 400,,D5: 400
-Single-Clue-8,CLUE8,,Single-Answer-8,ANSWER8,,Double-Clue-8,CLUE8,,Double-Answer-8,ANSWER8,,Double-Category-1,CATEGORY1,,D6: 800,,D7: 800,,D8: 800,,D9: 800,,D10: 800,,D11: 800
-Single-Clue-9,CLUE9,,Single-Answer-9,ANSWER9,,Double-Clue-9,CLUE9,,Double-Answer-9,ANSWER9,,Double-Category-2,CATEGORY2,,D12: 1200,,D13: 1200,,D14: 1200,,D15: 1200,,D16: 1200,,D17: 1200
-Single-Clue-10,CLUE10,,Single-Answer-10,ANSWER10,,Double-Clue-10,CLUE10,,Double-Answer-10,ANSWER10,,Double-Category-3,CATEGORY3,,D18: 1600,,D19: 1600,,D20: 1600,,D21: 1600,,D22: 1600,,D23: 1600
-Single-Clue-11,CLUE11,,Single-Answer-11,ANSWER11,,Double-Clue-11,CLUE11,,Double-Answer-11,ANSWER11,,Double-Category-4,CATEGORY4,,D24: 2000,,D25: 2000,,D26: 2000,,D27: 2000,,D28: 2000,,D29: 2000
-Single-Clue-12,CLUE12,,Single-Answer-12,ANSWER12,,Double-Clue-12,CLUE12,,Double-Answer-12,ANSWER12,,Double-Category-5,CATEGORY5,,,,,,,,,,,,
-Single-Clue-13,CLUE13,,Single-Answer-13,ANSWER13,,Double-Clue-13,CLUE13,,Double-Answer-13,ANSWER13,,,,,,,,,,,,,,,
-Single-Clue-14,CLUE14,,Single-Answer-14,ANSWER14,,Double-Clue-14,CLUE14,,Double-Answer-14,ANSWER14,,Final-Category,FINAL CATEGORY,,,,,,,,,,,,
-Single-Clue-15,CLUE15,,Single-Answer-15,ANSWER15,,Double-Clue-15,CLUE15,,Double-Answer-15,ANSWER15,,Final-Clue,FINAL CLUE,,,,,,,,,,,,
-Single-Clue-16,CLUE16,,Single-Answer-16,ANSWER16,,Double-Clue-16,CLUE16,,Double-Answer-16,ANSWER16,,Final-Answer,FINAL ANSWER,,,,,,,,,,,,
-Single-Clue-17,CLUE17,,Single-Answer-17,ANSWER17,,Double-Clue-17,CLUE17,,Double-Answer-17,ANSWER17,,,,,,,,,,,,,,,
-Single-Clue-18,CLUE18,,Single-Answer-18,ANSWER18,,Double-Clue-18,CLUE18,,Double-Answer-18,ANSWER18,,Show-Double-Button,FALSE,,,,,,,,,,,,
-Single-Clue-19,CLUE19,,Single-Answer-19,ANSWER19,,Double-Clue-19,CLUE19,,Double-Answer-19,ANSWER19,,Show-Final-Button,FALSE,,,,,,,,,,,,
-Single-Clue-20,CLUE20,,Single-Answer-20,ANSWER20,,Double-Clue-20,CLUE20,,Double-Answer-20,ANSWER20,,Show-Results-Button,FALSE,,,,,,,,,,,,
-Single-Clue-21,CLUE21,,Single-Answer-21,ANSWER21,,Double-Clue-21,CLUE21,,Double-Answer-21,ANSWER21,,Deduct-Points,TRUE,,,,,,,,,,,,
-Single-Clue-22,CLUE22,,Single-Answer-22,ANSWER22,,Double-Clue-22,CLUE22,,Double-Answer-22,ANSWER22,,,,,,,,,,,,,,,
-Single-Clue-23,CLUE23,,Single-Answer-23,ANSWER23,,Double-Clue-23,CLUE23,,Double-Answer-23,ANSWER23,,,,,,,,,,,,,,,
-Single-Clue-24,CLUE24,,Single-Answer-24,ANSWER24,,Double-Clue-24,CLUE24,,Double-Answer-24,ANSWER24,,,,,,,,,,,,,,,
-Single-Clue-25,CLUE25,,Single-Answer-25,ANSWER25,,Double-Clue-25,CLUE25,,Double-Answer-25,ANSWER25,,,,,,,,,,,,,,,
-Single-Clue-26,CLUE26,,Single-Answer-26,ANSWER26,,Double-Clue-26,CLUE26,,Double-Answer-26,ANSWER26,,,,,,,,,,,,,,,
-Single-Clue-27,CLUE27,,Single-Answer-27,ANSWER27,,Double-Clue-27,CLUE27,,Double-Answer-27,ANSWER27,,,,,,,,,,,,,,,
-Single-Clue-28,CLUE28,,Single-Answer-28,ANSWER28,,Double-Clue-28,CLUE28,,Double-Answer-28,ANSWER28,,,,,,,,,,,,,,,
-Single-Clue-29,CLUE29,,Single-Answer-29,ANSWER29,,Double-Clue-29,CLUE29,,Double-Answer-29,ANSWER29,,,,,,,,,,,,,,,
+Single-Clue-0,CLUE0,,Single-Answer-0,ANSWER0,,Double-Clue-0,CLUE0,,Double-Answer-0,ANSWER0,,Single-Category-0,CATEGORY0,,S0: 200,,S1: 200,,S2: 200,,S3: 200,,S4: 200,,S5: 200,,S6: 200,,S7: 200
+Single-Clue-1,CLUE1,,Single-Answer-1,ANSWER1,,Double-Clue-1,CLUE1,,Double-Answer-1,ANSWER1,,Single-Category-1,CATEGORY1,,S8: 400,,S9: 400,,S10: 400,,S11: 400,,S12: 400,,S13: 400,,S14: 400,,S15: 400
+Single-Clue-2,CLUE2,,Single-Answer-2,ANSWER2,,Double-Clue-2,CLUE2,,Double-Answer-2,ANSWER2,,Single-Category-2,CATEGORY2,,S16: 600,,S17: 600,,S18: 600,,S19: 600,,S20: 600,,S21: 600,,S22: 600,,S23: 600
+Single-Clue-3,CLUE3,,Single-Answer-3,ANSWER3,,Double-Clue-3,CLUE3,,Double-Answer-3,ANSWER3,,Single-Category-3,CATEGORY3,,S24: 800,,S25: 800,,S26: 800,,S27: 800,,S28: 800,,S29: 800,,S30: 800,,S31: 800
+Single-Clue-4,CLUE4,,Single-Answer-4,ANSWER4,,Double-Clue-4,CLUE4,,Double-Answer-4,ANSWER4,,Single-Category-4,CATEGORY4,,S32: 1000,,S33: 1000,,S34: 1000,,S35: 1000,,S36: 1000,,S37: 1000,,S38: 1000,,S39: 1000
+Single-Clue-5,CLUE5,,Single-Answer-5,ANSWER5,,Double-Clue-5,CLUE5,,Double-Answer-5,ANSWER5,,Single-Category-5,CATEGORY5,,S40: 1200,,S41: 1200,,S42: 1200,,S43: 1200,,S44: 1200,,S45: 1200,,S46: 1200,,S47: 1200
+Single-Clue-6,CLUE6,,Single-Answer-6,ANSWER6,,Double-Clue-6,CLUE6,,Double-Answer-6,ANSWER6,,Single-Category-6,CATEGORY6,,S48: 1400,,S49: 1400,,S50: 1400,,S51: 1400,,S52: 1400,,S53: 1400,,S54: 1400,,S55: 1400
+Single-Clue-7,CLUE7,,Single-Answer-7,ANSWER7,,Double-Clue-7,CLUE7,,Double-Answer-7,ANSWER7,,Single-Category-7,CATEGORY7,,S56: 1600,,S57: 1600,,S58: 1600,,S59: 1600,,S60: 1600,,S61: 1600,,S62: 1600,,S63: 1600
+Single-Clue-8,CLUE8,,Single-Answer-8,ANSWER8,,Double-Clue-8,CLUE8,,Double-Answer-8,ANSWER8,,,,,S64: 1800,,S65: 1800,,S66: 1800,,S67: 1800,,S68: 1800,,S69: 1800,,S70: 1800,,S71: 1800
+Single-Clue-9,CLUE9,,Single-Answer-9,ANSWER9,,Double-Clue-9,CLUE9,,Double-Answer-9,ANSWER9,,Double-Category-0,CATEGORY0,,S72: 2000,,S73: 2000,,S74: 2000,,S75: 2000,,S76: 2000,,S77: 2000,,S78: 2000,,S79: 2000
+Single-Clue-10,CLUE10,,Single-Answer-10,ANSWER10,,Double-Clue-10,CLUE10,,Double-Answer-10,ANSWER10,,Double-Category-1,CATEGORY1,,,,,,,,,,,,,,,,
+Single-Clue-11,CLUE11,,Single-Answer-11,ANSWER11,,Double-Clue-11,CLUE11,,Double-Answer-11,ANSWER11,,Double-Category-2,CATEGORY2,,D0: 400,,D1: 400,,D2: 400,,D3: 400,,D4: 400,,D5: 400,,D6: 400,,D7: 400
+Single-Clue-12,CLUE12,,Single-Answer-12,ANSWER12,,Double-Clue-12,CLUE12,,Double-Answer-12,ANSWER12,,Double-Category-3,CATEGORY3,,D8: 800,,D9: 800,,D10: 800,,D11: 800,,D12: 800,,D13: 800,,D14: 800,,D15: 800
+Single-Clue-13,CLUE13,,Single-Answer-13,ANSWER13,,Double-Clue-13,CLUE13,,Double-Answer-13,ANSWER13,,Double-Category-4,CATEGORY4,,D16: 1200,,D17: 1200,,D18: 1200,,D19: 1200,,D20: 1200,,D21: 1200,,D22: 1200,,D23: 1200
+Single-Clue-14,CLUE14,,Single-Answer-14,ANSWER14,,Double-Clue-14,CLUE14,,Double-Answer-14,ANSWER14,,Double-Category-5,CATEGORY5,,D24: 1600,,D25: 1600,,D26: 1600,,D27: 1600,,D28: 1600,,D29: 1600,,D30: 1600,,D31: 1600
+Single-Clue-15,CLUE15,,Single-Answer-15,ANSWER15,,Double-Clue-15,CLUE15,,Double-Answer-15,ANSWER15,,Double-Category-6,CATEGORY6,,D32: 2000,,D33: 2000,,D34: 2000,,D35: 2000,,D36: 2000,,D37: 2000,,D38: 2000,,D39: 2000
+Single-Clue-16,CLUE16,,Single-Answer-16,ANSWER16,,Double-Clue-16,CLUE16,,Double-Answer-16,ANSWER16,,Double-Category-7,CATEGORY7,,D40: 2400,,D41: 2400,,D42: 2400,,D43: 2400,,D44: 2400,,D45: 2400,,D46: 2400,,D47: 2400
+Single-Clue-17,CLUE17,,Single-Answer-17,ANSWER17,,Double-Clue-17,CLUE17,,Double-Answer-17,ANSWER17,,,,,D48: 2800,,D49: 2800,,D50: 2800,,D51: 2800,,D52: 2800,,D53: 2800,,D54: 2800,,D55: 2800
+Single-Clue-18,CLUE18,,Single-Answer-18,ANSWER18,,Double-Clue-18,CLUE18,,Double-Answer-18,ANSWER18,,Final-Category,FINAL CATEGORY,,D56: 3200,,D57: 3200,,D58: 3200,,D59: 3200,,D60: 3200,,D61: 3200,,D62: 3200,,D63: 3200
+Single-Clue-19,CLUE19,,Single-Answer-19,ANSWER19,,Double-Clue-19,CLUE19,,Double-Answer-19,ANSWER19,,Final-Clue,FINAL CLUE,,D64: 3600,,D65: 3600,,D66: 3600,,D67: 3600,,D68: 3600,,D69: 3600,,D70: 3600,,D71: 3600
+Single-Clue-20,CLUE20,,Single-Answer-20,ANSWER20,,Double-Clue-20,CLUE20,,Double-Answer-20,ANSWER20,,Final-Answer,FINAL ANSWER,,D72: 4000,,D73: 4000,,D74: 4000,,D75: 4000,,D76: 4000,,D77: 4000,,D78: 4000,,D79: 4000
+Single-Clue-21,CLUE21,,Single-Answer-21,ANSWER21,,Double-Clue-21,CLUE21,,Double-Answer-21,ANSWER21,,,,,,,,,,,,,,,,,,,
+Single-Clue-22,CLUE22,,Single-Answer-22,ANSWER22,,Double-Clue-22,CLUE22,,Double-Answer-22,ANSWER22,,Show-Double-Button,FALSE,,,,,,,,,,,,,,,,
+Single-Clue-23,CLUE23,,Single-Answer-23,ANSWER23,,Double-Clue-23,CLUE23,,Double-Answer-23,ANSWER23,,Show-Final-Button,FALSE,,,,,,,,,,,,,,,,
+Single-Clue-24,CLUE24,,Single-Answer-24,ANSWER24,,Double-Clue-24,CLUE24,,Double-Answer-24,ANSWER24,,Show-Results-Button,FALSE,,,,,,,,,,,,,,,,
+Single-Clue-25,CLUE25,,Single-Answer-25,ANSWER25,,Double-Clue-25,CLUE25,,Double-Answer-25,ANSWER25,,Deduct-Points,TRUE,,,,,,,,,,,,,,,,
+Single-Clue-26,CLUE26,,Single-Answer-26,ANSWER26,,Double-Clue-26,CLUE26,,Double-Answer-26,ANSWER26,,,,,,,,,,,,,,,,,,,
+Single-Clue-27,CLUE27,,Single-Answer-27,ANSWER27,,Double-Clue-27,CLUE27,,Double-Answer-27,ANSWER27,,Single-Column-Count,6,,,,,,,,,,,,,,,,
+Single-Clue-28,CLUE28,,Single-Answer-28,ANSWER28,,Double-Clue-28,CLUE28,,Double-Answer-28,ANSWER28,,Single-Row-Count,5,,,,,,,,,,,,,,,,
+Single-Clue-29,CLUE29,,Single-Answer-29,ANSWER29,,Double-Clue-29,CLUE29,,Double-Answer-29,ANSWER29,,Double-Column-Count,6,,,,,,,,,,,,,,,,
+Single-Clue-30,CLUE30,,Single-Answer-30,ANSWER30,,Double-Clue-30,CLUE30,,Double-Answer-30,ANSWER30,,Double-Row-Count,5,,,,,,,,,,,,,,,,
+Single-Clue-31,CLUE31,,Single-Answer-31,ANSWER31,,Double-Clue-31,CLUE31,,Double-Answer-31,ANSWER31,,,,,,,,,,,,,,,,,,,
+Single-Clue-32,CLUE32,,Single-Answer-32,ANSWER32,,Double-Clue-32,CLUE32,,Double-Answer-32,ANSWER32,,,,,,,,,,,,,,,,,,,
+Single-Clue-33,CLUE33,,Single-Answer-33,ANSWER33,,Double-Clue-33,CLUE33,,Double-Answer-33,ANSWER33,,,,,,,,,,,,,,,,,,,
+Single-Clue-34,CLUE34,,Single-Answer-34,ANSWER34,,Double-Clue-34,CLUE34,,Double-Answer-34,ANSWER34,,,,,,,,,,,,,,,,,,,
+Single-Clue-35,CLUE35,,Single-Answer-35,ANSWER35,,Double-Clue-35,CLUE35,,Double-Answer-35,ANSWER35,,,,,,,,,,,,,,,,,,,
+Single-Clue-36,CLUE36,,Single-Answer-36,ANSWER36,,Double-Clue-36,CLUE36,,Double-Answer-36,ANSWER36,,,,,,,,,,,,,,,,,,,
+Single-Clue-37,CLUE37,,Single-Answer-37,ANSWER37,,Double-Clue-37,CLUE37,,Double-Answer-37,ANSWER37,,,,,,,,,,,,,,,,,,,
+Single-Clue-38,CLUE38,,Single-Answer-38,ANSWER38,,Double-Clue-38,CLUE38,,Double-Answer-38,ANSWER38,,,,,,,,,,,,,,,,,,,
+Single-Clue-39,CLUE39,,Single-Answer-39,ANSWER39,,Double-Clue-39,CLUE39,,Double-Answer-39,ANSWER39,,,,,,,,,,,,,,,,,,,
+Single-Clue-40,CLUE40,,Single-Answer-40,ANSWER40,,Double-Clue-40,CLUE40,,Double-Answer-40,ANSWER40,,,,,,,,,,,,,,,,,,,
+Single-Clue-41,CLUE41,,Single-Answer-41,ANSWER41,,Double-Clue-41,CLUE41,,Double-Answer-41,ANSWER41,,,,,,,,,,,,,,,,,,,
+Single-Clue-42,CLUE42,,Single-Answer-42,ANSWER42,,Double-Clue-42,CLUE42,,Double-Answer-42,ANSWER42,,,,,,,,,,,,,,,,,,,
+Single-Clue-43,CLUE43,,Single-Answer-43,ANSWER43,,Double-Clue-43,CLUE43,,Double-Answer-43,ANSWER43,,,,,,,,,,,,,,,,,,,
+Single-Clue-44,CLUE44,,Single-Answer-44,ANSWER44,,Double-Clue-44,CLUE44,,Double-Answer-44,ANSWER44,,,,,,,,,,,,,,,,,,,
+Single-Clue-45,CLUE45,,Single-Answer-45,ANSWER45,,Double-Clue-45,CLUE45,,Double-Answer-45,ANSWER45,,,,,,,,,,,,,,,,,,,
+Single-Clue-46,CLUE46,,Single-Answer-46,ANSWER46,,Double-Clue-46,CLUE46,,Double-Answer-46,ANSWER46,,,,,,,,,,,,,,,,,,,
+Single-Clue-47,CLUE47,,Single-Answer-47,ANSWER47,,Double-Clue-47,CLUE47,,Double-Answer-47,ANSWER47,,,,,,,,,,,,,,,,,,,
+Single-Clue-48,CLUE48,,Single-Answer-48,ANSWER48,,Double-Clue-48,CLUE48,,Double-Answer-48,ANSWER48,,,,,,,,,,,,,,,,,,,
+Single-Clue-49,CLUE49,,Single-Answer-49,ANSWER49,,Double-Clue-49,CLUE49,,Double-Answer-49,ANSWER49,,,,,,,,,,,,,,,,,,,
+Single-Clue-50,CLUE50,,Single-Answer-50,ANSWER50,,Double-Clue-50,CLUE50,,Double-Answer-50,ANSWER50,,,,,,,,,,,,,,,,,,,
+Single-Clue-51,CLUE51,,Single-Answer-51,ANSWER51,,Double-Clue-51,CLUE51,,Double-Answer-51,ANSWER51,,,,,,,,,,,,,,,,,,,
+Single-Clue-52,CLUE52,,Single-Answer-52,ANSWER52,,Double-Clue-52,CLUE52,,Double-Answer-52,ANSWER52,,,,,,,,,,,,,,,,,,,
+Single-Clue-53,CLUE53,,Single-Answer-53,ANSWER53,,Double-Clue-53,CLUE53,,Double-Answer-53,ANSWER53,,,,,,,,,,,,,,,,,,,
+Single-Clue-54,CLUE54,,Single-Answer-54,ANSWER54,,Double-Clue-54,CLUE54,,Double-Answer-54,ANSWER54,,,,,,,,,,,,,,,,,,,
+Single-Clue-55,CLUE55,,Single-Answer-55,ANSWER55,,Double-Clue-55,CLUE55,,Double-Answer-55,ANSWER55,,,,,,,,,,,,,,,,,,,
+Single-Clue-56,CLUE56,,Single-Answer-56,ANSWER56,,Double-Clue-56,CLUE56,,Double-Answer-56,ANSWER56,,,,,,,,,,,,,,,,,,,
+Single-Clue-57,CLUE57,,Single-Answer-57,ANSWER57,,Double-Clue-57,CLUE57,,Double-Answer-57,ANSWER57,,,,,,,,,,,,,,,,,,,
+Single-Clue-58,CLUE58,,Single-Answer-58,ANSWER58,,Double-Clue-58,CLUE58,,Double-Answer-58,ANSWER58,,,,,,,,,,,,,,,,,,,
+Single-Clue-59,CLUE59,,Single-Answer-59,ANSWER59,,Double-Clue-59,CLUE59,,Double-Answer-59,ANSWER59,,,,,,,,,,,,,,,,,,,
+Single-Clue-60,CLUE60,,Single-Answer-60,ANSWER60,,Double-Clue-60,CLUE60,,Double-Answer-60,ANSWER60,,,,,,,,,,,,,,,,,,,
+Single-Clue-61,CLUE61,,Single-Answer-61,ANSWER61,,Double-Clue-61,CLUE61,,Double-Answer-61,ANSWER61,,,,,,,,,,,,,,,,,,,
+Single-Clue-62,CLUE62,,Single-Answer-62,ANSWER62,,Double-Clue-62,CLUE62,,Double-Answer-62,ANSWER62,,,,,,,,,,,,,,,,,,,
+Single-Clue-63,CLUE63,,Single-Answer-63,ANSWER63,,Double-Clue-63,CLUE63,,Double-Answer-63,ANSWER63,,,,,,,,,,,,,,,,,,,
+Single-Clue-64,CLUE64,,Single-Answer-64,ANSWER64,,Double-Clue-64,CLUE64,,Double-Answer-64,ANSWER64,,,,,,,,,,,,,,,,,,,
+Single-Clue-65,CLUE65,,Single-Answer-65,ANSWER65,,Double-Clue-65,CLUE65,,Double-Answer-65,ANSWER65,,,,,,,,,,,,,,,,,,,
+Single-Clue-66,CLUE66,,Single-Answer-66,ANSWER66,,Double-Clue-66,CLUE66,,Double-Answer-66,ANSWER66,,,,,,,,,,,,,,,,,,,
+Single-Clue-67,CLUE67,,Single-Answer-67,ANSWER67,,Double-Clue-67,CLUE67,,Double-Answer-67,ANSWER67,,,,,,,,,,,,,,,,,,,
+Single-Clue-68,CLUE68,,Single-Answer-68,ANSWER68,,Double-Clue-68,CLUE68,,Double-Answer-68,ANSWER68,,,,,,,,,,,,,,,,,,,
+Single-Clue-69,CLUE69,,Single-Answer-69,ANSWER69,,Double-Clue-69,CLUE69,,Double-Answer-69,ANSWER69,,,,,,,,,,,,,,,,,,,
+Single-Clue-70,CLUE70,,Single-Answer-70,ANSWER70,,Double-Clue-70,CLUE70,,Double-Answer-70,ANSWER70,,,,,,,,,,,,,,,,,,,
+Single-Clue-71,CLUE71,,Single-Answer-71,ANSWER71,,Double-Clue-71,CLUE71,,Double-Answer-71,ANSWER71,,,,,,,,,,,,,,,,,,,
+Single-Clue-72,CLUE72,,Single-Answer-72,ANSWER72,,Double-Clue-72,CLUE72,,Double-Answer-72,ANSWER72,,,,,,,,,,,,,,,,,,,
+Single-Clue-73,CLUE73,,Single-Answer-73,ANSWER73,,Double-Clue-73,CLUE73,,Double-Answer-73,ANSWER73,,,,,,,,,,,,,,,,,,,
+Single-Clue-74,CLUE74,,Single-Answer-74,ANSWER74,,Double-Clue-74,CLUE74,,Double-Answer-74,ANSWER74,,,,,,,,,,,,,,,,,,,
+Single-Clue-75,CLUE75,,Single-Answer-75,ANSWER75,,Double-Clue-75,CLUE75,,Double-Answer-75,ANSWER75,,,,,,,,,,,,,,,,,,,
+Single-Clue-76,CLUE76,,Single-Answer-76,ANSWER76,,Double-Clue-76,CLUE76,,Double-Answer-76,ANSWER76,,,,,,,,,,,,,,,,,,,
+Single-Clue-77,CLUE77,,Single-Answer-77,ANSWER77,,Double-Clue-77,CLUE77,,Double-Answer-77,ANSWER77,,,,,,,,,,,,,,,,,,,
+Single-Clue-78,CLUE78,,Single-Answer-78,ANSWER78,,Double-Clue-78,CLUE78,,Double-Answer-78,ANSWER78,,,,,,,,,,,,,,,,,,,
+Single-Clue-79,CLUE79,,Single-Answer-79,ANSWER79,,Double-Clue-79,CLUE79,,Double-Answer-79,ANSWER79,,,,,,,,,,,,,,,,,,,

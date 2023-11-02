@@ -1,7 +1,7 @@
 {
-  "name": "jeopardy-workshop",
-  "version": "0.1.8",
-  "description": "A simple NodeJS Website to create Jeopardy! like boards",
+  "name": "simple-server-node",
+  "version": "2.0.0",
+  "description": "A simple Expressjs Web server on balena",
   "main": "server.js",
   "private": true,
   "scripts": {

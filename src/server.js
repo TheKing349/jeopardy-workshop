@@ -12,6 +12,50 @@ const https = require('https');
 
 const publicPath = path.join(process.cwd().replace(/\\src/, ""), "/views");
 
+/*
+  To Do:
+    1. 
+      Fix toggles on checkbox if Double is NONE
+    1. 
+      Fix Daily Doubles not transferring when editing existing board
+
+    2.
+      If press backspace so nothing is present in Cat, ANS, CLUE, exit
+      out of cell, then can't edit it again.
+    
+    3. 
+      Make so that special characteres can't be in values
+
+    4.
+      When editing a single value(CapsLock), change CORRECTLY in valuesList. 
+      For more info, look roughly at Ln 518 in 'edit-board.html'
+    
+    5.
+      Have backend(server.js) account for variable row/column sizes. .CSV work, Play Board work.
+    
+    6.
+      Add 'Redesigned Single/Double Tables to account for variable Row/Column Sizes. This means you
+      can now change how many Rows and/or Columns you have in the Create/Edit Board' to release notes
+
+    7.
+      Add 'Redesigned how editing values, questions, etc. so it automatically sets it when your mouse
+      is off of it. Also made a triple click instead of a double click' to release notes
+    
+    8.
+      Add 'made contenteditable to be false when not doing Double/Final Jeopardy' to release notes
+    
+    9. 
+      Add 'made scale of Daily Double in the Double Board in the Create Board the same as the rest of the Daily Doubles' to release notes
+
+    10. 
+      Add 'updated instructions.html to reflect new changes.' to release notes
+
+    11. 
+      Add 'updated index.html 'How we use your Data' tab to better reflect the data being sent from you to us' to release notes
+
+    10.
+      IDEA: Possibly have a way to 'save' progress for Create Board, even when .CSV isn't saved. Useful for power outages, etc.
+*/
 var httpsOptions = {
   key: fs.readFileSync('src/keys/server.key'),
   cert: fs.readFileSync('src/keys/server.crt')
@@ -72,6 +116,7 @@ app.post('/custom/select', (req, res) => {
   if (req.session.testCookie != true) {
     return res.sendFile(path.join(publicPath, "/html/error.html"));
   }
+  req.session.testCookie = true;
   req.session.categories = [];
   req.session.singleClues = [];
   req.session.doubleClues = [];
@@ -86,6 +131,10 @@ app.post('/custom/select', (req, res) => {
   req.session.showDoubleButton = "";
   req.session.showFinalButton = "";
   req.session.showResultsButton = "";
+  req.session.singleRowCount = "";
+  req.session.singleColumnCount = "";
+  req.session.doubleRowCount = "";
+  req.session.doubleColumnCount = "";
 
   req.session.csvFile = req.files.csv_file.data;
   req.session.csvFileName = req.files.csv_file.name;
@@ -95,6 +144,7 @@ app.post('/custom/select', (req, res) => {
 
     req.session.tmpResults = [];
     req.session.results = [];
+    req.session.currentResult = [];
     fs.createReadStream(path.join(publicPath, '/custom/csv/', req.session.csvFileName))
     .pipe(csv.parse({ headers: false }))
     .on('error', error => console.error(error))
@@ -110,46 +160,20 @@ app.post('/custom/select', (req, res) => {
       for (var i = 0; i < req.session.tmpResults.length; i++) {
         req.session.tmpResults[i] = req.session.tmpResults[i].replace(/'/g, "\\'").replace(/"/g, "\\'");
         req.session.currentResult = req.session.tmpResults[i].toString().split(/,,/g);
-        if (req.session.currentResult[0] != ",") {
-          req.session.results.push(req.session.currentResult[0]);
-        }
-        if (req.session.currentResult[1] != ",") {
-          req.session.results.push(req.session.currentResult[1]);
-        }
-        if (req.session.currentResult[2] != ",") {
-          req.session.results.push(req.session.currentResult[2]);
-        }
-        if (req.session.currentResult[3] != ",") {
-          req.session.results.push(req.session.currentResult[3]);
-        }
-        if (req.session.currentResult[4] != ",") {
-          req.session.results.push(req.session.currentResult[4]);
-       }
-        if ((req.session.currentResult[5] != ",") && (req.session.currentResult[5] != "")) {
-          req.session.results.push(req.session.currentResult[5]);
-       }
-        if ((req.session.currentResult[6] != ",") && (req.session.currentResult[6] != "")) {
-          req.session.results.push(req.session.currentResult[6]);
-        }
-        if ((req.session.currentResult[7] != ",") && (req.session.currentResult[7] != "")) {
-          req.session.results.push(req.session.currentResult[7]);
-        }
-        if ((req.session.currentResult[8] != ",") && (req.session.currentResult[8] != "")) {
-          req.session.results.push(req.session.currentResult[8]);
-        }
-        if ((req.session.currentResult[9] != ",") && (req.session.currentResult[9] != "")) {
-          req.session.results.push(req.session.currentResult[9]);
-        }
-        if ((req.session.currentResult[10] != ",") && (req.session.currentResult[10] != "")) {
-          req.session.results.push(req.session.currentResult[10]);
+
+        for (var k = 0; k < 13; k++) {
+          if ((req.session.currentResult[k] != ",") && (req.session.currentResult[k] != "")) {
+            req.session.results.push(req.session.currentResult[k]);
+          }
         }
       }
-      
+
       req.session.categoryIndex = 0;
       req.session.singleClueIndex = 0;
       req.session.doubleClueIndex = 0;
       req.session.singleAnswerIndex = 0;
       req.session.doubleAnswerIndex = 0;
+
       for (var j = 0; j < req.session.results.length; j++) {
         if (req.session.results[j].includes("Deduct-Points")) {
           if (req.session.results[j].substring(req.session.results[j].indexOf(',') + 1) == "TRUE") {
@@ -184,6 +208,18 @@ app.post('/custom/select', (req, res) => {
             req.session.showResultsButton = false;
           }
         }
+        if (req.session.results[j].includes("Single-Column-Count")) {
+          req.session.singleColumnCount = req.session.results[j].substring(req.session.results[j].indexOf(',') + 1);
+        }
+        if (req.session.results[j].includes("Single-Row-Count")) {
+          req.session.singleRowCount = req.session.results[j].substring(req.session.results[j].indexOf(',') + 1);
+        }
+        if (req.session.results[j].includes("Double-Column-Count")) {
+          req.session.doubleColumnCount = req.session.results[j].substring(req.session.results[j].indexOf(',') + 1);
+        }
+        if (req.session.results[j].includes("Double-Row-Count")) {
+          req.session.doubleRowCount = req.session.results[j].substring(req.session.results[j].indexOf(',') + 1);
+        }
 
         if (req.session.results[j].includes("Category")) {
           req.session.categories[req.session.categoryIndex] = req.session.results[j].substring(req.session.results[j].indexOf(',') + 1);
@@ -213,16 +249,18 @@ app.post('/custom/select', (req, res) => {
           req.session.finalAnswer = req.session.results[j].substring(req.session.results[j].indexOf(',') + 1);
         }
 
-        if ((containsNumbers(req.session.results[j].toString())) && (!req.session.results[j].includes("c")) && (!req.session.results[j].includes("C")) && (!req.session.results[j].includes("a")) && (!req.session.results[j].includes("A"))) {
+        if ((req.session.results[j].includes(": $")) || (req.session.results[j].includes(": DISABLED"))) {
           req.session.values.push(req.session.results[j].substring(req.session.results[j].indexOf(" ") + 1));
         }
       }
+      
       fs.unlink(path.join(publicPath, "/custom/csv/" + req.session.csvFileName), (err) => {
         if (err) throw err;
       });
 
       const $ = cheerio.load(fs.readFileSync(path.join(publicPath, '/html/index.html')));
       $('#create-board-div').replaceWith('<div id="create-board-div" class="index-div"><form action="/custom/create-board" method="GET"><input class="create-board-input" type="submit" value="Create a Board"></form><form action="/custom/game-board" method="GET"><input class="select-buttons" type="submit" value="Play ' + req.session.csvFileName + '"><br><br></form><form action="/custom/edit-board" method="GET"><input class="select-buttons" id="edit-button" type="submit" value="Edit ' + req.session.csvFileName + '"></form></div>');
+      $('#select-board-div').replaceWith('');
       res.send($.html());
     });
   });
@@ -238,8 +276,61 @@ app.get('/custom/create-board/instructions', (req, res) => {
 
 app.get('/custom/edit-board', (req, res) => {
   const $ = cheerio.load(fs.readFileSync(path.join(publicPath, '/html/edit/edit-board.html')));
+  if (req.session.testCookie != true) {
+    return res.sendFile(path.join(publicPath, "/html/error.html"));
+  }
+  req.session.singleCategories = req.session.categories.slice(0, 8);
+  req.session.doubleCategories = req.session.categories.slice(8, req.session.categories.length - 1);
+  req.session.finalCategory = req.session.categories[req.session.categories.length - 1];
+  req.session.singleValues = req.session.values.slice(0, 80);
+  req.session.doubleValues = req.session.values.slice(80, req.session.values.length);
+  req.session.singleDailyDoubles = [];
+  req.session.doubleDailyDoubles = [];
+
+  $('#is-edit-board').replaceWith('<a id="is-edit-board" hidden>true</a>');
+  $('#user-name-input').replaceWith('<input type="text" value="'+req.session.csvFileName+'" id="user-name-input" name="user_name_input" placeholder=".CSV File Name">');
+  
+  for (var i = 0; i < 80; i++) {
+    if (req.session.singleValues[i].includes("DD: ")) {
+      req.session.singleDailyDoubles[i] = "checked";
+      req.session.singleValues[i] = req.session.singleValues[i].replace('DD: ', '');
+    }
+    else {
+      req.session.singleDailyDoubles[i] = "unchecked";
+    }
+
+    if (req.session.doubleValues[i].includes("DD: ")) {
+      req.session.doubleDailyDoubles[i] = "checked";
+      req.session.doubleValues[i] = req.session.doubleValues[i].replace('DD: ', '');
+    }
+    else {
+      req.session.doubleDailyDoubles[i] = "unchecked";
+    }
+  }
+
+  $('#edit-single-column-count').replaceWith('<a id="edit-single-column-count" hidden>'+req.session.singleColumnCount+'</a>');
+  $('#edit-single-row-count').replaceWith('<a id="edit-single-row-count" hidden>'+req.session.singleRowCount+'</a>');
+  $('#edit-single-categories').replaceWith('<a id="edit-single-categories" hidden>'+req.session.singleCategories+'</a>');
+  $('#edit-single-clues').replaceWith('<a id="edit-single-clues" hidden>'+req.session.singleClues+'</a>');
+  $('#edit-single-values').replaceWith('<a id="edit-single-values" hidden>'+req.session.singleValues+'</a>');
+  $('#edit-single-answers').replaceWith('<a id="edit-single-answers" hidden>'+req.session.singleAnswers+'</a>');
+  $('#edit-single-daily-doubles').replaceWith('<a id="edit-single-daily-doubles" hidden>'+req.session.singleDailyDoubles+'</a>');
+  
+  $('#edit-double-column-count').replaceWith('<a id="edit-double-column-count" hidden>'+req.session.doubleColumnCount+'</a>');
+  $('#edit-double-row-count').replaceWith('<a id="edit-double-row-count" hidden>'+req.session.doubleRowCount+'</a>');
+  $('#edit-double-categories').replaceWith('<a id="edit-double-categories" hidden>'+req.session.doubleCategories+'</a>');
+  $('#edit-double-clues').replaceWith('<a id="edit-double-clues" hidden>'+req.session.doubleClues+'</a>');
+  $('#edit-double-values').replaceWith('<a id="edit-double-values" hidden>'+req.session.doubleValues+'</a>');
+  $('#edit-double-answers').replaceWith('<a id="edit-double-answers" hidden>'+req.session.doubleAnswers+'</a>');
+  $('#edit-double-daily-doubles').replaceWith('<a id="edit-double-daily-doubles" hidden>'+req.session.doubleDailyDoubles+'</a>');
   
   $('#title').replaceWith('<title>Edit Your Board</title>');
+  $('#columnRange').val($('#columnRange option:contains("'+req.session.singleColumnCount+'")').val());
+  $('#rowRange').val($('#rowRange option:contains("'+req.session.singleRowCount+'")').val());
+
+  $('#fCA').replaceWith('<a id="fCA" contenteditable="false">'+req.session.finalCategory+'</a>');
+  $('#fQA').replaceWith('<a id="fQA" contenteditable="false">'+req.session.finalClue+'</a>');
+  $('#fAA').replaceWith('<a id="fAA" contenteditable="false">'+req.session.finalAnswer+'</a>');
 
   if (req.session.isDeduction) {
     $('#deduct-points-checkbox').replaceWith('<input id="deduct-points-checkbox" type="checkbox" checked>');
@@ -266,54 +357,14 @@ app.get('/custom/edit-board', (req, res) => {
   else {
     $('#show-results-checkbox').replaceWith('<input id="show-results-checkbox" type="checkbox"></a>');
   }
-
-  if (req.session.categories[6] == "NONE") {
+  if (req.session.categories[req.session.singleColumnCoun] == "NONE") {
     $('#double-checkbox').replaceWith('<input id="double-checkbox" type="checkbox">');
     $('#show-double-checkbox').replaceWith('<input id="show-double-checkbox" type="checkbox" disabled></a>');
   }
-  if (req.session.categories[12] == "NONE") {
+  if (req.session.categories[req.session.categories.length - 1] == "NONE") {
     $('#final-checkbox').replaceWith('<input id="final-checkbox" type="checkbox">');
     $('#show-final-checkbox').replaceWith('<input id="show-final-checkbox" type="checkbox" disabled></a>');
   }
-  //SINGLE
-  //Categories
-  for (var i = 0; i < 6; i++) {
-    $('#sC'+i+'A').replaceWith('<a id="sC'+i+'A" contenteditable="false">' + req.session.categories[i] + '</a>');
-  }
-  //Values
-  for (var i = 0; i < 30; i++) {
-    $('#sV'+i+'A').replaceWith('<a id="sV'+i+'A">' + req.session.values[i].replace("$", "") + "</a>");
-  }
-  //Questions/Answers
-  for (var i = 0; i < 30; i++) {
-    $('#sQ'+i+'A').replaceWith('<a id="sQ'+i+'A" contenteditable="false">' + req.session.singleClues[i] + '</a>');
-
-    $('#sA'+i+'A').replaceWith('<a id="sA'+i+'A" contenteditable="false">' + req.session.singleAnswers[i] + '</a>');
-  }
-
-  //DOUBLE
-  //Categories
-  for (var i = 0; i < 6; i++) {
-    $('#dC'+i+'A').replaceWith('<a id="dC'+i+'A" contenteditable="false">' + req.session.categories[i+6] + '</a>');
-  }
-  //Values
-  for (var i = 0; i < 30; i++) {
-    $('#dV'+i+'A').replaceWith('<a id="dV'+i+'A">' + req.session.values[i+30].replace("$", "") + "</a>");
-  }
-  //Questions/Answers
-  for (var i = 0; i < 30; i++) {
-    $('#dQ'+i+'A').replaceWith('<a id="dQ'+i+'A" contenteditable="false">' + req.session.doubleClues[i] + '</a>');
-
-    $('#dA'+i+'A').replaceWith('<a id="dA'+i+'A" contenteditable="false">' + req.session.doubleAnswers[i] + '</a>');
-  }
-
-  //FINAL
-  //Category
-  $('#fCA').replaceWith('<a id="fCA" contenteditable="false">' + req.session.categories[req.session.categories.length - 1] + '</a>');
-  //Question
-  $('#fQA').replaceWith('<a id="fQA" contenteditable="false">' + req.session.finalClue + '</a>');
-  //Clue
-  $('#fAA').replaceWith('<a id="fAA" contenteditable="false">' + req.session.finalAnswer + '</a>');
 
   res.send($.html());
 });
@@ -323,6 +374,11 @@ app.post('/custom/save', (req, res) => {
   req.session.showDoubleButton = req.body.show_double_button;
   req.session.showFinalButton = req.body.show_final_button;
   req.session.showResultsButton = req.body.show_results_button;
+
+  req.session.singleRowCount = req.body.single_row_count;
+  req.session.singleColumnCount = req.body.single_column_count;
+  req.session.doubleRowCount = req.body.double_row_count;
+  req.session.doubleColumnCount = req.body.double_column_count;
 
   req.session.singleCategories = req.body.single_categories_csv.split('&');
   req.session.singleValues = req.body.single_values_csv.split('&');
@@ -340,10 +396,10 @@ app.post('/custom/save', (req, res) => {
 
   req.session.values = [...req.session.singleValues, ...req.session.doubleValues];
   req.session.categories = [...req.session.singleCategories, ...req.session.doubleCategories];
-  req.session.categories[req.session.categories.length] = req.session.finalCategory;
+  req.session.categories.push(req.session.finalCategory);
   
   req.session.userFileName = req.body.user_name_input;
-
+  
   if (req.session.userFileName == "") {
     req.session.date = new Date();
     req.session.h = addZero((req.session.date.getHours() +24 ) %  12 || 12);
@@ -368,7 +424,7 @@ app.post('/custom/save', (req, res) => {
     req.session.singleCounter = 0;
     req.session.doubleCounter = 0;
 
-    for (var i = 0; i < 30; i++) {
+    for (var i = 0; i < 80; i++) {
       req.session.tmpResults[i] = req.session.tmpResults[i]
       .replace("Single-Clue-"+i+",CLUE"+i, "Single-Clue-"+i+","+ req.session.singleClues[i])
       .replace("Single-Answer-"+i+",ANSWER"+i, "Single-Answer-"+i+","+ req.session.singleAnswers[i])
@@ -376,7 +432,7 @@ app.post('/custom/save', (req, res) => {
       
       .replace("Double-Clue-"+i+",CLUE"+i, "Double-Clue-"+i+","+ req.session.doubleClues[i])
       .replace("Double-Answer-"+i+",ANSWER"+i, "Double-Answer-"+i+","+ req.session.doubleAnswers[i])
-      .replace("Double-Category-"+(i-7)+",CATEGORY"+(i-7), "Double-Category-"+(i-7)+","+ req.session.categories[i-1]) //i-7+6 = i-1
+      .replace("Double-Category-"+(i-9)+",CATEGORY"+(i-9), "Double-Category-"+(i-9)+","+ req.session.categories[i-1]) //i-7+6 = i-1
 
       .replace("Final-Clue,FINAL CLUE", "Final-Clue,"+ req.session.finalClue)
       .replace("Final-Answer,FINAL ANSWER", "Final-Answer,"+ req.session.finalAnswer)
@@ -386,36 +442,29 @@ app.post('/custom/save', (req, res) => {
       .replace("Show-Double-Button,FALSE", "Show-Double-Button,"+req.session.showDoubleButton)
       .replace("Show-Final-Button,FALSE", "Show-Final-Button,"+req.session.showFinalButton)
       .replace("Show-Results-Button,FALSE", "Show-Results-Button,"+req.session.showResultsButton)
-      
-      if ((i < 5)) {
-        req.session.tmpResults[i] = req.session.tmpResults[i]
-        .replace("S"+(req.session.singleCounter+0)+": "+req.session.singleValue, "S" +(req.session.singleCounter+0)+": " + req.session.values[i*6+0])
-        .replace("S"+(req.session.singleCounter+1)+": "+req.session.singleValue, "S" +(req.session.singleCounter+1)+": " + req.session.values[i*6+1])
-        .replace("S"+(req.session.singleCounter+2)+": "+req.session.singleValue, "S" +(req.session.singleCounter+2)+": " + req.session.values[i*6+2])
-        .replace("S"+(req.session.singleCounter+3)+": "+req.session.singleValue, "S" +(req.session.singleCounter+3)+": " + req.session.values[i*6+3])
-        .replace("S"+(req.session.singleCounter+4)+": "+req.session.singleValue, "S" +(req.session.singleCounter+4)+": " + req.session.values[i*6+4])
-        .replace("S"+(req.session.singleCounter+5)+": "+req.session.singleValue, "S" +(req.session.singleCounter+5)+": " + req.session.values[i*6+5]);
 
-        req.session.singleCounter += 6;
+      .replace("Single-Column-Count,6", "Single-Column-Count,"+req.session.singleColumnCount)
+      .replace("Single-Row-Count,5", "Single-Row-Count,"+req.session.singleRowCount)
+      .replace("Double-Column-Count,6", "Double-Column-Count,"+req.session.doubleColumnCount)
+      .replace("Double-Row-Count,5", "Double-Row-Count,"+req.session.doubleRowCount)
+      
+      if ((i < 11)) {
+        for (var j = 0; j < 8; j++) {
+          req.session.tmpResults[i] = req.session.tmpResults[i].replace("S"+(req.session.singleCounter+j)+": "+req.session.singleValue, "S" +(req.session.singleCounter+j)+": " + req.session.singleValues[i*8+j]);
+        }
+        req.session.singleCounter += 8;
         req.session.singleValue += 200;
       }
 
-      if ((i > 6) && (i < 12)) {
-        req.session.tmpResults[i] = req.session.tmpResults[i]
-        .replace("D"+(req.session.doubleCounter+0)+": "+req.session.doubleValue, "D" +(req.session.doubleCounter+0)+": " + req.session.values[(i-2)*6+0])
-        .replace("D"+(req.session.doubleCounter+1)+": "+req.session.doubleValue, "D" +(req.session.doubleCounter+1)+": " + req.session.values[(i-2)*6+1])
-        .replace("D"+(req.session.doubleCounter+2)+": "+req.session.doubleValue, "D" +(req.session.doubleCounter+2)+": " + req.session.values[(i-2)*6+2])
-        .replace("D"+(req.session.doubleCounter+3)+": "+req.session.doubleValue, "D" +(req.session.doubleCounter+3)+": " + req.session.values[(i-2)*6+3])
-        .replace("D"+(req.session.doubleCounter+4)+": "+req.session.doubleValue, "D" +(req.session.doubleCounter+4)+": " + req.session.values[(i-2)*6+4])
-        .replace("D"+(req.session.doubleCounter+5)+": "+req.session.doubleValue, "D" +(req.session.doubleCounter+5)+": " + req.session.values[(i-2)*6+5]);
-
-        req.session.doubleCounter += 6;
+      if ((i > 10) && (i < 21)) {
+        for (var k = 0; k < 8; k++) {
+          req.session.tmpResults[i] = req.session.tmpResults[i].replace("D"+(req.session.doubleCounter+k)+": "+req.session.doubleValue, "D" +(req.session.doubleCounter+k)+": " + req.session.doubleValues[(i-11)*8+k]);
+        }
+        req.session.doubleCounter += 8;
         req.session.doubleValue += 400;
       }
     }
-
     req.session.results = req.session.tmpResults.join("\n");
-
     fs.writeFile(path.join(publicPath, "/custom/csv/" + req.session.currentName + ".csv"), req.session.results.toString(), (err) => {
       if (err) throw err;
 
@@ -764,10 +813,6 @@ function randomGenerator(length) {
     counter += 1;
   }
   return result;
-}
-
-function containsNumbers(str) {
-  return /\d/.test(str);
 }
 
 function addZero(i) {

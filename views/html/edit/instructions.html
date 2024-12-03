@@ -5,19 +5,27 @@
         <title id="title">Instructions</title>
     </head>
     <h1 class="title-name">Instructions</h1>
-
-    <h1 style="font-size: 300%;">Create Board Settings</h1>
+    <h1 style="font-size: 300%">Important Info</h1>
     <div class="index-div">
-        <h1>Double/Final</h1>
-        <p>Determines if Double/Final Jeopardy happens. If Double/Final are unchecked, Double/Final will not happen.</p>
+        <h1>Editing</h1>
+        <p>To edit Categories, Clues, Values, and Answers, Triple click the existing text and type in the desired text. Only 
+            numbers are allowed in Values and if you uncheck the Double/Final Board checkbox, you will not be able to change 
+            the 'NONE' from that. To exit typing mode, either move your mouse outside the current cell, or press Enter.</p>
     </div>
-    
     <div class="index-div">
         <h1>Daily Double(s)</h1>
         <p>To mark a question/value as a Daily Double, check the box underneath 
             the question/value. You can have as many Daily Doubles as needed.</p>
     </div>
-
+    <div class="index-div">
+        <h1>Differences</h1>
+        <p>When a Daily Double occurs, two inputs(one for each team) and a "Submit" button will appear. Only ONE input can 
+            be used at a time, which would be determined by player order(user chosen). Leave the other Team's input blank.
+            <br><br>If a team has a negative score when Final Jeopardy happens, the team can make up the score to get back 
+            to $0. For example, if Team One has a score of $-400, they will only be able to wager $400 to get back to $0.</p>
+    </div>
+    
+    <h1 style="font-size: 300%;">Create Board Settings</h1>
     <div class="index-div">
         <h1>Deduct Points</h1>
         <p>Determines whether a team who got a wrong question gets deducted the value of the question. I.E. if a question is worth 
@@ -29,13 +37,17 @@
         <p>Determines whether the "Go To Double/Final Jeopardy" or "Go To Results Screen" buttons appear BEFORE the 
             round is over. If checked, they will. Otherwise you must click on every question before they appear.</p>
     </div>
-    <h1 style="font-size: 300%;">Miscellaneous</h1>
+
     <div class="index-div">
-        <h1>Info & Differences</h1>
-        <p>When a Daily Double occurs, two inputs(one for each team) and a "Submit" button will appear. Only ONE input can be 
-            used at a time, which would be determined by player order. Leave the other Teams' input blank.<br><br> If a team 
-            has a negative score when Final Jeopardy happens, the team is not out. Rather, they can make up the score to get 
-            back to $0. For example, if Team One has a score of $-400, they will only be able to wager $400 to get back to $0</p>
+        <h1>Double/Final</h1>
+        <p>Determines if Double/Final Jeopardy happens. If Double/Final are unchecked, Double/Final will not happen.</p>
+    </div>
+
+    <div class="index-div">
+        <h1>Row/Column Count</h1>
+        <p>Determines how many Rows/Columns the current Board has. To change, click on the dropdown next to 'Column/Row 
+            Count' and select a number that works for you. Single and Double Board are independent from each other, meaning
+            changing Row/Column Count on the Single Board will not affect the Row/Column Count on the Double Board.</p>
     </div>
 
     <form action="/custom/create-board" method="GET">

@@ -13,20 +13,16 @@
                 against each other in a Jeopardy!-like trivia game. To get started, go to <a href="/custom/create-board">
                 Create Board!</a><br><br><a style="text-decoration: underline">Disclaimer:</a> Jeopardy Workshop is in no way, shape, 
                 or form related to or affiliated with the Jeopardy! brand or show. This is a fan-made website, not in connection to 
-                the Jeopardy! Show.<br><br>My name is Aiden Kimmerling, and I am currently a sophmore in high school. I program as 
-                a hobby, and mainly use the <a href="https://unity.com/">Unity Game Engine</a> to program simple games in C#.</p>
+                the Jeopardy! Show. </p>
         </div>
 
-        <div id="create-board-div" class="index-div">
+        <div id="create-board-div" class="index-div" style="padding-bottom: 5px;">
             <form action="/custom/create-board" method="GET">
                 <input class="create-board-input" type="submit" value="Create a Board"> 
             </form>
             <a style="font-size: 200%; margin-bottom: 30px;">OR</a>
-            <a style="font-size: 200%; display: block;" href="https://docs.google.com/spreadsheets/d/1QcFzKwD9e8Zo0XDX68SelxTqUqe_u_bomV3A0zrwiYU/edit?usp=sharing">Google Sheets Template</a>
-            <p style="font-size: 100%;">Edit ONLY what is capitalized and NOT anything that has Dashes on them. For example, 
-                when looking at "Single-Clue-0" and CLUE0", only edit the "CLUE0". To edit Single values, look at the "S0: 200". 
-                Edit the "200" to whatever value needed. To represent a Daily Double, format values like so: "S0: DD: 200". Same 
-                goes for Double Jeopardy values as well. To download, go to File > Download > Comma Separated Values(.csv).</p>
+            <br>
+            <a style="font-size: 200%;" href="https://docs.google.com/spreadsheets/d/1QcFzKwD9e8Zo0XDX68SelxTqUqe_u_bomV3A0zrwiYU/edit?usp=sharing">Google Sheets Template</a>
         </div>
 
         <div id="select-board-div" class="index-div">
@@ -40,15 +36,17 @@
 
         <div class="index-div">
             <h1>Report a Bug</h1>
-            <p>To report a bug, contact me at 
-                <a href="/email">support@jeopardyworkshop.com,</a> or go to the <a href="https://github.com/TheKing349/jeopardy-workshop/issues">Issues tab</a> on my <a href="https://github.com/TheKing349/jeopardy-workshop/">Github page.</a></p>
+            <p style="text-align: center;">To report a bug, contact me at<a href="/email"> support@jeopardyworkshop.com,</a> or go to the <a href="https://github.com/TheKing349/jeopardy-workshop/issues">Issues Tab</a> on my <a href="https://github.com/TheKing349/jeopardy-workshop/">Github Page.</a></p>
         </div>
 
         <div class="index-div">
             <h1>How we use your Data</h1>
             <p>We use cookies to save the .csv data you send us via the "Choose File" input. This is set in place so that other users do not conflict with 
                 your game. If you disable or block cookies, the website will not work as intended. An error would occur when you select a jeopardy board.
-                <br>Before we initialize the cookies, we briefly save the .csv file to the server. It is deleted after cookies have been initialized.</p>
+                <br><br>Note that we <a style="font-weight: bold;">DO NOT</a> save or store the .CSV file sent to the server. The .CSV file is temporarily 
+                stored on the server, then once downloaded, deleted. This is to keep your data secure and to not run out of storage on the server. All that 
+                is <a style="font-weight: bold;">TEMPORARILY</a> saved on the server is the contents extracted from the .CSV, such as the Categories, Clues, 
+                etc. Once the session ends(tab closes), the data(cookies) are removed.</p>
         </div>
     </body>
 </html>
